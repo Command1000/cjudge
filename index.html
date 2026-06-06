@@ -6,7 +6,7 @@
 <title>CJudge — ECE Programming Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -153,13 +153,128 @@ textarea.code-area{width:100%;height:380px;background:#07070e;border:none;outlin
 .login-wall{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:2rem;text-align:center;margin-top:1rem}
 .login-wall p{font-size:.85rem;color:var(--muted);margin-bottom:1rem}
 
+
+/* ── COVER ─────────────────────────────── */
+.cover-page{background:#f8f7f4;color:#1a1a1a;font-family:'Source Serif 4',serif;min-height:100vh}
+.cv-nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #d0cdc7;background:#f8f7f4;position:sticky;top:0;z-index:50}
+.cv-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;color:#1a1a1a;letter-spacing:.02em}
+.cv-logo em{color:#185FA5;font-style:normal}
+.cv-navlinks{display:flex;gap:1.5rem;align-items:center}
+.cv-navlinks a{font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer}
+.cv-navlinks a:hover{color:#185FA5}
+.cv-signin{background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:6px 14px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em}
+.cv-signin:hover{background:#185FA5}
+.cv-inner{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
+.cv-hero{padding:5rem 0 3.5rem;border-bottom:1px solid #d0cdc7}
+.cv-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#5a5752;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem}
+.cv-title{font-size:3.2rem;font-weight:300;line-height:1.15;letter-spacing:-.02em;color:#0d0d0d;margin-bottom:.5rem}
+.cv-title strong{font-weight:600}
+.cv-sub{font-size:1.05rem;font-weight:300;color:#4a4845;line-height:1.7;max-width:540px;margin-bottom:2.5rem;font-style:italic}
+.cv-btn{display:inline-flex;align-items:center;gap:8px;background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:11px 22px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em}
+.cv-btn:hover{background:#185FA5}
+.cv-btn-out{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#0C447C;font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:10px 20px;border-radius:3px;cursor:pointer;border:1px solid #0C447C;letter-spacing:.04em;margin-left:.75rem}
+.cv-btn-out:hover{background:#E6F1FB}
+.cv-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #d0cdc7}
+.cv-stat{padding:1.75rem 0;border-right:1px solid #d0cdc7}
+.cv-stat:last-child{border-right:none}
+.cv-stat-num{font-size:2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.25rem}
+.cv-stat-lbl{font-size:.68rem;color:#5a5752;letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+.cv-features{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d0cdc7;margin-top:3rem}
+.cv-feat{padding:2rem 1.5rem 2rem 0;border-right:1px solid #d0cdc7}
+.cv-feat:first-child{padding-left:0}
+.cv-feat:last-child{border-right:none;padding-right:0}
+.cv-feat-icon{font-size:.95rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500}
+.cv-feat-title{font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem;font-family:'Source Serif 4',serif}
+.cv-feat-desc{font-size:.8rem;color:#5a5752;line-height:1.7;font-weight:300}
+.cv-sec-hdr{display:flex;justify-content:space-between;align-items:baseline;padding:2rem 0 1rem;border-bottom:1px solid #d0cdc7;margin-top:3rem}
+.cv-sec-title{font-size:.95rem;font-weight:600;color:#0d0d0d}
+.cv-sec-link{font-size:.72rem;color:#185FA5;font-family:'JetBrains Mono',monospace;cursor:pointer}
+.cv-prow{display:grid;grid-template-columns:80px 1fr 80px 80px;align-items:center;padding:.85rem 0;border-bottom:1px solid #ece9e4;font-size:.8rem;cursor:pointer}
+.cv-prow:hover{background:#f3f1ed;margin:0 -.5rem;padding:.85rem .5rem}
+.cv-pid{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752}
+.cv-ptitle{color:#0d0d0d}
+.cv-pdiff{font-size:.65rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:2px}
+.cv-easy{background:#EAF3DE;color:#27500A}
+.cv-med{background:#FAEEDA;color:#633806}
+.cv-hard{background:#FCEBEB;color:#791F1F}
+.cv-pacc{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752;text-align:right}
+.cv-footer{padding:2rem 0;display:flex;justify-content:space-between;align-items:center;margin-top:3rem;border-top:1px solid #d0cdc7}
+.cv-footer-text{font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace}
+.cv-footer-links{display:flex;gap:1.25rem}
+.cv-footer-links a{font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none;cursor:pointer}
+.cv-footer-links a:hover{color:#185FA5}
+
 footer{text-align:center;padding:1.5rem;font-size:.65rem;color:var(--muted);border-top:1px solid var(--border)}
 footer a{color:var(--purple);text-decoration:none}
 </style>
 </head>
 <body>
 <div id="app">
-  <div class="topbar">
+
+  <!-- COVER -->
+  <div id="view-cover" class="cover-page">
+    <nav class="cv-nav">
+      <div class="cv-logo"><em>C</em>Judge</div>
+      <div class="cv-navlinks">
+        <a onclick="gv('problems')">Problems</a>
+        <a onclick="gv('submissions')">Submissions</a>
+        <button class="cv-signin" onclick="showModal('login')" id="cv-auth-btn">Sign In</button>
+      </div>
+    </nav>
+    <div class="cv-inner">
+      <section class="cv-hero">
+        <div class="cv-label">Tamkang University · ECE Programming Practice</div>
+        <h1 class="cv-title">Learn algorithms.<br><strong>Write better code.</strong></h1>
+        <p class="cv-sub">An open, student-built online judge with 100 original problems — from array basics to competitive programming.</p>
+        <button class="cv-btn" onclick="gv('problems')">Start Solving →</button>
+        <button class="cv-btn-out" onclick="showModal('login')" id="cv-signin-btn2">Sign In</button>
+      </section>
+      <section class="cv-stats">
+        <div class="cv-stat"><div class="cv-stat-num">100</div><div class="cv-stat-lbl">Problems</div></div>
+        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num">3</div><div class="cv-stat-lbl">Difficulty Levels</div></div>
+        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num">C++17</div><div class="cv-stat-lbl">Language</div></div>
+        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num" id="cv-total-subs">—</div><div class="cv-stat-lbl">Submissions</div></div>
+      </section>
+      <section class="cv-features">
+        <div class="cv-feat">
+          <div class="cv-feat-icon">[ judge ]</div>
+          <div class="cv-feat-title">Real-time judging</div>
+          <div class="cv-feat-desc">Submissions are compiled and executed in a sandboxed C++17 environment with instant feedback.</div>
+        </div>
+        <div class="cv-feat" style="padding-left:1.5rem">
+          <div class="cv-feat-icon">[ stats ]</div>
+          <div class="cv-feat-title">Live statistics</div>
+          <div class="cv-feat-desc">Acceptance rates and submission counts are tracked globally across all users in real time.</div>
+        </div>
+        <div class="cv-feat" style="padding-left:1.5rem">
+          <div class="cv-feat-icon">[ user ]</div>
+          <div class="cv-feat-title">Personal history</div>
+          <div class="cv-feat-desc">Create an account to track your submissions, see solved problems, and monitor your progress.</div>
+        </div>
+      </section>
+      <div class="cv-sec-hdr">
+        <div class="cv-sec-title">Problem set</div>
+        <a class="cv-sec-link" onclick="gv('problems')">View all 100 problems →</a>
+      </div>
+      <div>
+        <div class="cv-prow"><span class="cv-pid">CJ001</span><span class="cv-ptitle">Sum of Array</span><span class="cv-pdiff cv-easy">Easy</span><span class="cv-pacc" id="cv-acc-CJ001">—</span></div>
+        <div class="cv-prow"><span class="cv-pid">CJ010</span><span class="cv-ptitle">Prime Check</span><span class="cv-pdiff cv-easy">Easy</span><span class="cv-pacc" id="cv-acc-CJ010">—</span></div>
+        <div class="cv-prow"><span class="cv-pid">CJ025</span><span class="cv-ptitle">Longest Increasing Subsequence</span><span class="cv-pdiff cv-med">Medium</span><span class="cv-pacc" id="cv-acc-CJ025">—</span></div>
+        <div class="cv-prow"><span class="cv-pid">CJ052</span><span class="cv-ptitle">Dijkstra Shortest Path</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ052">—</span></div>
+        <div class="cv-prow"><span class="cv-pid">CJ085</span><span class="cv-ptitle">Strongly Connected Components</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ085">—</span></div>
+        <div class="cv-prow"><span class="cv-pid">CJ100</span><span class="cv-ptitle">APCS Final Boss</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ100">—</span></div>
+      </div>
+      <footer class="cv-footer">
+        <div class="cv-footer-text">CJudge · Tamkang University ECE · Non-profit · Student project</div>
+        <div class="cv-footer-links">
+          <a href="https://github.com/Command1000/cjudge" target="_blank">GitHub</a>
+          <a href="https://glot.io" target="_blank">Powered by glot.io</a>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <div class="topbar" id="main-topbar">
     <a class="logo" href="#" onclick="gv('problems');return false;"><em>C</em>Judge</a>
     <div class="nav">
       <button class="on" onclick="gv('problems')">Problems</button>
@@ -889,6 +1004,13 @@ sb.auth.onAuthStateChange((event, session) => {
 });
 
 function updateAuthUI(){
+  const cvBtn=document.getElementById('cv-auth-btn');
+  const cvBtn2=document.getElementById('cv-signin-btn2');
+  if(currentUser && cvBtn){
+    cvBtn.textContent='Go to Problems';
+    cvBtn.onclick=()=>gv('problems');
+    if(cvBtn2){cvBtn2.style.display='none';}
+  }
   const area = document.getElementById('auth-area');
   if(currentUser){
     const initials = currentUser.email.substring(0,2).toUpperCase();
@@ -1224,6 +1346,8 @@ function renderSubs(){
 
 // ── NAV ───────────────────────────────────
 function gv(name){
+  document.getElementById('view-cover').style.display='none';
+  document.getElementById('main-topbar').style.display='flex';
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById('view-'+name)?.classList.add('on');
   document.querySelectorAll('.nav button').forEach((b,i)=>{
@@ -1236,7 +1360,25 @@ function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 
 // ── INIT ──────────────────────────────────
 renderTable();
-loadStats();
+loadStats().then(()=>{
+  // update cover stats
+  let total=0;
+  Object.values(globalStats).forEach(s=>{total+=s.total});
+  const el=document.getElementById('cv-total-subs');
+  if(el) el.textContent=total||'—';
+  ['CJ001','CJ010','CJ025','CJ052','CJ085','CJ100'].forEach(pid=>{
+    const el=document.getElementById('cv-acc-'+pid);
+    if(el) el.textContent=getAcRate(pid);
+  });
+});
+document.getElementById('main-topbar').style.display='none';
+sb.auth.getSession().then(({data:{session}})=>{
+  if(session){
+    document.getElementById('view-cover').style.display='none';
+    document.getElementById('main-topbar').style.display='flex';
+    gv('problems');
+  }
+});
 </script>
 </body>
 </html>
