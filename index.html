@@ -405,9 +405,7 @@ function getTotal(pid){
 async function loadMySubmissions(){
   if(!currentUser) return;
   try{
-    const res=await fetch(`${SUPA_URL}/rest/v1/submissions?user_id=eq.${currentUser.id}&order=created_at.desc&limit=50`,{
-      headers:{'apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY}
-    });
+    const res=await fetch(`${WORKER_URL}/my-submissions?user_id=${currentUser.id}`);
     const data=await res.json();
     localSubs=data.map(s=>({pid:s.problem_id,status:s.status,title:s.problem_title,time:new Date(s.created_at).toLocaleTimeString()}));
     solvedSet=new Set(data.filter(s=>s.status==='AC').map(s=>s.problem_id));
@@ -508,15 +506,10 @@ async function glotRun(code,stdin){
 
 async function saveSubmission(pid,title,status){
   if(!currentUser) return;
-  await fetch(`${SUPA_URL}/rest/v1/submissions`,{
+  await fetch(WORKER_URL,{
     method:'POST',
-    headers:{
-      'Content-Type':'application/json',
-      'apikey':SUPA_KEY,
-      'Authorization':'Bearer '+currentUser.access_token||SUPA_KEY,
-      'Prefer':'return=minimal'
-    },
-    body:JSON.stringify({problem_id:pid,problem_title:title,status,user_id:currentUser.id})
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({save_only:true,problem_id:pid,problem_title:title,status,user_id:currentUser.id})
   });
 }
 
