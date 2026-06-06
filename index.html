@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CJudge — ECE Programming Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0d10;--surf:#13131a;--card:#1a1a24;--border:#252535;
+  --purple:#a78bfa;--pdim:#6d28d9;--green:#34d399;--red:#f87171;
+  --amber:#fbbf24;--blue:#60a5fa;--cyan:#22d3ee;
+  --text:#ddd8ff;--muted:#5a5a7a;
+  --mono:'JetBrains Mono',monospace;--disp:'Syne',sans-serif;
+}
+html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--mono)}
+#app{max-width:980px;margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;border-bottom:1px solid var(--border);background:var(--surf);position:sticky;top:0;z-index:100}
+.logo{font-family:var(--disp);font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
+.logo em{color:var(--purple);font-style:normal}
+.nav{display:flex;gap:5px}
+.nav button{background:transparent;border:1px solid transparent;color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all .15s}
+.nav button.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
+.nav button:hover:not(.on){color:var(--text);border-color:var(--border)}
+.hdr-right{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--muted)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.view{display:none;padding:1.5rem 1.5rem 4rem}.view.on{display:block}
+.sec-title{font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+table.pt{width:100%;border-collapse:collapse}
+table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:7px 12px;border-bottom:1px solid var(--border);text-align:left}
+.pr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
+.pr:hover{background:var(--card)}
+.pr td{padding:12px 12px;font-size:.8rem;vertical-align:middle}
+.pid{color:var(--muted);font-size:.7rem}
+.ptitle{color:var(--text);font-weight:500}
+.db{font-size:.63rem;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap}
+.e{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
+.m{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
+.h{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
+.tag{font-size:.62px;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px;font-size:.62rem}
+.acc{color:var(--muted);font-size:.72rem}
+.actick{color:var(--green);font-size:1rem}
+.back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:7px;cursor:pointer;margin-bottom:1.1rem;transition:all .15s}
+.back-btn:hover{border-color:var(--purple);color:var(--purple)}
+.prob-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem}
+.prob-id-big{font-size:2rem;font-weight:800;font-family:var(--disp);color:var(--purple);line-height:1;min-width:75px}
+.prob-title-big{font-size:1.05rem;font-weight:700;font-family:var(--disp);color:#fff;margin-bottom:6px}
+.prob-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;align-items:center}
+.mchip{font-size:.65rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted)}
+.content-grid{display:grid;grid-template-columns:1fr 350px;gap:1.1rem}
+@media(max-width:760px){.content-grid{grid-template-columns:1fr}}
+.prob-desc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
+.dlbl{font-size:.65rem;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
+.dtxt{font-size:.78rem;color:#aaa8cc;line-height:1.85}
+.io-block{background:#07070e;border:1px solid var(--border);border-radius:7px;padding:.75rem;margin-top:5px;font-size:.72rem;line-height:1.75;white-space:pre;color:var(--green);overflow-x:auto;margin-bottom:.65rem;font-family:var(--mono)}
+.dsec{margin-bottom:1.15rem}
+.ctabs{display:flex;gap:4px;margin-bottom:.75rem;flex-wrap:wrap}
+.ctab{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.65rem;padding:3px 11px;border-radius:20px;cursor:pointer;transition:all .15s}
+.ctab.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
+.cio{display:none}.cio.on{display:block}
+.iolbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.epanel{display:flex;flex-direction:column;gap:.8rem}
+.etop{display:flex;justify-content:space-between;align-items:center}
+.ebox{background:#07070e;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.ehead{display:flex;align-items:center;gap:7px;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--card)}
+.edot{width:10px;height:10px;border-radius:50%}
+.efname{font-size:.68rem;color:var(--muted);margin-left:4px}
+textarea.code-area{width:100%;height:320px;background:#07070e;border:none;outline:none;color:#c8c6e8;font-family:var(--mono);font-size:.73rem;padding:12px;resize:vertical;line-height:1.8;tab-size:4}
+.btn-row{display:flex;gap:8px}
+.run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:10px 16px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.run-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+.run-btn:disabled{opacity:.4;cursor:not-allowed}
+.sub-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.78rem;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:all .15s}
+.sub-btn:hover:not(:disabled){background:var(--purple);transform:translateY(-1px)}
+.sub-btn:disabled{opacity:.5;cursor:not-allowed}
+.vbox{border-radius:9px;padding:12px 15px;font-size:.78rem;display:none}
+.vbox.show{display:block}
+.vac{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.3);color:var(--green)}
+.vwa{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.3);color:var(--red)}
+.vce{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.3);color:var(--blue)}
+.vrun{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
+.vtitle{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.vdetail{font-size:.7rem;opacity:.85;line-height:1.65;white-space:pre-wrap;font-family:var(--mono);margin-top:6px}
+.vprog{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
+.vc{width:22px;height:22px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:all .3s}
+.vc-pend{background:var(--card)}
+.vc-run{background:rgba(167,139,250,.15);border-color:var(--purple);animation:p2 .7s infinite}
+.vc-ac{background:rgba(52,211,153,.2);border-color:var(--green);color:var(--green)}
+.vc-wa{background:rgba(248,113,113,.2);border-color:var(--red);color:var(--red)}
+.vc-ce{background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue)}
+@keyframes p2{0%,100%{opacity:1}50%{opacity:.3}}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem}
+.stat-card{background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:1rem 1.25rem}
+.stat-val{font-size:1.8rem;font-weight:800;font-family:var(--disp);color:var(--purple)}
+.stat-lbl{font-size:.68rem;color:var(--muted);margin-top:3px;letter-spacing:.06em}
+.sub-list{display:flex;flex-direction:column;gap:8px}
+.sub-row{display:flex;align-items:center;gap:10px;background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:.75rem}
+.sub-row.sac{border-left:3px solid var(--green) !important}
+.sub-row.swa{border-left:3px solid var(--red) !important}
+.sub-row.sce{border-left:3px solid var(--blue) !important}
+.s-status{font-weight:700;min-width:32px;font-size:.7rem}
+.sac .s-status{color:var(--green)}.swa .s-status{color:var(--red)}.sce .s-status{color:var(--blue)}
+.s-pid{color:var(--muted);min-width:46px;font-size:.68rem}
+.s-title{flex:1;color:var(--text)}
+.s-meta{color:var(--muted);font-size:.68rem;white-space:nowrap}
+footer{text-align:center;padding:1.5rem;font-size:.65rem;color:var(--muted);border-top:1px solid var(--border)}
+footer a{color:var(--purple);text-decoration:none}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <a class="logo" href="#" onclick="gv('problems');return false;"><em>C</em>Judge</a>
+    <div class="nav">
+      <button class="on" onclick="gv('problems')">Problems</button>
+      <button onclick="gv('submissions')">Submissions</button>
+    </div>
+    <div class="hdr-right">
+      <div class="dot"></div>
+      <span>judge online</span>
+    </div>
+  </div>
+
+  <div id="view-problems" class="view on">
+    <p class="sec-title">Problem Set · 4 problems</p>
+    <table class="pt">
+      <thead>
+        <tr>
+          <th style="width:28px"></th>
+          <th style="width:78px">ID</th>
+          <th>Title</th>
+          <th>Tags</th>
+          <th style="width:92px">Difficulty</th>
+          <th style="width:72px">Acc.</th>
+        </tr>
+      </thead>
+      <tbody id="ptbody"></tbody>
+    </table>
+  </div>
+
+  <div id="view-detail" class="view">
+    <button class="back-btn" onclick="gv('problems')">← back</button>
+    <div id="detail-content"></div>
+  </div>
+
+  <div id="view-submissions" class="view">
+    <p class="sec-title">Submissions</p>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-val" id="s-ac">0</div><div class="stat-lbl">SOLVED</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--red)" id="s-wa">0</div><div class="stat-lbl">WRONG ANSWER</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--blue)" id="s-ce">0</div><div class="stat-lbl">COMPILE ERROR</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--amber)" id="s-tot">0</div><div class="stat-lbl">TOTAL</div></div>
+    </div>
+    <div class="sub-list" id="sub-list">
+      <p style="color:var(--muted);font-size:.78rem">尚無提交紀錄。</p>
+    </div>
+  </div>
+
+  <footer>
+    CJudge — ECE Programming Practice ·
+    Powered by <a href="https://glot.io" target="_blank">glot.io</a> ·
+    <a href="https://github.com/Command1000/ece_programming_midterm_2" target="_blank">Source Repo</a>
+  </footer>
+</div>
+
+<script>
+const WORKER_URL = 'https://cjudge-api.sam123-tseng.workers.dev';
+
+const PROBLEMS = {
+  CJ001:{id:'CJ001',title:'骰子操作',diff:'Easy',acc:'78%',tags:['陣列','模擬'],
+    desc:'有 N 個骰子初始面值 {top=1, front=2, right=3, left=4, back=5, bot=6}。\nM 個指令 (a, b)：\n  • a b（b > 0） → 交換骰子 a 與 b\n  • a -1          → 骰子 a 繞 X 軸旋轉 90°\n  • a -2          → 骰子 a 繞 Y 軸旋轉 90°\n\n輸出 N 個骰子最終 top 面的數字（空格分隔）。',
+    cases:[
+      {input:'3 3\n1 2\n1 -1\n3 -2',output:'2 1 6'},
+      {input:'1 2\n1 -1\n1 -2',output:'3'},
+      {input:'2 1\n1 2',output:'1 1'},
+    ],
+    code:`#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int box[25][6]={{1,2,3,4,5,6}};
+    int n,m,a,b;
+    cin>>n>>m;
+    for(int i=1;i<=n;i++)
+        for(int j=0;j<6;j++) box[i][j]=box[0][j];
+    while(m--){
+        cin>>a>>b;
+        if(a>0&&b>0) swap(box[a],box[b]);
+        if(b==-1){
+            swap(box[a][0],box[a][2]);
+            swap(box[a][2],box[a][5]);
+            swap(box[a][5],box[a][3]);
+        }
+        if(b==-2){
+            swap(box[a][0],box[a][4]);
+            swap(box[a][4],box[a][5]);
+            swap(box[a][5],box[a][1]);
+        }
+    }
+    for(int i=1;i<=n;i++) cout<<box[i][0]<<" ";
+    return 0;
+}`},
+  CJ002:{id:'CJ002',title:'流量費用計算',diff:'Medium',acc:'52%',tags:['2D陣列','貪心'],
+    desc:'N×M 流量矩陣 Q，Q[i][j] 為來源 i 流向通道 j 的流量。\nK 組路由方案 p[]，決定來源 i 接哪個通道。\n費用：同通道不計費；不同通道：前 1000 × 3，超過 × 2 (+3000)。\n輸出所有方案中最小費用。',
+    cases:[
+      {input:'2 2 1\n3 1\n2 4\n0 1',output:'27'},
+      {input:'2 2 2\n10 0\n0 10\n0 1\n1 0',output:'0'},
+      {input:'1 2 1\n500 600\n0',output:'3300'},
+    ],
+    code:`#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int Q[55][55]={0};
+    int n,m,k,ct,u,v,mn=2147483647;
+    cin>>n>>m>>k;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++) cin>>Q[i][j];
+    while(k--){
+        ct=0;
+        int flow[55][55]={0},p[55]={0};
+        for(int i=0;i<n;i++) cin>>p[i];
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++){u=p[i];v=j;flow[u][v]+=Q[i][j];}
+        for(int u=0;u<m;u++)
+            for(int v=0;v<m;v++)
+                ct+=(u==v)?flow[u][v]:(flow[u][v]<=1000?flow[u][v]*3:3000+(flow[u][v]-1000)*2);
+        if(ct<mn) mn=ct;
+    }
+    cout<<mn;
+    return 0;
+}`},
+  CJ003:{id:'CJ003',title:'配對消除',diff:'Medium',acc:'44%',tags:['模擬','迴圈'],
+    desc:'給定 N×M 整數網格。每輪對每個格子 (i,j)：\n  向下找第一個非 -1 的格子，值相同 → 消除並加分\n  向右找第一個非 -1 的格子，值相同 → 消除並加分\n重複直到無配對，輸出總分。',
+    cases:[
+      {input:'3 3\n3 2 3\n1 3 2\n3 1 2',output:'10'},
+      {input:'2 2\n5 5\n5 5',output:'10'},
+      {input:'1 3\n4 4 4',output:'4'},
+    ],
+    code:`#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,m; cin>>n>>m;
+    bool stay=false;
+    int box[45][45]={0},ct=0,ctv;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++) cin>>box[i][j];
+    while(!stay){
+        stay=true;
+        for(int i=0;i<n;i++)
+            for(int j=0;j<m;j++){
+                ctv=box[i][j];
+                if(ctv==-1) continue;
+                for(int k=i+1;k<n;k++){
+                    if(box[k][j]==-1) continue;
+                    if(box[k][j]==ctv){ct+=ctv;box[i][j]=box[k][j]=-1;stay=false;}
+                    break;
+                }
+                for(int k=j+1;k<m;k++){
+                    if(box[i][k]==-1) continue;
+                    if(box[i][k]==ctv){ct+=ctv;box[i][k]=box[i][j]=-1;stay=false;}
+                    break;
+                }
+            }
+    }
+    cout<<ct;
+    return 0;
+}`},
+  CJ004:{id:'CJ004',title:'曼哈頓距離覆蓋',diff:'Hard',acc:'32%',tags:['網格','幾何'],
+    desc:'H×W 地圖，初始全 0。N 個操作 (r, c, t, x)：\n對所有 |i-r|+|j-c| ≤ t 的格子加 x。\n\n輸出最終網格（每列空格分隔，換行）。',
+    cases:[
+      {input:'3 3 1\n1 1 1 5',output:'0 5 0 \n5 5 5 \n0 5 0 '},
+      {input:'2 2 2\n0 0 0 3\n1 1 1 2',output:'3 3 \n3 5 '},
+      {input:'1 1 1\n0 0 0 7',output:'7 '},
+    ],
+    code:`#include <bits/stdc++.h>
+using namespace std;
+int main(){
+    int box[25][25]={0},h,w,n,r,c,t,x;
+    cin>>h>>w>>n;
+    while(n--){
+        cin>>r>>c>>t>>x;
+        for(int i=0;i<h;i++)
+            for(int j=0;j<w;j++)
+                if(abs(i-r)+abs(j-c)<=t) box[i][j]+=x;
+    }
+    for(int i=0;i<h;i++){
+        for(int j=0;j<w;j++) cout<<box[i][j]<<" ";
+        cout<<'\n';
+    }
+    return 0;
+}`}
+};
+
+const DC={Easy:'e',Medium:'m',Hard:'h'};
+let submissions=[],solvedSet=new Set();
+
+function renderTable(){
+  document.getElementById('ptbody').innerHTML=Object.values(PROBLEMS).map(p=>`
+    <tr class="pr" onclick="openProb('${p.id}')">
+      <td>${solvedSet.has(p.id)?'<span class="actick">✓</span>':''}</td>
+      <td class="pid">${p.id}</td>
+      <td class="ptitle">${p.title}</td>
+      <td>${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</td>
+      <td><span class="db ${DC[p.diff]}">${p.diff}</span></td>
+      <td class="acc">${p.acc}</td>
+    </tr>`).join('');
+}
+
+function openProb(id){
+  const p=PROBLEMS[id];
+  const ctabs=p.cases.map((_,i)=>
+    `<button class="ctab${i===0?' on':''}" onclick="swCase('${id}',${i})" id="ctab-${id}-${i}">Case ${i+1}</button>`).join('');
+  const cios=p.cases.map((c,i)=>`
+    <div class="cio${i===0?' on':''}" id="cio-${id}-${i}">
+      <div class="iolbl">Input</div>
+      <div class="io-block">${esc(c.input)}</div>
+      <div class="iolbl">Expected Output</div>
+      <div class="io-block">${esc(c.output)}</div>
+    </div>`).join('');
+  document.getElementById('detail-content').innerHTML=`
+    <div class="prob-header">
+      <div class="prob-id-big">${p.id}</div>
+      <div>
+        <div class="prob-title-big">${p.title}</div>
+        <div class="prob-meta">
+          <span class="db ${DC[p.diff]}">${p.diff}</span>
+          <span class="mchip">Acc. ${p.acc}</span>
+          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="content-grid">
+      <div class="prob-desc">
+        <div class="dsec">
+          <div class="dlbl">Problem</div>
+          <div class="dtxt">${p.desc.replace(/\n/g,'<br>')}</div>
+        </div>
+        <div class="dsec">
+          <div class="dlbl">Test Cases</div>
+          <div class="ctabs">${ctabs}</div>
+          ${cios}
+        </div>
+      </div>
+      <div class="epanel">
+        <div class="etop"><span style="font-size:.7rem;color:var(--muted)">Editor · C++17</span></div>
+        <div class="ebox">
+          <div class="ehead">
+            <div class="edot" style="background:#ff5f57"></div>
+            <div class="edot" style="background:#febc2e"></div>
+            <div class="edot" style="background:#28c840"></div>
+            <span class="efname">solution.cpp</span>
+          </div>
+          <textarea class="code-area" id="code-${id}" spellcheck="false">${p.code}</textarea>
+        </div>
+        <div id="vbox-${id}" class="vbox"></div>
+        <div class="btn-row">
+          <button class="run-btn" id="runbtn-${id}" onclick="runOne('${id}')">▷ Run Case 1</button>
+          <button class="sub-btn" id="subbtn-${id}" onclick="submitAll('${id}')">▶ Submit All</button>
+        </div>
+      </div>
+    </div>`;
+  gv('detail');
+}
+
+function swCase(pid,idx){
+  PROBLEMS[pid].cases.forEach((_,i)=>{
+    document.getElementById(`cio-${pid}-${i}`)?.classList.toggle('on',i===idx);
+    document.getElementById(`ctab-${pid}-${i}`)?.classList.toggle('on',i===idx);
+  });
+}
+
+async function glotRun(code, stdin){
+  const res=await fetch(WORKER_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({code, stdin})
+  });
+  if(!res.ok) throw new Error('Worker error '+res.status);
+  return await res.json();
+}
+
+function norm(s){return(s||'').replace(/\r/g,'').trimEnd()}
+function setButtons(pid,disabled){
+  document.getElementById('subbtn-'+pid).disabled=disabled;
+  document.getElementById('runbtn-'+pid).disabled=disabled;
+}
+function showV(pid,cls,title,extra){
+  const v=document.getElementById('vbox-'+pid);
+  if(!v) return;
+  v.className='vbox show '+cls;
+  v.innerHTML=`<div class="vtitle">${title}</div>${extra||''}`;
+}
+
+async function runOne(pid){
+  const code=document.getElementById('code-'+pid).value;
+  const c=PROBLEMS[pid].cases[0];
+  setButtons(pid,true);
+  showV(pid,'vrun','⏳ Running Case 1...','');
+  try{
+    const r=await glotRun(code,c.input);
+    if(r.stderr&&r.stderr.trim()&&!r.stdout){
+      showV(pid,'vce','✗ Compile / Runtime Error',`<div class="vdetail">${esc(r.stderr)}</div>`);
+    }else{
+      const ok=norm(r.stdout)===norm(c.output);
+      showV(pid,ok?'vac':'vwa',ok?'✓ Case 1 Passed':'✗ Case 1 Wrong Answer',
+        ok?'':`<div class="vdetail">Got:\n${esc(r.stdout)}\nExpected:\n${esc(c.output)}</div>`);
+    }
+  }catch(e){showV(pid,'vce','✗ Error',`<div class="vdetail">${esc(e.message)}</div>`);}
+  setButtons(pid,false);
+}
+
+async function submitAll(pid){
+  const code=document.getElementById('code-'+pid).value;
+  const p=PROBLEMS[pid];
+  setButtons(pid,true);
+  const progHtml=()=>p.cases.map((_,i)=>`<div class="vc vc-pend" id="vc-${pid}-${i}">${i+1}</div>`).join('');
+  showV(pid,'vrun','⏳ Judging...',`<div class="vprog">${progHtml()}</div>`);
+  let allAc=true,firstBad=null;
+  for(let i=0;i<p.cases.length;i++){
+    const vcEl=document.getElementById(`vc-${pid}-${i}`);
+    if(vcEl){vcEl.className='vc vc-run';vcEl.textContent=i+1;}
+    try{
+      const r=await glotRun(code,p.cases[i].input);
+      const hasErr=r.stderr&&r.stderr.trim()&&!r.stdout;
+      if(hasErr){
+        allAc=false;
+        if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='C';}
+        if(!firstBad) firstBad={type:'ce',msg:r.stderr};
+        break;
+      }else{
+        const ok=norm(r.stdout)===norm(p.cases[i].output);
+        if(ok){if(vcEl){vcEl.className='vc vc-ac';vcEl.textContent='✓';}}
+        else{
+          allAc=false;
+          if(vcEl){vcEl.className='vc vc-wa';vcEl.textContent='✗';}
+          if(!firstBad) firstBad={type:'wa',got:r.stdout,exp:p.cases[i].output,n:i+1};
+        }
+      }
+    }catch(e){
+      allAc=false;
+      if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='E';}
+      if(!firstBad) firstBad={type:'err',msg:e.message};
+      break;
+    }
+    if(i<p.cases.length-1) await new Promise(r=>setTimeout(r,450));
+  }
+  await new Promise(r=>setTimeout(r,200));
+  const vb=document.getElementById('vbox-'+pid);
+  const prog=vb?.querySelector('.vprog')?.outerHTML||'';
+  let cls,title,detail='';
+  if(allAc){
+    cls='vac';title=`✓ Accepted — All ${p.cases.length} cases passed!`;
+    solvedSet.add(pid);renderTable();
+  }else if(firstBad?.type==='ce'||firstBad?.type==='err'){
+    cls='vce';title='✗ Compilation Error';
+    detail=`<div class="vdetail">${esc(firstBad.msg)}</div>`;
+  }else{
+    cls='vwa';title=`✗ Wrong Answer on Case ${firstBad.n}`;
+    detail=`<div class="vdetail">Got:\n${esc(firstBad.got)}\nExpected:\n${esc(firstBad.exp)}</div>`;
+  }
+  showV(pid,cls,title,prog+detail);
+  addSub(pid,allAc?'AC':(firstBad?.type==='ce'||firstBad?.type==='err')?'CE':'WA',p.title);
+  setButtons(pid,false);
+}
+
+function addSub(pid,status,title){
+  submissions.unshift({pid,status,title,time:new Date().toLocaleTimeString()});
+  renderSubs();
+}
+function renderSubs(){
+  const cls={AC:'sac',WA:'swa',CE:'sce'};
+  document.getElementById('s-ac').textContent=submissions.filter(s=>s.status==='AC').length;
+  document.getElementById('s-wa').textContent=submissions.filter(s=>s.status==='WA').length;
+  document.getElementById('s-ce').textContent=submissions.filter(s=>s.status==='CE').length;
+  document.getElementById('s-tot').textContent=submissions.length;
+  const list=document.getElementById('sub-list');
+  list.innerHTML=submissions.length
+    ?submissions.map(s=>`
+      <div class="sub-row ${cls[s.status]||''}">
+        <span class="s-status">${s.status}</span>
+        <span class="s-pid">${s.pid}</span>
+        <span class="s-title">${s.title}</span>
+        <span class="s-meta">${s.time}</span>
+      </div>`).join('')
+    :'<p style="color:var(--muted);font-size:.78rem">尚無提交紀錄。</p>';
+}
+function gv(name){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('view-'+name)?.classList.add('on');
+  document.querySelectorAll('.nav button').forEach((b,i)=>{
+    b.classList.toggle('on',['problems','submissions'][i]===name||(name==='detail'&&i===0));
+  });
+}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+renderTable();renderSubs();
+</script>
+</body>
+</html>
