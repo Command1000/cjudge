@@ -1061,7 +1061,7 @@ async function doRegister(){
   const {error}=await sb.auth.signUp({email,password});
   btn.disabled=false;btn.textContent='Create Account';
   if(error){errEl.textContent=error.message;errEl.classList.add('on');}
-  else{sucEl.textContent='✓ Account created! Check your email to verify.';sucEl.classList.add('on');errEl.classList.remove('on');}
+  else{sucEl.textContent='✓ Account created! You can now sign in.';sucEl.classList.add('on');errEl.classList.remove('on');}
 }
 
 async function doLogout(){
