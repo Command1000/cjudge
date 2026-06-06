@@ -172,11 +172,10 @@ const WORKER_URL = 'https://cjudge-api.sam123-tseng.workers.dev';
 
 const PROBLEMS = {
   CJ001:{id:'CJ001',title:'骰子操作',diff:'Easy',acc:'78%',tags:['陣列','模擬'],
-    desc:'有 N 個骰子初始面值 {top=1, front=2, right=3, left=4, back=5, bot=6}。\nM 個指令 (a, b)：\n  • a b（b > 0） → 交換骰子 a 與 b\n  • a -1          → 骰子 a 繞 X 軸旋轉 90°\n  • a -2          → 骰子 a 繞 Y 軸旋轉 90°\n\n輸出 N 個骰子最終 top 面的數字（空格分隔）。',
+    desc:'有 N 個骰子初始面值 {top=1, front=2, right=3, left=4, back=5, bot=6}。\nM 個指令 (a, b)：\n  • a b（b > 0） → 交換骰子 a 與 b\n  • a -1          → 骰子 a 向前旋轉\n  • a -2          → 骰子 a 向右旋轉\n\n輸出 N 個骰子最終 top 面的數字（空格分隔）。',
     cases:[
-      {input:'3 3\n1 2\n1 -1\n3 -2',output:'2 1 6'},
-      {input:'1 2\n1 -1\n1 -2',output:'3'},
-      {input:'2 1\n1 2',output:'1 1'},
+      {input:'1 2\n1 -2\n1 -1',output:'3'},
+      {input:'3 3\n2 -1\n3 -2\n3 1',output:'5 3 1'},
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
@@ -206,9 +205,8 @@ int main(){
   CJ002:{id:'CJ002',title:'流量費用計算',diff:'Medium',acc:'52%',tags:['2D陣列','貪心'],
     desc:'N×M 流量矩陣 Q，Q[i][j] 為來源 i 流向通道 j 的流量。\nK 組路由方案 p[]，決定來源 i 接哪個通道。\n費用：同通道不計費；不同通道：前 1000 × 3，超過 × 2 (+3000)。\n輸出所有方案中最小費用。',
     cases:[
-      {input:'2 2 1\n3 1\n2 4\n0 1',output:'27'},
-      {input:'2 2 2\n10 0\n0 10\n0 1\n1 0',output:'0'},
-      {input:'1 2 1\n500 600\n0',output:'3300'},
+      {input:'2 3 3\n30 23 23\n5 25 3\n0 0\n0 1\n0 2',output:'217'},
+      {input:'3 4 5\n500 400 800 200\n500 400 100 600\n450 420 800 790\n0 0 0\n0 1 2\n0 2 2\n2 1 2\n1 1 1',output:'13470'},
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
@@ -235,9 +233,8 @@ int main(){
   CJ003:{id:'CJ003',title:'配對消除',diff:'Medium',acc:'44%',tags:['模擬','迴圈'],
     desc:'給定 N×M 整數網格。每輪對每個格子 (i,j)：\n  向下找第一個非 -1 的格子，值相同 → 消除並加分\n  向右找第一個非 -1 的格子，值相同 → 消除並加分\n重複直到無配對，輸出總分。',
     cases:[
-      {input:'3 3\n3 2 3\n1 3 2\n3 1 2',output:'10'},
-      {input:'2 2\n5 5\n5 5',output:'10'},
-      {input:'1 3\n4 4 4',output:'4'},
+      {input:'1 8\n0 2 3 3 0 2 5 5',output:'8'},
+      {input:'3 6\n0 2 3 8 0 2\n1 1 4 4 5 7\n5 6 3 8 6 7',output:'29'},
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
@@ -271,9 +268,8 @@ int main(){
   CJ004:{id:'CJ004',title:'曼哈頓距離覆蓋',diff:'Hard',acc:'32%',tags:['網格','幾何'],
     desc:'H×W 地圖，初始全 0。N 個操作 (r, c, t, x)：\n對所有 |i-r|+|j-c| ≤ t 的格子加 x。\n\n輸出最終網格（每列空格分隔，換行）。',
     cases:[
-      {input:'3 3 1\n1 1 1 5',output:'0 5 0 \n5 5 5 \n0 5 0 '},
-      {input:'2 2 2\n0 0 0 3\n1 1 1 2',output:'3 3 \n3 5 '},
-      {input:'1 1 1\n0 0 0 7',output:'7 '},
+      {input:'1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6',output:'0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6'},
+      {input:'6 7 3\n3 2 2 1\n1 6 1 2\n1 3 2 5',output:'0 0 5 5 5 0 2\n0 5 6 5 5 7 2\n0 1 6 6 5 0 2\n1 1 1 6 1 0 0\n0 1 1 1 0 0 0\n0 0 1 0 0 0 0'},
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
