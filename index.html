@@ -17,7 +17,9 @@
   --mono:'JetBrains Mono',monospace;--disp:'Syne',sans-serif;
 }
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--mono)}
-#app{max-width:980px;margin:0 auto}
+#app{max-width:1100px;margin:0 auto}
+
+/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;border-bottom:1px solid var(--border);background:var(--surf);position:sticky;top:0;z-index:100}
 .logo{font-family:var(--disp);font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
 .logo em{color:var(--purple);font-style:normal}
@@ -28,8 +30,12 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:va
 .hdr-right{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--muted)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2.5s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* VIEWS */
 .view{display:none;padding:1.5rem 1.5rem 4rem}.view.on{display:block}
 .sec-title{font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+
+/* PROBLEM TABLE */
 table.pt{width:100%;border-collapse:collapse}
 table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:7px 12px;border-bottom:1px solid var(--border);text-align:left}
 .pr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
@@ -41,18 +47,24 @@ table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-
 .e{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
 .m{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
 .h{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
-.tag{font-size:.62px;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px;font-size:.62rem}
+.tag{font-size:.62rem;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px}
 .acc{color:var(--muted);font-size:.72rem}
 .actick{color:var(--green);font-size:1rem}
+
+/* PROBLEM DETAIL — full width stacked layout */
 .back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:7px;cursor:pointer;margin-bottom:1.1rem;transition:all .15s}
 .back-btn:hover{border-color:var(--purple);color:var(--purple)}
-.prob-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.25rem}
+
+.prob-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
 .prob-id-big{font-size:2rem;font-weight:800;font-family:var(--disp);color:var(--purple);line-height:1;min-width:75px}
-.prob-title-big{font-size:1.05rem;font-weight:700;font-family:var(--disp);color:#fff;margin-bottom:6px}
+.prob-title-big{font-size:1.1rem;font-weight:700;font-family:var(--disp);color:#fff;margin-bottom:6px}
 .prob-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;align-items:center}
 .mchip{font-size:.65rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted)}
-.content-grid{display:grid;grid-template-columns:1fr 350px;gap:1.1rem}
-@media(max-width:760px){.content-grid{grid-template-columns:1fr}}
+
+/* DESC + CASES side by side */
+.prob-top{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:700px){.prob-top{grid-template-columns:1fr}}
+
 .prob-desc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
 .dlbl{font-size:.65rem;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
 .dtxt{font-size:.78rem;color:#aaa8cc;line-height:1.85}
@@ -63,21 +75,20 @@ table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-
 .ctab.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
 .cio{display:none}.cio.on{display:block}
 .iolbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-.epanel{display:flex;flex-direction:column;gap:.8rem}
-.etop{display:flex;justify-content:space-between;align-items:center}
-.ebox{background:#07070e;border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.ehead{display:flex;align-items:center;gap:7px;padding:8px 12px;border-bottom:1px solid var(--border);background:var(--card)}
-.edot{width:10px;height:10px;border-radius:50%}
-.efname{font-size:.68rem;color:var(--muted);margin-left:4px}
-textarea.code-area{width:100%;height:320px;background:#07070e;border:none;outline:none;color:#c8c6e8;font-family:var(--mono);font-size:.73rem;padding:12px;resize:vertical;line-height:1.8;tab-size:4}
-.btn-row{display:flex;gap:8px}
-.run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:10px 16px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
-.run-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
-.run-btn:disabled{opacity:.4;cursor:not-allowed}
-.sub-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.78rem;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:all .15s}
-.sub-btn:hover:not(:disabled){background:var(--purple);transform:translateY(-1px)}
-.sub-btn:disabled{opacity:.5;cursor:not-allowed}
-.vbox{border-radius:9px;padding:12px 15px;font-size:.78rem;display:none}
+
+/* EDITOR — bottom large panel */
+.editor-panel{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.editor-titlebar{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;border-bottom:1px solid var(--border);background:var(--card)}
+.editor-title{font-size:.72rem;color:var(--muted)}
+.editor-lang{font-size:.68rem;color:var(--purple);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);padding:2px 10px;border-radius:20px}
+textarea.code-area{
+  width:100%;height:380px;background:#07070e;border:none;outline:none;
+  color:#c8c6e8;font-family:var(--mono);font-size:.75rem;
+  padding:1rem;resize:vertical;line-height:1.8;tab-size:4;
+}
+
+/* VERDICT */
+.vbox{border-radius:9px;padding:12px 15px;font-size:.78rem;display:none;margin:0 0 .75rem}
 .vbox.show{display:block}
 .vac{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.3);color:var(--green)}
 .vwa{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.3);color:var(--red)}
@@ -93,6 +104,18 @@ textarea.code-area{width:100%;height:320px;background:#07070e;border:none;outlin
 .vc-wa{background:rgba(248,113,113,.2);border-color:var(--red);color:var(--red)}
 .vc-ce{background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue)}
 @keyframes p2{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* BOTTOM ACTION BAR */
+.action-bar{display:flex;gap:.75rem;align-items:center;padding:.85rem 1rem;border-top:1px solid var(--border);background:var(--card)}
+.run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.73rem;padding:9px 18px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.run-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
+.run-btn:disabled{opacity:.4;cursor:not-allowed}
+.sub-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.8rem;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:all .15s}
+.sub-btn:hover:not(:disabled){background:var(--purple);transform:translateY(-1px)}
+.sub-btn:disabled{opacity:.5;cursor:not-allowed}
+.action-hint{font-size:.65rem;color:var(--muted)}
+
+/* SUBMISSIONS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem}
 .stat-card{background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:1rem 1.25rem}
 .stat-val{font-size:1.8rem;font-weight:800;font-family:var(--disp);color:var(--purple)}
@@ -107,6 +130,7 @@ textarea.code-area{width:100%;height:320px;background:#07070e;border:none;outlin
 .s-pid{color:var(--muted);min-width:46px;font-size:.68rem}
 .s-title{flex:1;color:var(--text)}
 .s-meta{color:var(--muted);font-size:.68rem;white-space:nowrap}
+
 footer{text-align:center;padding:1.5rem;font-size:.65rem;color:var(--muted);border-top:1px solid var(--border)}
 footer a{color:var(--purple);text-decoration:none}
 </style>
@@ -125,6 +149,7 @@ footer a{color:var(--purple);text-decoration:none}
     </div>
   </div>
 
+  <!-- PROBLEMS -->
   <div id="view-problems" class="view on">
     <p class="sec-title">Problem Set · 4 problems</p>
     <table class="pt">
@@ -142,11 +167,13 @@ footer a{color:var(--purple);text-decoration:none}
     </table>
   </div>
 
+  <!-- DETAIL -->
   <div id="view-detail" class="view">
     <button class="back-btn" onclick="gv('problems')">← back</button>
     <div id="detail-content"></div>
   </div>
 
+  <!-- SUBMISSIONS -->
   <div id="view-submissions" class="view">
     <p class="sec-title">Submissions</p>
     <div class="stats-grid">
@@ -316,6 +343,7 @@ function openProb(id){
       <div class="iolbl">Expected Output</div>
       <div class="io-block">${esc(c.output)}</div>
     </div>`).join('');
+
   document.getElementById('detail-content').innerHTML=`
     <div class="prob-header">
       <div class="prob-id-big">${p.id}</div>
@@ -328,34 +356,35 @@ function openProb(id){
         </div>
       </div>
     </div>
-    <div class="content-grid">
+
+    <div class="prob-top">
       <div class="prob-desc">
         <div class="dsec">
           <div class="dlbl">Problem</div>
           <div class="dtxt">${p.desc.replace(/\n/g,'<br>')}</div>
         </div>
+      </div>
+      <div class="prob-desc">
         <div class="dsec">
           <div class="dlbl">Test Cases</div>
           <div class="ctabs">${ctabs}</div>
           ${cios}
         </div>
       </div>
-      <div class="epanel">
-        <div class="etop"><span style="font-size:.7rem;color:var(--muted)">Editor · C++17</span></div>
-        <div class="ebox">
-          <div class="ehead">
-            <div class="edot" style="background:#ff5f57"></div>
-            <div class="edot" style="background:#febc2e"></div>
-            <div class="edot" style="background:#28c840"></div>
-            <span class="efname">solution.cpp</span>
-          </div>
-          <textarea class="code-area" id="code-${id}" spellcheck="false">${p.code}</textarea>
-        </div>
-        <div id="vbox-${id}" class="vbox"></div>
-        <div class="btn-row">
-          <button class="run-btn" id="runbtn-${id}" onclick="runOne('${id}')">▷ Run Case 1</button>
-          <button class="sub-btn" id="subbtn-${id}" onclick="submitAll('${id}')">▶ Submit All</button>
-        </div>
+    </div>
+
+    <div id="vbox-${id}" class="vbox"></div>
+
+    <div class="editor-panel">
+      <div class="editor-titlebar">
+        <span class="editor-title">solution.cpp</span>
+        <span class="editor-lang">C++17</span>
+      </div>
+      <textarea class="code-area" id="code-${id}" spellcheck="false">${p.code}</textarea>
+      <div class="action-bar">
+        <button class="run-btn" id="runbtn-${id}" onclick="runOne('${id}')">▷ Run Case 1</button>
+        <button class="sub-btn" id="subbtn-${id}" onclick="submitAll('${id}')">▶ Submit All Cases</button>
+        <span class="action-hint">C++17 · glot.io sandbox</span>
       </div>
     </div>`;
   gv('detail');
@@ -368,11 +397,11 @@ function swCase(pid,idx){
   });
 }
 
-async function glotRun(code, stdin){
+async function glotRun(code,stdin){
   const res=await fetch(WORKER_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({code, stdin})
+    body:JSON.stringify({code,stdin})
   });
   if(!res.ok) throw new Error('Worker error '+res.status);
   return await res.json();
