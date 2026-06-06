@@ -206,27 +206,10 @@ const PROBLEMS = {
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
+
 int main(){
-    int box[25][6]={{1,2,3,4,5,6}};
-    int n,m,a,b;
-    cin>>n>>m;
-    for(int i=1;i<=n;i++)
-        for(int j=0;j<6;j++) box[i][j]=box[0][j];
-    while(m--){
-        cin>>a>>b;
-        if(a>0&&b>0) swap(box[a],box[b]);
-        if(b==-1){
-            swap(box[a][0],box[a][2]);
-            swap(box[a][2],box[a][5]);
-            swap(box[a][5],box[a][3]);
-        }
-        if(b==-2){
-            swap(box[a][0],box[a][4]);
-            swap(box[a][4],box[a][5]);
-            swap(box[a][5],box[a][1]);
-        }
-    }
-    for(int i=1;i<=n;i++) cout<<box[i][0]<<" ";
+    // 在此撰寫你的解答
+
     return 0;
 }`},
   CJ002:{id:'CJ002',title:'流量費用計算',diff:'Medium',acc:'52%',tags:['2D陣列','貪心'],
@@ -237,24 +220,10 @@ int main(){
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
+
 int main(){
-    int Q[55][55]={0};
-    int n,m,k,ct,u,v,mn=2147483647;
-    cin>>n>>m>>k;
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++) cin>>Q[i][j];
-    while(k--){
-        ct=0;
-        int flow[55][55]={0},p[55]={0};
-        for(int i=0;i<n;i++) cin>>p[i];
-        for(int i=0;i<n;i++)
-            for(int j=0;j<m;j++){u=p[i];v=j;flow[u][v]+=Q[i][j];}
-        for(int u=0;u<m;u++)
-            for(int v=0;v<m;v++)
-                ct+=(u==v)?flow[u][v]:(flow[u][v]<=1000?flow[u][v]*3:3000+(flow[u][v]-1000)*2);
-        if(ct<mn) mn=ct;
-    }
-    cout<<mn;
+    // 在此撰寫你的解答
+
     return 0;
 }`},
   CJ003:{id:'CJ003',title:'配對消除',diff:'Medium',acc:'44%',tags:['模擬','迴圈'],
@@ -265,31 +234,10 @@ int main(){
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
+
 int main(){
-    int n,m; cin>>n>>m;
-    bool stay=false;
-    int box[45][45]={0},ct=0,ctv;
-    for(int i=0;i<n;i++)
-        for(int j=0;j<m;j++) cin>>box[i][j];
-    while(!stay){
-        stay=true;
-        for(int i=0;i<n;i++)
-            for(int j=0;j<m;j++){
-                ctv=box[i][j];
-                if(ctv==-1) continue;
-                for(int k=i+1;k<n;k++){
-                    if(box[k][j]==-1) continue;
-                    if(box[k][j]==ctv){ct+=ctv;box[i][j]=box[k][j]=-1;stay=false;}
-                    break;
-                }
-                for(int k=j+1;k<m;k++){
-                    if(box[i][k]==-1) continue;
-                    if(box[i][k]==ctv){ct+=ctv;box[i][k]=box[i][j]=-1;stay=false;}
-                    break;
-                }
-            }
-    }
-    cout<<ct;
+    // 在此撰寫你的解答
+
     return 0;
 }`},
   CJ004:{id:'CJ004',title:'曼哈頓距離覆蓋',diff:'Hard',acc:'32%',tags:['網格','幾何'],
@@ -300,19 +248,10 @@ int main(){
     ],
     code:`#include <bits/stdc++.h>
 using namespace std;
+
 int main(){
-    int box[25][25]={0},h,w,n,r,c,t,x;
-    cin>>h>>w>>n;
-    while(n--){
-        cin>>r>>c>>t>>x;
-        for(int i=0;i<h;i++)
-            for(int j=0;j<w;j++)
-                if(abs(i-r)+abs(j-c)<=t) box[i][j]+=x;
-    }
-    for(int i=0;i<h;i++){
-        for(int j=0;j<w;j++) cout<<box[i][j]<<" ";
-        cout<<'\n';
-    }
+    // 在此撰寫你的解答
+
     return 0;
 }`}
 };
