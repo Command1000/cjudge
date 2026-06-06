@@ -266,1441 +266,608 @@ let globalStats = {};
 const PROBLEMS = {
   // ── EASY (CJ001–CJ020) ──────────────────────────────────────
   CJ001:{id:'CJ001',title:'Sum of Array',diff:'Easy',tags:['Array','Math'],
-    desc:'Given an array of N integers, output the sum of all elements.
-
-Input: First line contains N. Second line contains N integers.
-Output: A single integer — the sum.',
+    desc:'Given an array of N integers, output the sum of all elements.\n\nInput: First line contains N. Second line contains N integers.\nOutput: A single integer — the sum.',
     cases:[
-      {input:'5
-1 2 3 4 5',output:'15'},
-      {input:'3
--1 0 1',output:'0'},
+      {input:'5\n1 2 3 4 5',output:'15'},
+      {input:'3\n-1 0 1',output:'0'},
     ]},
   CJ002:{id:'CJ002',title:'Count Even Numbers',diff:'Easy',tags:['Array','Loop'],
-    desc:'Given an array of N integers, count how many are even.
-
-Input: First line contains N. Second line contains N integers.
-Output: A single integer — count of even numbers.',
+    desc:'Given an array of N integers, count how many are even.\n\nInput: First line contains N. Second line contains N integers.\nOutput: A single integer — count of even numbers.',
     cases:[
-      {input:'6
-1 2 3 4 5 6',output:'3'},
-      {input:'4
-1 3 5 7',output:'0'},
+      {input:'6\n1 2 3 4 5 6',output:'3'},
+      {input:'4\n1 3 5 7',output:'0'},
     ]},
   CJ003:{id:'CJ003',title:'Reverse Array',diff:'Easy',tags:['Array'],
-    desc:'Given an array of N integers, print them in reverse order.
-
-Input: First line contains N. Second line contains N integers.
-Output: N integers in reverse order, space-separated.',
+    desc:'Given an array of N integers, print them in reverse order.\n\nInput: First line contains N. Second line contains N integers.\nOutput: N integers in reverse order, space-separated.',
     cases:[
-      {input:'5
-1 2 3 4 5',output:'5 4 3 2 1'},
-      {input:'3
-10 20 30',output:'30 20 10'},
+      {input:'5\n1 2 3 4 5',output:'5 4 3 2 1'},
+      {input:'3\n10 20 30',output:'30 20 10'},
     ]},
   CJ004:{id:'CJ004',title:'Max and Min',diff:'Easy',tags:['Array','Math'],
-    desc:'Given an array of N integers, find the maximum and minimum values.
-
-Input: First line contains N. Second line contains N integers.
-Output: Two integers on one line — max and min, space-separated.',
+    desc:'Given an array of N integers, find the maximum and minimum values.\n\nInput: First line contains N. Second line contains N integers.\nOutput: Two integers on one line — max and min, space-separated.',
     cases:[
-      {input:'5
-3 1 4 1 5',output:'5 1'},
-      {input:'4
--3 -1 -4 -2',output:'-1 -4'},
+      {input:'5\n3 1 4 1 5',output:'5 1'},
+      {input:'4\n-3 -1 -4 -2',output:'-1 -4'},
     ]},
   CJ005:{id:'CJ005',title:'FizzBuzz',diff:'Easy',tags:['Loop','Conditionals'],
-    desc:'Given N, print numbers from 1 to N.
-  • If divisible by 3: print "Fizz"
-  • If divisible by 5: print "Buzz"
-  • If divisible by both: print "FizzBuzz"
-  • Otherwise: print the number
-
-Input: A single integer N (1 ≤ N ≤ 100).
-Output: N lines.',
+    desc:'Given N, print numbers from 1 to N.\n  • If divisible by 3: print "Fizz"\n  • If divisible by 5: print "Buzz"\n  • If divisible by both: print "FizzBuzz"\n  • Otherwise: print the number\n\nInput: A single integer N (1 ≤ N ≤ 100).\nOutput: N lines.',
     cases:[
-      {input:'5',output:'1
-2
-Fizz
-4
-Buzz'},
-      {input:'15',output:'1
-2
-Fizz
-4
-Buzz
-Fizz
-7
-8
-Fizz
-Buzz
-11
-Fizz
-13
-14
-FizzBuzz'},
+      {input:'5',output:'1\n2\nFizz\n4\nBuzz'},
+      {input:'15',output:'1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz'},
     ]},
   CJ006:{id:'CJ006',title:'Palindrome Check',diff:'Easy',tags:['String'],
-    desc:'Given a string, determine if it is a palindrome (reads the same forwards and backwards). Ignore case.
-
-Input: A single string (no spaces, length ≤ 100).
-Output: "YES" if palindrome, "NO" otherwise.',
+    desc:'Given a string, determine if it is a palindrome (reads the same forwards and backwards). Ignore case.\n\nInput: A single string (no spaces, length ≤ 100).\nOutput: "YES" if palindrome, "NO" otherwise.',
     cases:[
       {input:'racecar',output:'YES'},
       {input:'hello',output:'NO'},
     ]},
   CJ007:{id:'CJ007',title:'Count Vowels',diff:'Easy',tags:['String','Loop'],
-    desc:'Given a string, count the number of vowels (a, e, i, o, u — both upper and lowercase).
-
-Input: A single string (length ≤ 1000).
-Output: A single integer — number of vowels.',
+    desc:'Given a string, count the number of vowels (a, e, i, o, u — both upper and lowercase).\n\nInput: A single string (length ≤ 1000).\nOutput: A single integer — number of vowels.',
     cases:[
       {input:'Hello World',output:'3'},
       {input:'rhythm',output:'0'},
     ]},
   CJ008:{id:'CJ008',title:'Factorial',diff:'Easy',tags:['Math','Recursion'],
-    desc:'Given N, compute N! (N factorial).
-
-Input: A single integer N (0 ≤ N ≤ 12).
-Output: A single integer — N!',
+    desc:'Given N, compute N! (N factorial).\n\nInput: A single integer N (0 ≤ N ≤ 12).\nOutput: A single integer — N!',
     cases:[
       {input:'5',output:'120'},
       {input:'0',output:'1'},
     ]},
   CJ009:{id:'CJ009',title:'Fibonacci Number',diff:'Easy',tags:['Math','DP'],
-    desc:'Given N, output the Nth Fibonacci number. F(1) = 1, F(2) = 1, F(N) = F(N-1) + F(N-2).
-
-Input: A single integer N (1 ≤ N ≤ 30).
-Output: A single integer — F(N).',
+    desc:'Given N, output the Nth Fibonacci number. F(1) = 1, F(2) = 1, F(N) = F(N-1) + F(N-2).\n\nInput: A single integer N (1 ≤ N ≤ 30).\nOutput: A single integer — F(N).',
     cases:[
       {input:'7',output:'13'},
       {input:'1',output:'1'},
     ]},
   CJ010:{id:'CJ010',title:'Prime Check',diff:'Easy',tags:['Math'],
-    desc:'Given N, determine if it is a prime number.
-
-Input: A single integer N (2 ≤ N ≤ 10000).
-Output: "PRIME" if N is prime, "COMPOSITE" otherwise.',
+    desc:'Given N, determine if it is a prime number.\n\nInput: A single integer N (2 ≤ N ≤ 10000).\nOutput: "PRIME" if N is prime, "COMPOSITE" otherwise.',
     cases:[
       {input:'7',output:'PRIME'},
       {input:'12',output:'COMPOSITE'},
     ]},
   CJ011:{id:'CJ011',title:'Two Sum',diff:'Easy',tags:['Array','Search'],
-    desc:'Given an array of N integers and a target value T, find two indices i and j (i < j) such that arr[i] + arr[j] == T. Output the indices (1-indexed). Guaranteed exactly one solution exists.
-
-Input: First line: N and T. Second line: N integers.
-Output: Two integers i and j.',
+    desc:'Given an array of N integers and a target value T, find two indices i and j (i < j) such that arr[i] + arr[j] == T. Output the indices (1-indexed). Guaranteed exactly one solution exists.\n\nInput: First line: N and T. Second line: N integers.\nOutput: Two integers i and j.',
     cases:[
-      {input:'5 9
-2 7 4 1 5',output:'1 2'},
-      {input:'4 6
-3 2 4 1',output:'2 3'},
+      {input:'5 9\n2 7 4 1 5',output:'1 2'},
+      {input:'4 6\n3 2 4 1',output:'2 3'},
     ]},
   CJ012:{id:'CJ012',title:'Running Average',diff:'Easy',tags:['Array','Math'],
-    desc:'Given N integers, output the running average after each element (rounded down to integer).
-
-Input: First line: N. Second line: N integers.
-Output: N integers on one line, space-separated.',
+    desc:'Given N integers, output the running average after each element (rounded down to integer).\n\nInput: First line: N. Second line: N integers.\nOutput: N integers on one line, space-separated.',
     cases:[
-      {input:'4
-4 2 6 8',output:'4 3 4 5'},
-      {input:'3
-10 20 30',output:'10 15 20'},
+      {input:'4\n4 2 6 8',output:'4 3 4 5'},
+      {input:'3\n10 20 30',output:'10 15 20'},
     ]},
   CJ013:{id:'CJ013',title:'Matrix Diagonal Sum',diff:'Easy',tags:['Array','2D Array'],
-    desc:'Given an N×N matrix, compute the sum of the main diagonal elements (top-left to bottom-right).
-
-Input: First line: N. Next N lines: N integers each.
-Output: A single integer — diagonal sum.',
+    desc:'Given an N×N matrix, compute the sum of the main diagonal elements (top-left to bottom-right).\n\nInput: First line: N. Next N lines: N integers each.\nOutput: A single integer — diagonal sum.',
     cases:[
-      {input:'3
-1 2 3
-4 5 6
-7 8 9',output:'15'},
-      {input:'2
-1 0
-0 1',output:'2'},
+      {input:'3\n1 2 3\n4 5 6\n7 8 9',output:'15'},
+      {input:'2\n1 0\n0 1',output:'2'},
     ]},
   CJ014:{id:'CJ014',title:'Bubble Sort',diff:'Easy',tags:['Array','Sorting'],
-    desc:'Given an array of N integers, sort them in ascending order using any method.
-
-Input: First line: N. Second line: N integers.
-Output: N integers in ascending order, space-separated.',
+    desc:'Given an array of N integers, sort them in ascending order using any method.\n\nInput: First line: N. Second line: N integers.\nOutput: N integers in ascending order, space-separated.',
     cases:[
-      {input:'5
-5 3 1 4 2',output:'1 2 3 4 5'},
-      {input:'4
-4 4 2 1',output:'1 2 4 4'},
+      {input:'5\n5 3 1 4 2',output:'1 2 3 4 5'},
+      {input:'4\n4 4 2 1',output:'1 2 4 4'},
     ]},
   CJ015:{id:'CJ015',title:'Count Duplicates',diff:'Easy',tags:['Array','Hash'],
-    desc:'Given an array of N integers, count how many values appear more than once.
-
-Input: First line: N. Second line: N integers (0 ≤ each ≤ 1000).
-Output: A single integer — number of duplicate values.',
+    desc:'Given an array of N integers, count how many values appear more than once.\n\nInput: First line: N. Second line: N integers (0 ≤ each ≤ 1000).\nOutput: A single integer — number of duplicate values.',
     cases:[
-      {input:'6
-1 2 3 2 4 1',output:'2'},
-      {input:'4
-1 2 3 4',output:'0'},
+      {input:'6\n1 2 3 2 4 1',output:'2'},
+      {input:'4\n1 2 3 4',output:'0'},
     ]},
   CJ016:{id:'CJ016',title:'String Compression',diff:'Easy',tags:['String'],
-    desc:'Compress a string by replacing consecutive repeated characters with the character followed by its count. If compressed string is not shorter, output original.
-
-Input: A single string (length ≤ 100, lowercase only).
-Output: Compressed string.',
+    desc:'Compress a string by replacing consecutive repeated characters with the character followed by its count. If compressed string is not shorter, output original.\n\nInput: A single string (length ≤ 100, lowercase only).\nOutput: Compressed string.',
     cases:[
       {input:'aabcccdddd',output:'a2bc3d4'},
       {input:'abc',output:'abc'},
     ]},
   CJ017:{id:'CJ017',title:'Power of Two',diff:'Easy',tags:['Math','Bitwise'],
-    desc:'Given N, determine if it is a power of 2.
-
-Input: A single integer N (1 ≤ N ≤ 10^9).
-Output: "YES" if N is a power of 2, "NO" otherwise.',
+    desc:'Given N, determine if it is a power of 2.\n\nInput: A single integer N (1 ≤ N ≤ 10^9).\nOutput: "YES" if N is a power of 2, "NO" otherwise.',
     cases:[
       {input:'16',output:'YES'},
       {input:'18',output:'NO'},
     ]},
   CJ018:{id:'CJ018',title:'GCD and LCM',diff:'Easy',tags:['Math'],
-    desc:'Given two integers A and B, output their GCD and LCM.
-
-Input: Two integers A and B (1 ≤ A, B ≤ 10^6).
-Output: Two integers — GCD and LCM, space-separated.',
+    desc:'Given two integers A and B, output their GCD and LCM.\n\nInput: Two integers A and B (1 ≤ A, B ≤ 10^6).\nOutput: Two integers — GCD and LCM, space-separated.',
     cases:[
       {input:'12 18',output:'6 36'},
       {input:'7 13',output:'1 91'},
     ]},
   CJ019:{id:'CJ019',title:'Binary to Decimal',diff:'Easy',tags:['Math','String'],
-    desc:'Given a binary string, convert it to its decimal equivalent.
-
-Input: A binary string (length ≤ 30).
-Output: A single integer — decimal value.',
+    desc:'Given a binary string, convert it to its decimal equivalent.\n\nInput: A binary string (length ≤ 30).\nOutput: A single integer — decimal value.',
     cases:[
       {input:'1010',output:'10'},
       {input:'11111111',output:'255'},
     ]},
   CJ020:{id:'CJ020',title:'Rotate Array',diff:'Easy',tags:['Array'],
-    desc:'Given an array of N integers and a value K, rotate the array to the right by K positions.
-
-Input: First line: N and K. Second line: N integers.
-Output: N integers after rotation, space-separated.',
+    desc:'Given an array of N integers and a value K, rotate the array to the right by K positions.\n\nInput: First line: N and K. Second line: N integers.\nOutput: N integers after rotation, space-separated.',
     cases:[
-      {input:'5 2
-1 2 3 4 5',output:'4 5 1 2 3'},
-      {input:'4 4
-1 2 3 4',output:'1 2 3 4'},
+      {input:'5 2\n1 2 3 4 5',output:'4 5 1 2 3'},
+      {input:'4 4\n1 2 3 4',output:'1 2 3 4'},
     ]},
 
   // ── MEDIUM (CJ021–CJ050) ─────────────────────────────────────
   CJ021:{id:'CJ021',title:'Binary Search',diff:'Medium',tags:['Array','Search'],
-    desc:'Given a sorted array of N integers and Q queries, for each query find the index of the target value (1-indexed). If not found, output -1.
-
-Input: First line: N. Second line: N sorted integers. Third line: Q. Next Q lines: one query each.
-Output: Q lines, each with the index or -1.',
+    desc:'Given a sorted array of N integers and Q queries, for each query find the index of the target value (1-indexed). If not found, output -1.\n\nInput: First line: N. Second line: N sorted integers. Third line: Q. Next Q lines: one query each.\nOutput: Q lines, each with the index or -1.',
     cases:[
-      {input:'5
-1 3 5 7 9
-2
-5
-4',output:'3
--1'},
-      {input:'3
-2 4 6
-1
-6',output:'3'},
+      {input:'5\n1 3 5 7 9\n2\n5\n4',output:'3\n-1'},
+      {input:'3\n2 4 6\n1\n6',output:'3'},
     ]},
   CJ022:{id:'CJ022',title:'Merge Sorted Arrays',diff:'Medium',tags:['Array','Sorting'],
-    desc:'Given two sorted arrays of sizes N and M, merge them into one sorted array.
-
-Input: First line: N. Second line: N sorted integers. Third line: M. Fourth line: M sorted integers.
-Output: N+M integers in sorted order, space-separated.',
+    desc:'Given two sorted arrays of sizes N and M, merge them into one sorted array.\n\nInput: First line: N. Second line: N sorted integers. Third line: M. Fourth line: M sorted integers.\nOutput: N+M integers in sorted order, space-separated.',
     cases:[
-      {input:'3
-1 3 5
-3
-2 4 6',output:'1 2 3 4 5 6'},
-      {input:'2
-1 5
-2
-2 3',output:'1 2 3 5'},
+      {input:'3\n1 3 5\n3\n2 4 6',output:'1 2 3 4 5 6'},
+      {input:'2\n1 5\n2\n2 3',output:'1 2 3 5'},
     ]},
   CJ023:{id:'CJ023',title:'Stack Operations',diff:'Medium',tags:['Stack','Simulation'],
-    desc:'Simulate a stack with N operations:
-  • PUSH x: push x onto stack
-  • POP: pop top element, print it (if empty, print "EMPTY")
-  • TOP: print top element (if empty, print "EMPTY")
-
-Input: First line: N. Next N lines: operations.
-Output: Output for POP and TOP operations.',
+    desc:'Simulate a stack with N operations:\n  • PUSH x: push x onto stack\n  • POP: pop top element, print it (if empty, print "EMPTY")\n  • TOP: print top element (if empty, print "EMPTY")\n\nInput: First line: N. Next N lines: operations.\nOutput: Output for POP and TOP operations.',
     cases:[
-      {input:'5
-PUSH 1
-PUSH 2
-TOP
-POP
-POP',output:'2
-2
-1'},
-      {input:'2
-POP
-TOP',output:'EMPTY
-EMPTY'},
+      {input:'5\nPUSH 1\nPUSH 2\nTOP\nPOP\nPOP',output:'2\n2\n1'},
+      {input:'2\nPOP\nTOP',output:'EMPTY\nEMPTY'},
     ]},
   CJ024:{id:'CJ024',title:'Queue Operations',diff:'Medium',tags:['Queue','Simulation'],
-    desc:'Simulate a queue with N operations:
-  • ENQUEUE x: add x to back
-  • DEQUEUE: remove front element, print it (if empty, print "EMPTY")
-  • FRONT: print front element (if empty, print "EMPTY")
-
-Input: First line: N. Next N lines: operations.
-Output: Output for DEQUEUE and FRONT operations.',
+    desc:'Simulate a queue with N operations:\n  • ENQUEUE x: add x to back\n  • DEQUEUE: remove front element, print it (if empty, print "EMPTY")\n  • FRONT: print front element (if empty, print "EMPTY")\n\nInput: First line: N. Next N lines: operations.\nOutput: Output for DEQUEUE and FRONT operations.',
     cases:[
-      {input:'5
-ENQUEUE 1
-ENQUEUE 2
-FRONT
-DEQUEUE
-FRONT',output:'1
-1
-2'},
-      {input:'1
-DEQUEUE',output:'EMPTY'},
+      {input:'5\nENQUEUE 1\nENQUEUE 2\nFRONT\nDEQUEUE\nFRONT',output:'1\n1\n2'},
+      {input:'1\nDEQUEUE',output:'EMPTY'},
     ]},
   CJ025:{id:'CJ025',title:'Longest Increasing Subsequence',diff:'Medium',tags:['DP','Array'],
-    desc:'Given an array of N integers, find the length of the longest strictly increasing subsequence.
-
-Input: First line: N. Second line: N integers.
-Output: A single integer — length of LIS.',
+    desc:'Given an array of N integers, find the length of the longest strictly increasing subsequence.\n\nInput: First line: N. Second line: N integers.\nOutput: A single integer — length of LIS.',
     cases:[
-      {input:'8
-10 9 2 5 3 7 101 18',output:'4'},
-      {input:'4
-0 1 0 3',output:'3'},
+      {input:'8\n10 9 2 5 3 7 101 18',output:'4'},
+      {input:'4\n0 1 0 3',output:'3'},
     ]},
   CJ026:{id:'CJ026',title:'Coin Change',diff:'Medium',tags:['DP','Greedy'],
-    desc:'Given coin denominations and a target amount, find the minimum number of coins needed. If impossible, output -1.
-
-Input: First line: N (number of coin types) and T (target). Second line: N coin denominations.
-Output: Minimum coins needed, or -1.',
+    desc:'Given coin denominations and a target amount, find the minimum number of coins needed. If impossible, output -1.\n\nInput: First line: N (number of coin types) and T (target). Second line: N coin denominations.\nOutput: Minimum coins needed, or -1.',
     cases:[
-      {input:'3 11
-1 5 6',output:'2'},
-      {input:'2 3
-2 4',output:'-1'},
+      {input:'3 11\n1 5 6',output:'2'},
+      {input:'2 3\n2 4',output:'-1'},
     ]},
   CJ027:{id:'CJ027',title:'Parentheses Matching',diff:'Medium',tags:['Stack','String'],
-    desc:'Given a string of brackets (, ), [, ], {, }, determine if they are balanced.
-
-Input: A single string (length ≤ 1000).
-Output: "YES" if balanced, "NO" otherwise.',
+    desc:'Given a string of brackets (, ), [, ], {, }, determine if they are balanced.\n\nInput: A single string (length ≤ 1000).\nOutput: "YES" if balanced, "NO" otherwise.',
     cases:[
       {input:'({[]})',output:'YES'},
       {input:'([)]',output:'NO'},
     ]},
   CJ028:{id:'CJ028',title:'Matrix Multiplication',diff:'Medium',tags:['2D Array','Math'],
-    desc:'Given two matrices A (N×M) and B (M×P), compute their product C = A×B.
-
-Input: First line: N M P. Next N lines: matrix A. Next M lines: matrix B.
-Output: N lines, P integers each — matrix C.',
+    desc:'Given two matrices A (N×M) and B (M×P), compute their product C = A×B.\n\nInput: First line: N M P. Next N lines: matrix A. Next M lines: matrix B.\nOutput: N lines, P integers each — matrix C.',
     cases:[
-      {input:'2 2 2
-1 2
-3 4
-5 6
-7 8',output:'19 22
-43 50'},
-      {input:'1 2 1
-1 2
-3
-4',output:'11'},
+      {input:'2 2 2\n1 2\n3 4\n5 6\n7 8',output:'19 22\n43 50'},
+      {input:'1 2 1\n1 2\n3\n4',output:'11'},
     ]},
   CJ029:{id:'CJ029',title:'Anagram Check',diff:'Medium',tags:['String','Hash'],
-    desc:'Given two strings, determine if one is an anagram of the other (same characters, same frequency, ignoring case).
-
-Input: Two strings on separate lines.
-Output: "YES" if anagram, "NO" otherwise.',
+    desc:'Given two strings, determine if one is an anagram of the other (same characters, same frequency, ignoring case).\n\nInput: Two strings on separate lines.\nOutput: "YES" if anagram, "NO" otherwise.',
     cases:[
-      {input:'listen
-silent',output:'YES'},
-      {input:'hello
-world',output:'NO'},
+      {input:'listen\nsilent',output:'YES'},
+      {input:'hello\nworld',output:'NO'},
     ]},
   CJ030:{id:'CJ030',title:'Kadanes Algorithm',diff:'Medium',tags:['DP','Array'],
-    desc:'Given an array of N integers, find the maximum subarray sum (contiguous).
-
-Input: First line: N. Second line: N integers.
-Output: A single integer — maximum subarray sum.',
+    desc:'Given an array of N integers, find the maximum subarray sum (contiguous).\n\nInput: First line: N. Second line: N integers.\nOutput: A single integer — maximum subarray sum.',
     cases:[
-      {input:'8
--2 1 -3 4 -1 2 1 -5',output:'6'},
-      {input:'4
--1 -2 -3 -4',output:'-1'},
+      {input:'8\n-2 1 -3 4 -1 2 1 -5',output:'6'},
+      {input:'4\n-1 -2 -3 -4',output:'-1'},
     ]},
   CJ031:{id:'CJ031',title:'Spiral Matrix',diff:'Medium',tags:['2D Array','Simulation'],
-    desc:'Given an N×M matrix, print all elements in spiral order (clockwise from top-left).
-
-Input: First line: N M. Next N lines: M integers each.
-Output: All elements in spiral order, space-separated.',
+    desc:'Given an N×M matrix, print all elements in spiral order (clockwise from top-left).\n\nInput: First line: N M. Next N lines: M integers each.\nOutput: All elements in spiral order, space-separated.',
     cases:[
-      {input:'3 3
-1 2 3
-4 5 6
-7 8 9',output:'1 2 3 6 9 8 7 4 5'},
-      {input:'2 3
-1 2 3
-4 5 6',output:'1 2 3 6 5 4'},
+      {input:'3 3\n1 2 3\n4 5 6\n7 8 9',output:'1 2 3 6 9 8 7 4 5'},
+      {input:'2 3\n1 2 3\n4 5 6',output:'1 2 3 6 5 4'},
     ]},
   CJ032:{id:'CJ032',title:'Jump Game',diff:'Medium',tags:['Greedy','Array'],
-    desc:'Given an array where each element represents the max jump length from that position, determine if you can reach the last index starting from index 0.
-
-Input: First line: N. Second line: N integers.
-Output: "YES" if reachable, "NO" otherwise.',
+    desc:'Given an array where each element represents the max jump length from that position, determine if you can reach the last index starting from index 0.\n\nInput: First line: N. Second line: N integers.\nOutput: "YES" if reachable, "NO" otherwise.',
     cases:[
-      {input:'5
-2 3 1 1 4',output:'YES'},
-      {input:'5
-3 2 1 0 4',output:'NO'},
+      {input:'5\n2 3 1 1 4',output:'YES'},
+      {input:'5\n3 2 1 0 4',output:'NO'},
     ]},
   CJ033:{id:'CJ033',title:'Number of Islands',diff:'Medium',tags:['Graph','BFS'],
-    desc:'Given an N×M grid of 0s and 1s, count the number of islands (groups of connected 1s, connected horizontally or vertically).
-
-Input: First line: N M. Next N lines: M integers (0 or 1) each.
-Output: A single integer — number of islands.',
+    desc:'Given an N×M grid of 0s and 1s, count the number of islands (groups of connected 1s, connected horizontally or vertically).\n\nInput: First line: N M. Next N lines: M integers (0 or 1) each.\nOutput: A single integer — number of islands.',
     cases:[
-      {input:'4 5
-1 1 0 0 0
-1 1 0 0 0
-0 0 1 0 0
-0 0 0 1 1',output:'3'},
-      {input:'2 2
-0 0
-0 0',output:'0'},
+      {input:'4 5\n1 1 0 0 0\n1 1 0 0 0\n0 0 1 0 0\n0 0 0 1 1',output:'3'},
+      {input:'2 2\n0 0\n0 0',output:'0'},
     ]},
   CJ034:{id:'CJ034',title:'Valid Sudoku Row',diff:'Medium',tags:['Array','Hash'],
-    desc:'Given a 9×9 Sudoku grid (0 = empty), check if all filled rows are valid (no repeated digits 1-9).
-
-Input: 9 lines, 9 integers each.
-Output: "VALID" if all rows valid, "INVALID" otherwise.',
+    desc:'Given a 9×9 Sudoku grid (0 = empty), check if all filled rows are valid (no repeated digits 1-9).\n\nInput: 9 lines, 9 integers each.\nOutput: "VALID" if all rows valid, "INVALID" otherwise.',
     cases:[
-      {input:'5 3 0 0 7 0 0 0 0
-6 0 0 1 9 5 0 0 0
-0 9 8 0 0 0 0 6 0
-8 0 0 0 6 0 0 0 3
-4 0 0 8 0 3 0 0 1
-7 0 0 0 2 0 0 0 6
-0 6 0 0 0 0 2 8 0
-0 0 0 4 1 9 0 0 5
-0 0 0 0 8 0 0 7 9',output:'VALID'},
-      {input:'1 1 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0',output:'INVALID'},
+      {input:'5 3 0 0 7 0 0 0 0\n6 0 0 1 9 5 0 0 0\n0 9 8 0 0 0 0 6 0\n8 0 0 0 6 0 0 0 3\n4 0 0 8 0 3 0 0 1\n7 0 0 0 2 0 0 0 6\n0 6 0 0 0 0 2 8 0\n0 0 0 4 1 9 0 0 5\n0 0 0 0 8 0 0 7 9',output:'VALID'},
+      {input:'1 1 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0\n0 0 0 0 0 0 0 0 0',output:'INVALID'},
     ]},
   CJ035:{id:'CJ035',title:'Longest Common Subsequence',diff:'Medium',tags:['DP','String'],
-    desc:'Given two strings, find the length of their longest common subsequence.
-
-Input: Two strings on separate lines (length ≤ 100).
-Output: A single integer — LCS length.',
+    desc:'Given two strings, find the length of their longest common subsequence.\n\nInput: Two strings on separate lines (length ≤ 100).\nOutput: A single integer — LCS length.',
     cases:[
-      {input:'abcde
-ace',output:'3'},
-      {input:'abc
-def',output:'0'},
+      {input:'abcde\nace',output:'3'},
+      {input:'abc\ndef',output:'0'},
     ]},
   CJ036:{id:'CJ036',title:'Pascals Triangle',diff:'Medium',tags:['Math','DP'],
-    desc:'Given N, output the first N rows of Pascals triangle.
-
-Input: A single integer N (1 ≤ N ≤ 15).
-Output: N rows, each row space-separated.',
+    desc:'Given N, output the first N rows of Pascals triangle.\n\nInput: A single integer N (1 ≤ N ≤ 15).\nOutput: N rows, each row space-separated.',
     cases:[
-      {input:'4',output:'1
-1 1
-1 2 1
-1 3 3 1'},
+      {input:'4',output:'1\n1 1\n1 2 1\n1 3 3 1'},
       {input:'1',output:'1'},
     ]},
   CJ037:{id:'CJ037',title:'Find All Permutations',diff:'Medium',tags:['Recursion','Backtracking'],
-    desc:'Given N distinct integers, output all permutations in lexicographic order.
-
-Input: First line: N (1 ≤ N ≤ 7). Second line: N distinct integers in sorted order.
-Output: All permutations, one per line, space-separated.',
+    desc:'Given N distinct integers, output all permutations in lexicographic order.\n\nInput: First line: N (1 ≤ N ≤ 7). Second line: N distinct integers in sorted order.\nOutput: All permutations, one per line, space-separated.',
     cases:[
-      {input:'2
-1 2',output:'1 2
-2 1'},
-      {input:'3
-1 2 3',output:'1 2 3
-1 3 2
-2 1 3
-2 3 1
-3 1 2
-3 2 1'},
+      {input:'2\n1 2',output:'1 2\n2 1'},
+      {input:'3\n1 2 3',output:'1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1'},
     ]},
   CJ038:{id:'CJ038',title:'Unique Paths',diff:'Medium',tags:['DP','Math'],
-    desc:'A robot starts at top-left of an N×M grid and wants to reach bottom-right. It can only move right or down. How many unique paths are there?
-
-Input: Two integers N and M.
-Output: A single integer — number of unique paths.',
+    desc:'A robot starts at top-left of an N×M grid and wants to reach bottom-right. It can only move right or down. How many unique paths are there?\n\nInput: Two integers N and M.\nOutput: A single integer — number of unique paths.',
     cases:[
       {input:'3 7',output:'28'},
       {input:'3 2',output:'3'},
     ]},
   CJ039:{id:'CJ039',title:'Trapping Rain Water',diff:'Medium',tags:['Array','Two Pointers'],
-    desc:'Given N non-negative integers representing an elevation map, compute how much water it can trap after raining.
-
-Input: First line: N. Second line: N integers.
-Output: A single integer — total water trapped.',
+    desc:'Given N non-negative integers representing an elevation map, compute how much water it can trap after raining.\n\nInput: First line: N. Second line: N integers.\nOutput: A single integer — total water trapped.',
     cases:[
-      {input:'12
-0 1 0 2 1 0 1 3 2 1 2 1',output:'6'},
-      {input:'6
-4 2 0 3 2 5',output:'9'},
+      {input:'12\n0 1 0 2 1 0 1 3 2 1 2 1',output:'6'},
+      {input:'6\n4 2 0 3 2 5',output:'9'},
     ]},
   CJ040:{id:'CJ040',title:'Word Frequency',diff:'Medium',tags:['String','Hash'],
-    desc:'Given a sentence, output each unique word and its frequency in order of first appearance.
-
-Input: A single line of words separated by spaces (lowercase only).
-Output: One word and count per line, in order of first appearance.',
+    desc:'Given a sentence, output each unique word and its frequency in order of first appearance.\n\nInput: A single line of words separated by spaces (lowercase only).\nOutput: One word and count per line, in order of first appearance.',
     cases:[
-      {input:'the cat sat on the mat the cat',output:'the 3
-cat 2
-sat 1
-on 1
-mat 1'},
-      {input:'hello world hello',output:'hello 2
-world 1'},
+      {input:'the cat sat on the mat the cat',output:'the 3\ncat 2\nsat 1\non 1\nmat 1'},
+      {input:'hello world hello',output:'hello 2\nworld 1'},
     ]},
   CJ041:{id:'CJ041',title:'Graph BFS',diff:'Medium',tags:['Graph','BFS'],
-    desc:'Given an undirected graph with N nodes and M edges, output the BFS traversal order starting from node 1.
-
-Input: First line: N M. Next M lines: two integers u v (edge between u and v). Nodes are 1-indexed.
-Output: BFS traversal order, space-separated.',
+    desc:'Given an undirected graph with N nodes and M edges, output the BFS traversal order starting from node 1.\n\nInput: First line: N M. Next M lines: two integers u v (edge between u and v). Nodes are 1-indexed.\nOutput: BFS traversal order, space-separated.',
     cases:[
-      {input:'4 4
-1 2
-1 3
-2 4
-3 4',output:'1 2 3 4'},
-      {input:'3 2
-1 2
-2 3',output:'1 2 3'},
+      {input:'4 4\n1 2\n1 3\n2 4\n3 4',output:'1 2 3 4'},
+      {input:'3 2\n1 2\n2 3',output:'1 2 3'},
     ]},
   CJ042:{id:'CJ042',title:'Graph DFS',diff:'Medium',tags:['Graph','DFS'],
-    desc:'Given an undirected graph with N nodes and M edges, output the DFS traversal order starting from node 1.
-
-Input: First line: N M. Next M lines: two integers u v.
-Output: DFS traversal order, space-separated.',
+    desc:'Given an undirected graph with N nodes and M edges, output the DFS traversal order starting from node 1.\n\nInput: First line: N M. Next M lines: two integers u v.\nOutput: DFS traversal order, space-separated.',
     cases:[
-      {input:'4 4
-1 2
-1 3
-2 4
-3 4',output:'1 2 4 3'},
-      {input:'3 2
-1 2
-2 3',output:'1 2 3'},
+      {input:'4 4\n1 2\n1 3\n2 4\n3 4',output:'1 2 4 3'},
+      {input:'3 2\n1 2\n2 3',output:'1 2 3'},
     ]},
   CJ043:{id:'CJ043',title:'Knapsack 0/1',diff:'Medium',tags:['DP'],
-    desc:'Given N items each with weight W[i] and value V[i], and a knapsack capacity C, find the maximum total value you can carry.
-
-Input: First line: N C. Next N lines: W[i] V[i].
-Output: Maximum value.',
+    desc:'Given N items each with weight W[i] and value V[i], and a knapsack capacity C, find the maximum total value you can carry.\n\nInput: First line: N C. Next N lines: W[i] V[i].\nOutput: Maximum value.',
     cases:[
-      {input:'4 5
-2 3
-3 4
-4 5
-5 6',output:'7'},
-      {input:'3 4
-2 3
-3 4
-4 5',output:'7'},
+      {input:'4 5\n2 3\n3 4\n4 5\n5 6',output:'7'},
+      {input:'3 4\n2 3\n3 4\n4 5',output:'7'},
     ]},
   CJ044:{id:'CJ044',title:'Edit Distance',diff:'Medium',tags:['DP','String'],
-    desc:'Given two strings, find the minimum edit distance (insertions, deletions, substitutions).
-
-Input: Two strings on separate lines (length ≤ 100).
-Output: A single integer — edit distance.',
+    desc:'Given two strings, find the minimum edit distance (insertions, deletions, substitutions).\n\nInput: Two strings on separate lines (length ≤ 100).\nOutput: A single integer — edit distance.',
     cases:[
-      {input:'horse
-ros',output:'3'},
-      {input:'intention
-execution',output:'5'},
+      {input:'horse\nros',output:'3'},
+      {input:'intention\nexecution',output:'5'},
     ]},
   CJ045:{id:'CJ045',title:'Flood Fill',diff:'Medium',tags:['Graph','BFS'],
-    desc:'Given an N×M grid, a starting cell (r,c), and a new color, perform flood fill: change all connected cells with the same original color to the new color.
-
-Input: First line: N M. Next N lines: M integers (colors). Last line: r c newColor (0-indexed).
-Output: N lines — the grid after flood fill.',
+    desc:'Given an N×M grid, a starting cell (r,c), and a new color, perform flood fill: change all connected cells with the same original color to the new color.\n\nInput: First line: N M. Next N lines: M integers (colors). Last line: r c newColor (0-indexed).\nOutput: N lines — the grid after flood fill.',
     cases:[
-      {input:'3 3
-1 1 1
-1 1 0
-1 0 0
-1 1 2',output:'2 2 2
-2 2 0
-2 0 0'},
-      {input:'2 2
-0 0
-0 0
-0 0 1',output:'1 1
-1 1'},
+      {input:'3 3\n1 1 1\n1 1 0\n1 0 0\n1 1 2',output:'2 2 2\n2 2 0\n2 0 0'},
+      {input:'2 2\n0 0\n0 0\n0 0 1',output:'1 1\n1 1'},
     ]},
   CJ046:{id:'CJ046',title:'Sliding Window Maximum',diff:'Medium',tags:['Array','Deque'],
-    desc:'Given an array of N integers and window size K, find the maximum value in each sliding window.
-
-Input: First line: N K. Second line: N integers.
-Output: N-K+1 integers — maximums of each window, space-separated.',
+    desc:'Given an array of N integers and window size K, find the maximum value in each sliding window.\n\nInput: First line: N K. Second line: N integers.\nOutput: N-K+1 integers — maximums of each window, space-separated.',
     cases:[
-      {input:'8 3
-1 3 -1 -3 5 3 6 7',output:'3 3 5 5 6 7'},
-      {input:'4 2
-4 3 1 2',output:'4 3 2'},
+      {input:'8 3\n1 3 -1 -3 5 3 6 7',output:'3 3 5 5 6 7'},
+      {input:'4 2\n4 3 1 2',output:'4 3 2'},
     ]},
   CJ047:{id:'CJ047',title:'Topological Sort',diff:'Medium',tags:['Graph','DAG'],
-    desc:'Given a DAG with N nodes and M directed edges, output a valid topological ordering. Nodes are 1-indexed.
-
-Input: First line: N M. Next M lines: u v (directed edge from u to v).
-Output: Topological order, space-separated.',
+    desc:'Given a DAG with N nodes and M directed edges, output a valid topological ordering. Nodes are 1-indexed.\n\nInput: First line: N M. Next M lines: u v (directed edge from u to v).\nOutput: Topological order, space-separated.',
     cases:[
-      {input:'4 4
-1 2
-1 3
-2 4
-3 4',output:'1 2 3 4'},
-      {input:'3 2
-2 3
-1 3',output:'1 2 3'},
+      {input:'4 4\n1 2\n1 3\n2 4\n3 4',output:'1 2 3 4'},
+      {input:'3 2\n2 3\n1 3',output:'1 2 3'},
     ]},
   CJ048:{id:'CJ048',title:'Subsets',diff:'Medium',tags:['Backtracking','Recursion'],
-    desc:'Given N distinct integers, output all subsets in lexicographic order (empty set first).
-
-Input: First line: N (1 ≤ N ≤ 4). Second line: N sorted integers.
-Output: All subsets, one per line (empty line for empty set).',
+    desc:'Given N distinct integers, output all subsets in lexicographic order (empty set first).\n\nInput: First line: N (1 ≤ N ≤ 4). Second line: N sorted integers.\nOutput: All subsets, one per line (empty line for empty set).',
     cases:[
-      {input:'2
-1 2',output:'
-1
-1 2
-2'},
-      {input:'1
-5',output:'
-5'},
+      {input:'2\n1 2',output:'\n1\n1 2\n2'},
+      {input:'1\n5',output:'\n5'},
     ]},
   CJ049:{id:'CJ049',title:'Linked List Reverse',diff:'Medium',tags:['Simulation','Array'],
-    desc:'Given N integers representing a linked list, reverse it and output the values.
-
-Input: First line: N. Second line: N integers.
-Output: N integers in reversed order, space-separated.',
+    desc:'Given N integers representing a linked list, reverse it and output the values.\n\nInput: First line: N. Second line: N integers.\nOutput: N integers in reversed order, space-separated.',
     cases:[
-      {input:'5
-1 2 3 4 5',output:'5 4 3 2 1'},
-      {input:'1
-42',output:'42'},
+      {input:'5\n1 2 3 4 5',output:'5 4 3 2 1'},
+      {input:'1\n42',output:'42'},
     ]},
   CJ050:{id:'CJ050',title:'Minimum Spanning Tree',diff:'Medium',tags:['Graph','Greedy'],
-    desc:'Given an undirected weighted graph with N nodes and M edges, find the total weight of its Minimum Spanning Tree.
-
-Input: First line: N M. Next M lines: u v w (edge with weight w).
-Output: Total weight of MST.',
+    desc:'Given an undirected weighted graph with N nodes and M edges, find the total weight of its Minimum Spanning Tree.\n\nInput: First line: N M. Next M lines: u v w (edge with weight w).\nOutput: Total weight of MST.',
     cases:[
-      {input:'4 5
-1 2 1
-1 3 4
-2 3 2
-2 4 5
-3 4 3',output:'6'},
-      {input:'3 3
-1 2 5
-1 3 3
-2 3 4',output:'7'},
+      {input:'4 5\n1 2 1\n1 3 4\n2 3 2\n2 4 5\n3 4 3',output:'6'},
+      {input:'3 3\n1 2 5\n1 3 3\n2 3 4',output:'7'},
     ]},
 
   // ── HARD (CJ051–CJ100) ──────────────────────────────────────
   CJ051:{id:'CJ051',title:'Segment Tree Range Sum',diff:'Hard',tags:['Segment Tree','Data Structure'],
-    desc:'Build a segment tree on an array of N integers. Support Q queries:
-  • U i x: update index i to value x
-  • Q l r: query sum of elements from index l to r (1-indexed, inclusive)
-
-Input: First line: N. Second line: N integers. Third line: Q. Next Q lines: queries.
-Output: Output for each Q query.',
+    desc:'Build a segment tree on an array of N integers. Support Q queries:\n  • U i x: update index i to value x\n  • Q l r: query sum of elements from index l to r (1-indexed, inclusive)\n\nInput: First line: N. Second line: N integers. Third line: Q. Next Q lines: queries.\nOutput: Output for each Q query.',
     cases:[
-      {input:'5
-1 2 3 4 5
-3
-Q 1 3
-U 2 10
-Q 1 3',output:'6
-14'},
-      {input:'3
-1 2 3
-1
-Q 1 3',output:'6'},
+      {input:'5\n1 2 3 4 5\n3\nQ 1 3\nU 2 10\nQ 1 3',output:'6\n14'},
+      {input:'3\n1 2 3\n1\nQ 1 3',output:'6'},
     ]},
   CJ052:{id:'CJ052',title:'Dijkstra Shortest Path',diff:'Hard',tags:['Graph','Shortest Path'],
-    desc:'Given a weighted directed graph with N nodes and M edges, find the shortest path from node 1 to all other nodes.
-
-Input: First line: N M. Next M lines: u v w (directed edge). Nodes 1-indexed.
-Output: N-1 lines — shortest distance from node 1 to nodes 2..N. Output -1 if unreachable.',
+    desc:'Given a weighted directed graph with N nodes and M edges, find the shortest path from node 1 to all other nodes.\n\nInput: First line: N M. Next M lines: u v w (directed edge). Nodes 1-indexed.\nOutput: N-1 lines — shortest distance from node 1 to nodes 2..N. Output -1 if unreachable.',
     cases:[
-      {input:'4 5
-1 2 1
-1 3 4
-2 3 2
-2 4 5
-3 4 1',output:'1
-3
-4'},
-      {input:'3 2
-1 2 3
-2 3 2',output:'3
-5'},
+      {input:'4 5\n1 2 1\n1 3 4\n2 3 2\n2 4 5\n3 4 1',output:'1\n3\n4'},
+      {input:'3 2\n1 2 3\n2 3 2',output:'3\n5'},
     ]},
   CJ053:{id:'CJ053',title:'Bellman-Ford',diff:'Hard',tags:['Graph','Shortest Path'],
-    desc:'Given a weighted directed graph with N nodes and M edges (may have negative weights), find shortest paths from node 1. Detect negative cycles.
-
-Input: First line: N M. Next M lines: u v w.
-Output: Shortest distances from node 1 to all nodes (2..N), or "NEGATIVE CYCLE" if one exists.',
+    desc:'Given a weighted directed graph with N nodes and M edges (may have negative weights), find shortest paths from node 1. Detect negative cycles.\n\nInput: First line: N M. Next M lines: u v w.\nOutput: Shortest distances from node 1 to all nodes (2..N), or "NEGATIVE CYCLE" if one exists.',
     cases:[
-      {input:'3 3
-1 2 4
-1 3 5
-2 3 -2',output:'4
-2'},
-      {input:'3 4
-1 2 1
-2 3 -1
-3 1 -1
-1 3 5',output:'NEGATIVE CYCLE'},
+      {input:'3 3\n1 2 4\n1 3 5\n2 3 -2',output:'4\n2'},
+      {input:'3 4\n1 2 1\n2 3 -1\n3 1 -1\n1 3 5',output:'NEGATIVE CYCLE'},
     ]},
   CJ054:{id:'CJ054',title:'Convex Hull',diff:'Hard',tags:['Geometry','Sorting'],
-    desc:'Given N points in 2D, find the convex hull and output the points in counter-clockwise order starting from the bottom-left point.
-
-Input: First line: N. Next N lines: x y coordinates.
-Output: Points on convex hull, one per line.',
+    desc:'Given N points in 2D, find the convex hull and output the points in counter-clockwise order starting from the bottom-left point.\n\nInput: First line: N. Next N lines: x y coordinates.\nOutput: Points on convex hull, one per line.',
     cases:[
-      {input:'5
-0 0
-1 1
-2 0
-0 2
-2 2',output:'0 0
-2 0
-2 2
-0 2'},
-      {input:'4
-0 0
-1 0
-0 1
-1 1',output:'0 0
-1 0
-1 1
-0 1'},
+      {input:'5\n0 0\n1 1\n2 0\n0 2\n2 2',output:'0 0\n2 0\n2 2\n0 2'},
+      {input:'4\n0 0\n1 0\n0 1\n1 1',output:'0 0\n1 0\n1 1\n0 1'},
     ]},
   CJ055:{id:'CJ055',title:'Trie Insert and Search',diff:'Hard',tags:['Trie','String'],
-    desc:'Implement a Trie with N operations:
-  • INSERT w: insert word w
-  • SEARCH w: output "YES" if w exists, "NO" otherwise
-  • PREFIX w: output "YES" if any word starts with w, "NO" otherwise
-
-Input: First line: N. Next N lines: operations.
-Output: Results of SEARCH and PREFIX.',
+    desc:'Implement a Trie with N operations:\n  • INSERT w: insert word w\n  • SEARCH w: output "YES" if w exists, "NO" otherwise\n  • PREFIX w: output "YES" if any word starts with w, "NO" otherwise\n\nInput: First line: N. Next N lines: operations.\nOutput: Results of SEARCH and PREFIX.',
     cases:[
-      {input:'5
-INSERT apple
-SEARCH apple
-SEARCH app
-PREFIX app
-SEARCH banana',output:'YES
-NO
-YES
-NO'},
-      {input:'3
-INSERT hello
-SEARCH hello
-PREFIX hel',output:'YES
-YES'},
+      {input:'5\nINSERT apple\nSEARCH apple\nSEARCH app\nPREFIX app\nSEARCH banana',output:'YES\nNO\nYES\nNO'},
+      {input:'3\nINSERT hello\nSEARCH hello\nPREFIX hel',output:'YES\nYES'},
     ]},
   CJ056:{id:'CJ056',title:'Union Find',diff:'Hard',tags:['Graph','Union Find'],
-    desc:'Given N nodes and M operations:
-  • UNION u v: merge sets containing u and v
-  • FIND u v: output "YES" if u and v are in same set, "NO" otherwise
-
-Input: First line: N M. Next M lines: operations.
-Output: Results of FIND operations.',
+    desc:'Given N nodes and M operations:\n  • UNION u v: merge sets containing u and v\n  • FIND u v: output "YES" if u and v are in same set, "NO" otherwise\n\nInput: First line: N M. Next M lines: operations.\nOutput: Results of FIND operations.',
     cases:[
-      {input:'5 5
-UNION 1 2
-UNION 3 4
-FIND 1 2
-FIND 1 3
-UNION 1 3',output:'YES
-NO'},
-      {input:'3 2
-FIND 1 2
-UNION 1 2',output:'NO'},
+      {input:'5 5\nUNION 1 2\nUNION 3 4\nFIND 1 2\nFIND 1 3\nUNION 1 3',output:'YES\nNO'},
+      {input:'3 2\nFIND 1 2\nUNION 1 2',output:'NO'},
     ]},
   CJ057:{id:'CJ057',title:'Matrix Chain Multiplication',diff:'Hard',tags:['DP','Math'],
-    desc:'Given N matrices with dimensions, find the minimum number of scalar multiplications needed to multiply them all.
-
-Input: First line: N. Second line: N+1 integers representing dimensions (matrix i has dimensions p[i-1] x p[i]).
-Output: Minimum number of multiplications.',
+    desc:'Given N matrices with dimensions, find the minimum number of scalar multiplications needed to multiply them all.\n\nInput: First line: N. Second line: N+1 integers representing dimensions (matrix i has dimensions p[i-1] x p[i]).\nOutput: Minimum number of multiplications.',
     cases:[
-      {input:'3
-10 30 5 60',output:'4500'},
-      {input:'4
-40 20 30 10 30',output:'26000'},
+      {input:'3\n10 30 5 60',output:'4500'},
+      {input:'4\n40 20 30 10 30',output:'26000'},
     ]},
   CJ058:{id:'CJ058',title:'Longest Palindromic Substring',diff:'Hard',tags:['DP','String'],
-    desc:'Given a string, find the longest palindromic substring. If multiple exist, output the first one.
-
-Input: A single string (length ≤ 1000).
-Output: The longest palindromic substring.',
+    desc:'Given a string, find the longest palindromic substring. If multiple exist, output the first one.\n\nInput: A single string (length ≤ 1000).\nOutput: The longest palindromic substring.',
     cases:[
       {input:'babad',output:'bab'},
       {input:'cbbd',output:'bb'},
     ]},
   CJ059:{id:'CJ059',title:'Regular Expression Matching',diff:'Hard',tags:['DP','String'],
-    desc:'Implement regex matching with . (any single char) and * (zero or more of preceding char).
-
-Input: Two strings — text and pattern.
-Output: "YES" if full match, "NO" otherwise.',
+    desc:'Implement regex matching with . (any single char) and * (zero or more of preceding char).\n\nInput: Two strings — text and pattern.\nOutput: "YES" if full match, "NO" otherwise.',
     cases:[
-      {input:'aa
-a*',output:'YES'},
-      {input:'aab
-c*a*b',output:'YES'},
+      {input:'aa\na*',output:'YES'},
+      {input:'aab\nc*a*b',output:'YES'},
     ]},
   CJ060:{id:'CJ060',title:'Largest Rectangle in Histogram',diff:'Hard',tags:['Stack','Array'],
-    desc:'Given N bar heights in a histogram, find the largest rectangle area.
-
-Input: First line: N. Second line: N integers (heights).
-Output: Maximum rectangle area.',
+    desc:'Given N bar heights in a histogram, find the largest rectangle area.\n\nInput: First line: N. Second line: N integers (heights).\nOutput: Maximum rectangle area.',
     cases:[
-      {input:'6
-2 1 5 6 2 3',output:'10'},
-      {input:'5
-2 4 6 8 10',output:'20'},
+      {input:'6\n2 1 5 6 2 3',output:'10'},
+      {input:'5\n2 4 6 8 10',output:'20'},
     ]},
   CJ061:{id:'CJ061',title:'Alien Dictionary',diff:'Hard',tags:['Graph','Topological Sort'],
-    desc:'Given a list of words sorted by an alien language, determine the order of characters. Output the character ordering, or "INVALID" if contradictory.
-
-Input: First line: N. Next N lines: words.
-Output: Character order string, or "INVALID".',
+    desc:'Given a list of words sorted by an alien language, determine the order of characters. Output the character ordering, or "INVALID" if contradictory.\n\nInput: First line: N. Next N lines: words.\nOutput: Character order string, or "INVALID".',
     cases:[
-      {input:'4
-wrt
-wrf
-er
-ett',output:'wertf'},
-      {input:'2
-z
-x',output:'zx'},
+      {input:'4\nwrt\nwrf\ner\nett',output:'wertf'},
+      {input:'2\nz\nx',output:'zx'},
     ]},
   CJ062:{id:'CJ062',title:'Serialize and Deserialize BST',diff:'Hard',tags:['Tree','BST'],
-    desc:'Given N BST insert operations, serialize the final BST (preorder traversal), then deserialize it and print inorder traversal.
-
-Input: First line: N. Second line: N integers to insert.
-Output: Inorder traversal of the BST.',
+    desc:'Given N BST insert operations, serialize the final BST (preorder traversal), then deserialize it and print inorder traversal.\n\nInput: First line: N. Second line: N integers to insert.\nOutput: Inorder traversal of the BST.',
     cases:[
-      {input:'5
-5 3 7 1 4',output:'1 3 4 5 7'},
-      {input:'3
-2 1 3',output:'1 2 3'},
+      {input:'5\n5 3 7 1 4',output:'1 3 4 5 7'},
+      {input:'3\n2 1 3',output:'1 2 3'},
     ]},
   CJ063:{id:'CJ063',title:'Network Flow Max Flow',diff:'Hard',tags:['Graph','Flow'],
-    desc:'Given a directed graph with N nodes and M edges each with capacity, find the maximum flow from node 1 to node N.
-
-Input: First line: N M. Next M lines: u v capacity.
-Output: Maximum flow value.',
+    desc:'Given a directed graph with N nodes and M edges each with capacity, find the maximum flow from node 1 to node N.\n\nInput: First line: N M. Next M lines: u v capacity.\nOutput: Maximum flow value.',
     cases:[
-      {input:'4 5
-1 2 3
-1 3 2
-2 4 2
-3 4 3
-2 3 1',output:'4'},
-      {input:'2 1
-1 2 5',output:'5'},
+      {input:'4 5\n1 2 3\n1 3 2\n2 4 2\n3 4 3\n2 3 1',output:'4'},
+      {input:'2 1\n1 2 5',output:'5'},
     ]},
   CJ064:{id:'CJ064',title:'Suffix Array',diff:'Hard',tags:['String','Sorting'],
-    desc:'Given a string, build its suffix array (sorted order of all suffixes) and output the starting indices (0-indexed).
-
-Input: A single string (lowercase, length ≤ 100).
-Output: Suffix array indices, space-separated.',
+    desc:'Given a string, build its suffix array (sorted order of all suffixes) and output the starting indices (0-indexed).\n\nInput: A single string (lowercase, length ≤ 100).\nOutput: Suffix array indices, space-separated.',
     cases:[
       {input:'banana',output:'5 3 1 0 4 2'},
       {input:'abc',output:'0 1 2'},
     ]},
   CJ065:{id:'CJ065',title:'Heavy-Light Decomposition',diff:'Hard',tags:['Tree','Segment Tree'],
-    desc:'Given a tree with N nodes and node values, answer Q path sum queries between nodes u and v.
-
-Input: First line: N. Second line: N values. Next N-1 lines: edges. Then Q, followed by Q queries u v.
-Output: Sum for each query.',
+    desc:'Given a tree with N nodes and node values, answer Q path sum queries between nodes u and v.\n\nInput: First line: N. Second line: N values. Next N-1 lines: edges. Then Q, followed by Q queries u v.\nOutput: Sum for each query.',
     cases:[
-      {input:'4
-1 2 3 4
-1 2
-1 3
-2 4
-2
-1 4
-2 3',output:'7
-5'},
-      {input:'3
-5 3 2
-1 2
-2 3
-1
-1 3',output:'10'},
+      {input:'4\n1 2 3 4\n1 2\n1 3\n2 4\n2\n1 4\n2 3',output:'7\n5'},
+      {input:'3\n5 3 2\n1 2\n2 3\n1\n1 3',output:'10'},
     ]},
   CJ066:{id:'CJ066',title:'Centroid Decomposition',diff:'Hard',tags:['Tree','Divide and Conquer'],
-    desc:'Given a tree with N nodes, find all pairs of nodes at exactly distance K apart. Output the count.
-
-Input: First line: N K. Next N-1 lines: u v (unweighted edges).
-Output: Number of node pairs at distance K.',
+    desc:'Given a tree with N nodes, find all pairs of nodes at exactly distance K apart. Output the count.\n\nInput: First line: N K. Next N-1 lines: u v (unweighted edges).\nOutput: Number of node pairs at distance K.',
     cases:[
-      {input:'5 2
-1 2
-1 3
-3 4
-3 5',output:'4'},
-      {input:'3 1
-1 2
-2 3',output:'2'},
+      {input:'5 2\n1 2\n1 3\n3 4\n3 5',output:'4'},
+      {input:'3 1\n1 2\n2 3',output:'2'},
     ]},
   CJ067:{id:'CJ067',title:'2-SAT Problem',diff:'Hard',tags:['Graph','SCC'],
-    desc:'Given N boolean variables and M clauses of the form (xi OR xj), determine if a satisfying assignment exists, and if so, output one.
-
-Input: First line: N M. Next M lines: a b (positive = true, negative = false for variable |val|).
-Output: "SATISFIABLE" followed by assignment, or "UNSATISFIABLE".',
+    desc:'Given N boolean variables and M clauses of the form (xi OR xj), determine if a satisfying assignment exists, and if so, output one.\n\nInput: First line: N M. Next M lines: a b (positive = true, negative = false for variable |val|).\nOutput: "SATISFIABLE" followed by assignment, or "UNSATISFIABLE".',
     cases:[
-      {input:'2 2
-1 2
--1 2',output:'SATISFIABLE
-0 1'},
-      {input:'2 4
-1 2
--1 2
-1 -2
--1 -2',output:'UNSATISFIABLE'},
+      {input:'2 2\n1 2\n-1 2',output:'SATISFIABLE\n0 1'},
+      {input:'2 4\n1 2\n-1 2\n1 -2\n-1 -2',output:'UNSATISFIABLE'},
     ]},
   CJ068:{id:'CJ068',title:'KMP String Matching',diff:'Hard',tags:['String','KMP'],
-    desc:'Given a text string T and pattern P, find all starting positions (1-indexed) where P occurs in T.
-
-Input: First line: T. Second line: P.
-Output: Starting positions, space-separated. Output -1 if none.',
+    desc:'Given a text string T and pattern P, find all starting positions (1-indexed) where P occurs in T.\n\nInput: First line: T. Second line: P.\nOutput: Starting positions, space-separated. Output -1 if none.',
     cases:[
-      {input:'aabxaabyaabyaab
-aabyaab',output:'5 9'},
-      {input:'hello
-world',output:'-1'},
+      {input:'aabxaabyaabyaab\naabyaab',output:'5 9'},
+      {input:'hello\nworld',output:'-1'},
     ]},
   CJ069:{id:'CJ069',title:'Sparse Table RMQ',diff:'Hard',tags:['Array','Sparse Table'],
-    desc:'Given an array of N integers and Q range minimum queries, answer each query in O(1) after O(N log N) preprocessing.
-
-Input: First line: N. Second line: N integers. Third line: Q. Next Q lines: l r (1-indexed).
-Output: Q lines — minimum of each range.',
+    desc:'Given an array of N integers and Q range minimum queries, answer each query in O(1) after O(N log N) preprocessing.\n\nInput: First line: N. Second line: N integers. Third line: Q. Next Q lines: l r (1-indexed).\nOutput: Q lines — minimum of each range.',
     cases:[
-      {input:'5
-2 4 3 1 6
-3
-1 3
-2 4
-1 5',output:'2
-1
-1'},
-      {input:'3
-5 2 8
-1
-1 3',output:'2'},
+      {input:'5\n2 4 3 1 6\n3\n1 3\n2 4\n1 5',output:'2\n1\n1'},
+      {input:'3\n5 2 8\n1\n1 3',output:'2'},
     ]},
   CJ070:{id:'CJ070',title:'Mos Algorithm',diff:'Hard',tags:['Array','Query'],
-    desc:'Given an array of N integers and Q queries [l, r], for each query find the number of distinct elements in that range.
-
-Input: First line: N. Second line: N integers. Third line: Q. Next Q lines: l r (1-indexed).
-Output: Q lines — distinct count for each query.',
+    desc:'Given an array of N integers and Q queries [l, r], for each query find the number of distinct elements in that range.\n\nInput: First line: N. Second line: N integers. Third line: Q. Next Q lines: l r (1-indexed).\nOutput: Q lines — distinct count for each query.',
     cases:[
-      {input:'5
-1 2 1 3 2
-3
-1 3
-2 4
-3 5',output:'2
-3
-3'},
-      {input:'3
-1 1 1
-1
-1 3',output:'1'},
+      {input:'5\n1 2 1 3 2\n3\n1 3\n2 4\n3 5',output:'2\n3\n3'},
+      {input:'3\n1 1 1\n1\n1 3',output:'1'},
     ]},
   CJ071:{id:'CJ071',title:'Game of Life',diff:'Hard',tags:['Simulation','2D Array'],
-    desc:'Simulate Conways Game of Life for T generations on an N×M grid.
-Rules: Live cell with 2-3 live neighbors survives. Dead cell with exactly 3 live neighbors becomes alive. Others die/stay dead.
-
-Input: First line: N M T. Next N lines: M chars (1=alive, 0=dead).
-Output: Grid after T generations.',
+    desc:'Simulate Conways Game of Life for T generations on an N×M grid.\nRules: Live cell with 2-3 live neighbors survives. Dead cell with exactly 3 live neighbors becomes alive. Others die/stay dead.\n\nInput: First line: N M T. Next N lines: M chars (1=alive, 0=dead).\nOutput: Grid after T generations.',
     cases:[
-      {input:'3 3 1
-0 1 0
-0 0 1
-1 1 1',output:'0 0 0
-1 0 1
-0 1 1'},
-      {input:'3 3 2
-0 1 0
-0 0 1
-1 1 1',output:'0 0 0
-0 1 0
-0 1 1'},
+      {input:'3 3 1\n0 1 0\n0 0 1\n1 1 1',output:'0 0 0\n1 0 1\n0 1 1'},
+      {input:'3 3 2\n0 1 0\n0 0 1\n1 1 1',output:'0 0 0\n0 1 0\n0 1 1'},
     ]},
   CJ072:{id:'CJ072',title:'Expression Evaluation',diff:'Hard',tags:['Stack','String'],
-    desc:'Evaluate a mathematical expression containing +, -, *, /, and parentheses. All numbers are integers. Division is integer division.
-
-Input: A single expression string.
-Output: Result as integer.',
+    desc:'Evaluate a mathematical expression containing +, -, *, /, and parentheses. All numbers are integers. Division is integer division.\n\nInput: A single expression string.\nOutput: Result as integer.',
     cases:[
       {input:'3+2*2',output:'7'},
       {input:'(2+3)*(4-1)',output:'15'},
     ]},
   CJ073:{id:'CJ073',title:'Interval Scheduling',diff:'Hard',tags:['Greedy','Sorting'],
-    desc:'Given N intervals [start, end], find the maximum number of non-overlapping intervals.
-
-Input: First line: N. Next N lines: start end.
-Output: Maximum number of non-overlapping intervals.',
+    desc:'Given N intervals [start, end], find the maximum number of non-overlapping intervals.\n\nInput: First line: N. Next N lines: start end.\nOutput: Maximum number of non-overlapping intervals.',
     cases:[
-      {input:'5
-1 3
-2 4
-3 5
-0 6
-5 7',output:'3'},
-      {input:'3
-1 2
-1 2
-1 2',output:'1'},
+      {input:'5\n1 3\n2 4\n3 5\n0 6\n5 7',output:'3'},
+      {input:'3\n1 2\n1 2\n1 2',output:'1'},
     ]},
   CJ074:{id:'CJ074',title:'Minimum Cut',diff:'Hard',tags:['Graph','Flow'],
-    desc:'Given a directed graph, find the minimum cut between node 1 and node N (minimum total capacity of edges to remove).
-
-Input: First line: N M. Next M lines: u v capacity.
-Output: Minimum cut value.',
+    desc:'Given a directed graph, find the minimum cut between node 1 and node N (minimum total capacity of edges to remove).\n\nInput: First line: N M. Next M lines: u v capacity.\nOutput: Minimum cut value.',
     cases:[
-      {input:'4 5
-1 2 3
-1 3 2
-2 4 2
-3 4 3
-2 3 1',output:'4'},
-      {input:'2 1
-1 2 10',output:'10'},
+      {input:'4 5\n1 2 3\n1 3 2\n2 4 2\n3 4 3\n2 3 1',output:'4'},
+      {input:'2 1\n1 2 10',output:'10'},
     ]},
   CJ075:{id:'CJ075',title:'Longest Path in DAG',diff:'Hard',tags:['Graph','DP'],
-    desc:'Given a DAG with N nodes and M directed edges with weights, find the longest path (maximum total weight) from any node.
-
-Input: First line: N M. Next M lines: u v w (directed edge with weight w).
-Output: Maximum path weight.',
+    desc:'Given a DAG with N nodes and M directed edges with weights, find the longest path (maximum total weight) from any node.\n\nInput: First line: N M. Next M lines: u v w (directed edge with weight w).\nOutput: Maximum path weight.',
     cases:[
-      {input:'5 6
-1 2 3
-1 3 2
-2 4 4
-3 4 1
-4 5 2
-2 5 6',output:'9'},
-      {input:'3 2
-1 2 5
-2 3 3',output:'8'},
+      {input:'5 6\n1 2 3\n1 3 2\n2 4 4\n3 4 1\n4 5 2\n2 5 6',output:'9'},
+      {input:'3 2\n1 2 5\n2 3 3',output:'8'},
     ]},
   CJ076:{id:'CJ076',title:'String Hashing',diff:'Hard',tags:['String','Hash'],
-    desc:'Given a string S and Q queries [l1,r1,l2,r2], determine if substrings S[l1..r1] and S[l2..r2] are equal using polynomial hashing.
-
-Input: First line: S. Second line: Q. Next Q lines: l1 r1 l2 r2 (1-indexed).
-Output: "YES" or "NO" for each query.',
+    desc:'Given a string S and Q queries [l1,r1,l2,r2], determine if substrings S[l1..r1] and S[l2..r2] are equal using polynomial hashing.\n\nInput: First line: S. Second line: Q. Next Q lines: l1 r1 l2 r2 (1-indexed).\nOutput: "YES" or "NO" for each query.',
     cases:[
-      {input:'abcabc
-2
-1 3 4 6
-1 2 2 3',output:'YES
-NO'},
-      {input:'aaaa
-1
-1 2 3 4',output:'YES'},
+      {input:'abcabc\n2\n1 3 4 6\n1 2 2 3',output:'YES\nNO'},
+      {input:'aaaa\n1\n1 2 3 4',output:'YES'},
     ]},
   CJ077:{id:'CJ077',title:'Persistent Segment Tree',diff:'Hard',tags:['Segment Tree','Data Structure'],
-    desc:'Given an array of N integers and Q queries, support version-based range sum queries. Each update creates a new version.
-  • U i x: update index i to x (new version)
-  • Q v l r: query sum in version v, range [l,r]
-
-Input: First line: N. Second line: N integers. Third line: Q. Next Q lines: queries.
-Output: Results of Q queries.',
+    desc:'Given an array of N integers and Q queries, support version-based range sum queries. Each update creates a new version.\n  • U i x: update index i to x (new version)\n  • Q v l r: query sum in version v, range [l,r]\n\nInput: First line: N. Second line: N integers. Third line: Q. Next Q lines: queries.\nOutput: Results of Q queries.',
     cases:[
-      {input:'3
-1 2 3
-3
-U 2 5
-Q 0 1 3
-Q 1 1 3',output:'6
-9'},
-      {input:'2
-1 2
-1
-Q 0 1 2',output:'3'},
+      {input:'3\n1 2 3\n3\nU 2 5\nQ 0 1 3\nQ 1 1 3',output:'6\n9'},
+      {input:'2\n1 2\n1\nQ 0 1 2',output:'3'},
     ]},
   CJ078:{id:'CJ078',title:'Counting Inversions',diff:'Hard',tags:['Array','Merge Sort'],
-    desc:'Given an array of N integers, count the number of inversions (pairs i<j where A[i]>A[j]).
-
-Input: First line: N. Second line: N integers.
-Output: Number of inversions.',
+    desc:'Given an array of N integers, count the number of inversions (pairs i<j where A[i]>A[j]).\n\nInput: First line: N. Second line: N integers.\nOutput: Number of inversions.',
     cases:[
-      {input:'5
-5 4 3 2 1',output:'10'},
-      {input:'4
-1 3 2 4',output:'1'},
+      {input:'5\n5 4 3 2 1',output:'10'},
+      {input:'4\n1 3 2 4',output:'1'},
     ]},
   CJ079:{id:'CJ079',title:'Maximum Bipartite Matching',diff:'Hard',tags:['Graph','Flow'],
-    desc:'Given a bipartite graph with N left nodes, M right nodes, and E edges, find the maximum matching.
-
-Input: First line: N M E. Next E lines: u v (left u matches right v, 1-indexed).
-Output: Maximum matching size.',
+    desc:'Given a bipartite graph with N left nodes, M right nodes, and E edges, find the maximum matching.\n\nInput: First line: N M E. Next E lines: u v (left u matches right v, 1-indexed).\nOutput: Maximum matching size.',
     cases:[
-      {input:'3 3 4
-1 1
-1 2
-2 1
-3 3',output:'3'},
-      {input:'2 2 2
-1 1
-2 1',output:'1'},
+      {input:'3 3 4\n1 1\n1 2\n2 1\n3 3',output:'3'},
+      {input:'2 2 2\n1 1\n2 1',output:'1'},
     ]},
   CJ080:{id:'CJ080',title:'Tree Diameter',diff:'Hard',tags:['Tree','BFS'],
-    desc:'Given a tree with N nodes and weighted edges, find the diameter (longest path between any two nodes).
-
-Input: First line: N. Next N-1 lines: u v w (edge with weight w).
-Output: Diameter length.',
+    desc:'Given a tree with N nodes and weighted edges, find the diameter (longest path between any two nodes).\n\nInput: First line: N. Next N-1 lines: u v w (edge with weight w).\nOutput: Diameter length.',
     cases:[
-      {input:'5
-1 2 2
-1 3 1
-3 4 3
-3 5 1',output:'6'},
-      {input:'3
-1 2 5
-2 3 3',output:'8'},
+      {input:'5\n1 2 2\n1 3 1\n3 4 3\n3 5 1',output:'6'},
+      {input:'3\n1 2 5\n2 3 3',output:'8'},
     ]},
   CJ081:{id:'CJ081',title:'Bit Manipulation XOR',diff:'Hard',tags:['Bitwise','Math'],
-    desc:'Given an array of N integers, find the subarray with maximum XOR value.
-
-Input: First line: N. Second line: N integers.
-Output: Maximum XOR value of any subarray.',
+    desc:'Given an array of N integers, find the subarray with maximum XOR value.\n\nInput: First line: N. Second line: N integers.\nOutput: Maximum XOR value of any subarray.',
     cases:[
-      {input:'4
-1 2 3 4',output:'7'},
-      {input:'3
-8 1 2',output:'11'},
+      {input:'4\n1 2 3 4',output:'7'},
+      {input:'3\n8 1 2',output:'11'},
     ]},
   CJ082:{id:'CJ082',title:'Divide and Conquer FFT',diff:'Hard',tags:['Math','FFT'],
-    desc:'Given two polynomials A and B of degrees N and M, compute their product polynomial using convolution.
-
-Input: First line: N M. Second line: N+1 coefficients of A. Third line: M+1 coefficients of B.
-Output: N+M+1 coefficients of A*B, space-separated.',
+    desc:'Given two polynomials A and B of degrees N and M, compute their product polynomial using convolution.\n\nInput: First line: N M. Second line: N+1 coefficients of A. Third line: M+1 coefficients of B.\nOutput: N+M+1 coefficients of A*B, space-separated.',
     cases:[
-      {input:'2 1
-1 2 1
-1 1',output:'1 3 3 1'},
-      {input:'1 1
-1 1
-1 -1',output:'1 0 -1'},
+      {input:'2 1\n1 2 1\n1 1',output:'1 3 3 1'},
+      {input:'1 1\n1 1\n1 -1',output:'1 0 -1'},
     ]},
   CJ083:{id:'CJ083',title:'Articulation Points',diff:'Hard',tags:['Graph','DFS'],
-    desc:'Given an undirected graph, find all articulation points (nodes whose removal disconnects the graph). Output in sorted order.
-
-Input: First line: N M. Next M lines: u v.
-Output: Articulation points, one per line (sorted). Output "NONE" if none.',
+    desc:'Given an undirected graph, find all articulation points (nodes whose removal disconnects the graph). Output in sorted order.\n\nInput: First line: N M. Next M lines: u v.\nOutput: Articulation points, one per line (sorted). Output "NONE" if none.',
     cases:[
-      {input:'5 5
-1 2
-1 3
-2 3
-3 4
-4 5',output:'3
-4'},
-      {input:'3 3
-1 2
-2 3
-1 3',output:'NONE'},
+      {input:'5 5\n1 2\n1 3\n2 3\n3 4\n4 5',output:'3\n4'},
+      {input:'3 3\n1 2\n2 3\n1 3',output:'NONE'},
     ]},
   CJ084:{id:'CJ084',title:'Bridge Finding',diff:'Hard',tags:['Graph','DFS'],
-    desc:'Given an undirected graph, find all bridges (edges whose removal disconnects the graph). Output in sorted order.
-
-Input: First line: N M. Next M lines: u v.
-Output: Bridges as "u v" (smaller node first), sorted. Output "NONE" if none.',
+    desc:'Given an undirected graph, find all bridges (edges whose removal disconnects the graph). Output in sorted order.\n\nInput: First line: N M. Next M lines: u v.\nOutput: Bridges as "u v" (smaller node first), sorted. Output "NONE" if none.',
     cases:[
-      {input:'5 5
-1 2
-1 3
-2 3
-3 4
-4 5',output:'3 4
-4 5'},
-      {input:'3 3
-1 2
-2 3
-1 3',output:'NONE'},
+      {input:'5 5\n1 2\n1 3\n2 3\n3 4\n4 5',output:'3 4\n4 5'},
+      {input:'3 3\n1 2\n2 3\n1 3',output:'NONE'},
     ]},
   CJ085:{id:'CJ085',title:'Strongly Connected Components',diff:'Hard',tags:['Graph','SCC'],
-    desc:'Given a directed graph, find all Strongly Connected Components using Kosarajus or Tarjans algorithm. Output the number of SCCs and size of each, sorted descending.
-
-Input: First line: N M. Next M lines: u v.
-Output: First line: number of SCCs. Second line: sizes sorted descending.',
+    desc:'Given a directed graph, find all Strongly Connected Components using Kosarajus or Tarjans algorithm. Output the number of SCCs and size of each, sorted descending.\n\nInput: First line: N M. Next M lines: u v.\nOutput: First line: number of SCCs. Second line: sizes sorted descending.',
     cases:[
-      {input:'5 6
-1 2
-2 3
-3 1
-3 4
-4 5
-5 4',output:'3
-3 2 1'},
-      {input:'3 3
-1 2
-2 3
-3 1',output:'1
-3'},
+      {input:'5 6\n1 2\n2 3\n3 1\n3 4\n4 5\n5 4',output:'3\n3 2 1'},
+      {input:'3 3\n1 2\n2 3\n3 1',output:'1\n3'},
     ]},
   CJ086:{id:'CJ086',title:'Square Root Decomposition',diff:'Hard',tags:['Array','Query'],
-    desc:'Given an array of N integers, support Q operations:
-  • U i x: update index i to x
-  • Q l r: query sum from l to r (1-indexed)
-Use sqrt decomposition.
-
-Input: First line: N. Second line: N integers. Third line: Q. Next Q lines: operations.
-Output: Results of Q queries.',
+    desc:'Given an array of N integers, support Q operations:\n  • U i x: update index i to x\n  • Q l r: query sum from l to r (1-indexed)\nUse sqrt decomposition.\n\nInput: First line: N. Second line: N integers. Third line: Q. Next Q lines: operations.\nOutput: Results of Q queries.',
     cases:[
-      {input:'5
-1 2 3 4 5
-3
-Q 1 3
-U 2 10
-Q 1 3',output:'6
-14'},
-      {input:'4
-1 1 1 1
-2
-Q 1 4
-Q 2 3',output:'4
-2'},
+      {input:'5\n1 2 3 4 5\n3\nQ 1 3\nU 2 10\nQ 1 3',output:'6\n14'},
+      {input:'4\n1 1 1 1\n2\nQ 1 4\nQ 2 3',output:'4\n2'},
     ]},
   CJ087:{id:'CJ087',title:'Balanced BST Height',diff:'Hard',tags:['Tree','BST'],
-    desc:'Given N integers inserted into an AVL tree, output the height of the resulting balanced BST.
-
-Input: First line: N. Second line: N integers.
-Output: Height of the AVL tree.',
+    desc:'Given N integers inserted into an AVL tree, output the height of the resulting balanced BST.\n\nInput: First line: N. Second line: N integers.\nOutput: Height of the AVL tree.',
     cases:[
-      {input:'7
-1 2 3 4 5 6 7',output:'2'},
-      {input:'3
-3 1 2',output:'1'},
+      {input:'7\n1 2 3 4 5 6 7',output:'2'},
+      {input:'3\n3 1 2',output:'1'},
     ]},
   CJ088:{id:'CJ088',title:'Game Theory Nim',diff:'Hard',tags:['Math','Game Theory'],
-    desc:'Given N piles of stones, two players alternate turns removing any number of stones from one pile. The player who takes the last stone wins. Determine if the first player wins with optimal play.
-
-Input: First line: N. Second line: N pile sizes.
-Output: "FIRST" if first player wins, "SECOND" otherwise.',
+    desc:'Given N piles of stones, two players alternate turns removing any number of stones from one pile. The player who takes the last stone wins. Determine if the first player wins with optimal play.\n\nInput: First line: N. Second line: N pile sizes.\nOutput: "FIRST" if first player wins, "SECOND" otherwise.',
     cases:[
-      {input:'3
-1 2 3',output:'SECOND'},
-      {input:'3
-1 2 4',output:'FIRST'},
+      {input:'3\n1 2 3',output:'SECOND'},
+      {input:'3\n1 2 4',output:'FIRST'},
     ]},
   CJ089:{id:'CJ089',title:'Sprague-Grundy Theorem',diff:'Hard',tags:['Math','Game Theory'],
-    desc:'Given a game where from position N you can move to any position N-1, N-2, or N-3 (N>0), determine who wins from position N with optimal play.
-
-Input: A single integer N (0 ≤ N ≤ 10^6).
-Output: "FIRST" if first player wins, "SECOND" if second player wins.',
+    desc:'Given a game where from position N you can move to any position N-1, N-2, or N-3 (N>0), determine who wins from position N with optimal play.\n\nInput: A single integer N (0 ≤ N ≤ 10^6).\nOutput: "FIRST" if first player wins, "SECOND" if second player wins.',
     cases:[
       {input:'4',output:'FIRST'},
       {input:'0',output:'SECOND'},
     ]},
   CJ090:{id:'CJ090',title:'Chinese Remainder Theorem',diff:'Hard',tags:['Math','Number Theory'],
-    desc:'Given a system of congruences x ≡ a1 (mod m1), x ≡ a2 (mod m2), ..., find the smallest non-negative x satisfying all congruences, or -1 if no solution exists.
-
-Input: First line: N. Next N lines: ai mi.
-Output: Smallest non-negative x, or -1.',
+    desc:'Given a system of congruences x ≡ a1 (mod m1), x ≡ a2 (mod m2), ..., find the smallest non-negative x satisfying all congruences, or -1 if no solution exists.\n\nInput: First line: N. Next N lines: ai mi.\nOutput: Smallest non-negative x, or -1.',
     cases:[
-      {input:'3
-2 3
-3 5
-2 7',output:'23'},
-      {input:'2
-1 2
-0 2',output:'-1'},
+      {input:'3\n2 3\n3 5\n2 7',output:'23'},
+      {input:'2\n1 2\n0 2',output:'-1'},
     ]},
   CJ091:{id:'CJ091',title:'Eulers Totient Function',diff:'Hard',tags:['Math','Number Theory'],
-    desc:'Given N, compute φ(N) — the count of integers from 1 to N that are coprime to N. Then answer Q queries: for each query integer, output its totient.
-
-Input: First line: Q. Next Q lines: one integer each (1 ≤ n ≤ 10^6).
-Output: φ(n) for each query.',
+    desc:'Given N, compute φ(N) — the count of integers from 1 to N that are coprime to N. Then answer Q queries: for each query integer, output its totient.\n\nInput: First line: Q. Next Q lines: one integer each (1 ≤ n ≤ 10^6).\nOutput: φ(n) for each query.',
     cases:[
-      {input:'3
-1
-6
-12',output:'1
-2
-4'},
-      {input:'1
-7',output:'6'},
+      {input:'3\n1\n6\n12',output:'1\n2\n4'},
+      {input:'1\n7',output:'6'},
     ]},
   CJ092:{id:'CJ092',title:'Sieve of Eratosthenes Range',diff:'Hard',tags:['Math','Number Theory'],
-    desc:'Given Q queries each with a range [L, R], count primes in each range.
-
-Input: First line: Q. Next Q lines: L R (1 ≤ L ≤ R ≤ 10^6).
-Output: Prime count for each query.',
+    desc:'Given Q queries each with a range [L, R], count primes in each range.\n\nInput: First line: Q. Next Q lines: L R (1 ≤ L ≤ R ≤ 10^6).\nOutput: Prime count for each query.',
     cases:[
-      {input:'3
-1 10
-1 100
-10 20',output:'4
-25
-4'},
-      {input:'1
-1 1',output:'0'},
+      {input:'3\n1 10\n1 100\n10 20',output:'4\n25\n4'},
+      {input:'1\n1 1',output:'0'},
     ]},
   CJ093:{id:'CJ093',title:'String Z-Function',diff:'Hard',tags:['String','Z-Function'],
-    desc:'Given a string S, compute its Z-array where Z[i] is the length of the longest common prefix of S and S[i..].
-
-Input: A single string (lowercase, length ≤ 10^5).
-Output: Z-array values separated by spaces.',
+    desc:'Given a string S, compute its Z-array where Z[i] is the length of the longest common prefix of S and S[i..].\n\nInput: A single string (lowercase, length ≤ 10^5).\nOutput: Z-array values separated by spaces.',
     cases:[
       {input:'aabxaa',output:'0 1 0 0 2 1'},
       {input:'aaaa',output:'0 3 2 1'},
     ]},
   CJ094:{id:'CJ094',title:'Flow with Lower Bounds',diff:'Hard',tags:['Graph','Flow'],
-    desc:'Given a flow network with lower and upper bounds on each edge, find a feasible flow or determine none exists.
-
-Input: First line: N M. Next M lines: u v lower upper.
-Output: "FEASIBLE" and flow values on each edge, or "INFEASIBLE".',
+    desc:'Given a flow network with lower and upper bounds on each edge, find a feasible flow or determine none exists.\n\nInput: First line: N M. Next M lines: u v lower upper.\nOutput: "FEASIBLE" and flow values on each edge, or "INFEASIBLE".',
     cases:[
-      {input:'3 3
-1 2 1 3
-2 3 1 3
-1 3 0 2',output:'FEASIBLE
-1
-1
-0'},
-      {input:'2 1
-1 2 3 2',output:'INFEASIBLE'},
+      {input:'3 3\n1 2 1 3\n2 3 1 3\n1 3 0 2',output:'FEASIBLE\n1\n1\n0'},
+      {input:'2 1\n1 2 3 2',output:'INFEASIBLE'},
     ]},
   CJ095:{id:'CJ095',title:'Tree LCA',diff:'Hard',tags:['Tree','Binary Lifting'],
-    desc:'Given a rooted tree (root = 1) with N nodes and Q LCA queries, find the Lowest Common Ancestor of u and v.
-
-Input: First line: N. Next N-1 lines: u v (edges). Third line: Q. Next Q lines: u v.
-Output: LCA for each query.',
+    desc:'Given a rooted tree (root = 1) with N nodes and Q LCA queries, find the Lowest Common Ancestor of u and v.\n\nInput: First line: N. Next N-1 lines: u v (edges). Third line: Q. Next Q lines: u v.\nOutput: LCA for each query.',
     cases:[
-      {input:'5
-1 2
-1 3
-2 4
-2 5
-3
-4 5
-3 4
-1 5',output:'2
-1
-1'},
-      {input:'3
-1 2
-2 3
-1
-1 3',output:'1'},
+      {input:'5\n1 2\n1 3\n2 4\n2 5\n3\n4 5\n3 4\n1 5',output:'2\n1\n1'},
+      {input:'3\n1 2\n2 3\n1\n1 3',output:'1'},
     ]},
   CJ096:{id:'CJ096',title:'Aho-Corasick',diff:'Hard',tags:['String','Automaton'],
-    desc:'Given N pattern strings and a text T, find how many times each pattern appears in T.
-
-Input: First line: N. Next N lines: patterns. Last line: text T.
-Output: N lines — occurrence count of each pattern.',
+    desc:'Given N pattern strings and a text T, find how many times each pattern appears in T.\n\nInput: First line: N. Next N lines: patterns. Last line: text T.\nOutput: N lines — occurrence count of each pattern.',
     cases:[
-      {input:'3
-he
-she
-his
-ahishers',output:'1
-1
-1'},
-      {input:'2
-aa
-a
-aaaa',output:'3
-4'},
+      {input:'3\nhe\nshe\nhis\nahishers',output:'1\n1\n1'},
+      {input:'2\naa\na\naaaa',output:'3\n4'},
     ]},
   CJ097:{id:'CJ097',title:'Dynamic Connectivity',diff:'Hard',tags:['Graph','Union Find'],
-    desc:'Given N nodes and Q operations:
-  • ADD u v: add edge between u and v
-  • REMOVE u v: remove edge between u and v
-  • QUERY u v: are u and v connected?
-
-Input: First line: N Q. Next Q lines: operations.
-Output: YES/NO for each QUERY.',
+    desc:'Given N nodes and Q operations:\n  • ADD u v: add edge between u and v\n  • REMOVE u v: remove edge between u and v\n  • QUERY u v: are u and v connected?\n\nInput: First line: N Q. Next Q lines: operations.\nOutput: YES/NO for each QUERY.',
     cases:[
-      {input:'4 5
-ADD 1 2
-ADD 2 3
-QUERY 1 3
-REMOVE 2 3
-QUERY 1 3',output:'YES
-NO'},
-      {input:'3 2
-QUERY 1 2
-ADD 1 2',output:'NO'},
+      {input:'4 5\nADD 1 2\nADD 2 3\nQUERY 1 3\nREMOVE 2 3\nQUERY 1 3',output:'YES\nNO'},
+      {input:'3 2\nQUERY 1 2\nADD 1 2',output:'NO'},
     ]},
   CJ098:{id:'CJ098',title:'Polynomial Hashing Anti-Hack',diff:'Hard',tags:['String','Math'],
-    desc:'Given two strings S and T, find the minimum number of character swaps in S to make it NOT equal to T. If they are already different, output 0.
-
-Input: Two strings S and T (same length, lowercase).
-Output: Minimum swaps.',
+    desc:'Given two strings S and T, find the minimum number of character swaps in S to make it NOT equal to T. If they are already different, output 0.\n\nInput: Two strings S and T (same length, lowercase).\nOutput: Minimum swaps.',
     cases:[
-      {input:'abc
-abc',output:'1'},
-      {input:'abc
-def',output:'0'},
+      {input:'abc\nabc',output:'1'},
+      {input:'abc\ndef',output:'0'},
     ]},
   CJ099:{id:'CJ099',title:'Offline LCA with Euler Tour',diff:'Hard',tags:['Tree','Euler Tour'],
-    desc:'Given a rooted tree and Q queries, compute LCA for all queries offline using Euler tour + RMQ.
-
-Input: First line: N Q. Root is node 1. Next N-1 lines: edges. Next Q lines: u v queries.
-Output: LCA for each query.',
+    desc:'Given a rooted tree and Q queries, compute LCA for all queries offline using Euler tour + RMQ.\n\nInput: First line: N Q. Root is node 1. Next N-1 lines: edges. Next Q lines: u v queries.\nOutput: LCA for each query.',
     cases:[
-      {input:'5 2
-1 2
-1 3
-2 4
-2 5
-4 5
-3 4',output:'2
-1'},
-      {input:'3 1
-1 2
-2 3
-1 3',output:'1'},
+      {input:'5 2\n1 2\n1 3\n2 4\n2 5\n4 5\n3 4',output:'2\n1'},
+      {input:'3 1\n1 2\n2 3\n1 3',output:'1'},
     ]},
   CJ100:{id:'CJ100',title:'APCS Final Boss',diff:'Hard',tags:['DP','Graph','Simulation'],
-    desc:'Given an N×M grid where each cell has a value, find the path from (0,0) to (N-1,M-1) that maximizes the sum of collected values. You can move right, down, or diagonally down-right. Each cell can only be visited once.
-
-Input: First line: N M. Next N lines: M integers.
-Output: Maximum path sum.',
+    desc:'Given an N×M grid where each cell has a value, find the path from (0,0) to (N-1,M-1) that maximizes the sum of collected values. You can move right, down, or diagonally down-right. Each cell can only be visited once.\n\nInput: First line: N M. Next N lines: M integers.\nOutput: Maximum path sum.',
     cases:[
-      {input:'3 3
-1 3 1
-1 5 1
-4 2 1',output:'13'},
-      {input:'2 2
-1 2
-3 4',output:'7'},
+      {input:'3 3\n1 3 1\n1 5 1\n4 2 1',output:'13'},
+      {input:'2 2\n1 2\n3 4',output:'7'},
     ]},
 };
 
