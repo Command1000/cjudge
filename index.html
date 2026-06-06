@@ -6,277 +6,181 @@
 <title>CJudge — ECE Programming Practice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0d0d10;--surf:#13131a;--card:#1a1a24;--border:#252535;
-  --purple:#a78bfa;--pdim:#6d28d9;--green:#34d399;--red:#f87171;
-  --amber:#fbbf24;--blue:#60a5fa;--cyan:#22d3ee;
-  --text:#ddd8ff;--muted:#5a5a7a;
-  --mono:'JetBrains Mono',monospace;--disp:'Syne',sans-serif;
+  --bg:#f8f7f4;--surf:#fff;--card:#fff;--border:#d0cdc7;--border-light:#ece9e4;
+  --blue:#0C447C;--blue-mid:#185FA5;--blue-light:#E6F1FB;
+  --text:#0d0d0d;--muted:#5a5752;--hint:#8a8780;
+  --green-bg:#EAF3DE;--green-text:#27500A;
+  --amber-bg:#FAEEDA;--amber-text:#633806;
+  --red-bg:#FCEBEB;--red-text:#791F1F;
+  --blue-bg:#E6F1FB;--blue-text:#0C447C;
+  --serif:'Source Serif 4',serif;
+  --mono:'JetBrains Mono',monospace;
 }
-html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--mono)}
-#app{max-width:1100px;margin:0 auto}
+html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--serif)}
 
-/* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;border-bottom:1px solid var(--border);background:var(--surf);position:sticky;top:0;z-index:100}
-.logo{font-family:var(--disp);font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
-.logo em{color:var(--purple);font-style:normal}
-.nav{display:flex;gap:5px}
-.nav button{background:transparent;border:1px solid transparent;color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all .15s}
-.nav button.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
-.nav button:hover:not(.on){color:var(--text);border-color:var(--border)}
-.hdr-right{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--muted)}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2.5s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-.user-chip{display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:3px 10px 3px 6px;cursor:pointer;transition:all .15s}
-.user-chip:hover{border-color:var(--purple)}
-.user-avatar{width:20px;height:20px;border-radius:50%;background:var(--pdim);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700}
-.user-email{font-size:.68rem;color:var(--text);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.logout-btn{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.68rem;cursor:pointer;padding:0;transition:color .15s}
-.logout-btn:hover{color:var(--red)}
-.login-btn{background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.7rem;padding:5px 14px;border-radius:20px;cursor:pointer;transition:all .15s}
-.login-btn:hover{background:var(--purple)}
+/* ── TOPBAR ── */
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100}
+.logo{font-family:var(--mono);font-size:.9rem;font-weight:500;color:var(--text);text-decoration:none;letter-spacing:.02em}
+.logo em{color:var(--blue);font-style:normal}
+.nav{display:flex;gap:6px;align-items:center}
+.nav-btn{background:transparent;border:1px solid transparent;color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:5px 12px;border-radius:3px;cursor:pointer;transition:all .15s;letter-spacing:.02em}
+.nav-btn.on,.nav-btn:hover{color:var(--blue);border-color:var(--blue);background:var(--blue-light)}
+.hdr-right{display:flex;align-items:center;gap:10px;font-size:.72rem;color:var(--muted);font-family:var(--mono)}
+.sign-in-btn{background:var(--blue);color:#fff;font-family:var(--mono);font-size:.72rem;padding:6px 16px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em}
+.sign-in-btn:hover{background:var(--blue-mid)}
+.user-chip{display:flex;align-items:center;gap:7px;background:var(--blue-light);border:1px solid var(--border);border-radius:3px;padding:4px 10px;cursor:pointer}
+.user-avatar{width:20px;height:20px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;font-weight:700;font-family:var(--mono)}
+.user-email{font-size:.68rem;color:var(--text);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--mono)}
+.logout-btn{background:transparent;border:none;color:var(--muted);font-family:var(--mono);font-size:.68rem;cursor:pointer}
+.logout-btn:hover{color:#791F1F}
 
-/* VIEWS */
-.view{display:none;padding:1.5rem 1.5rem 4rem}.view.on{display:block}
-.sec-title{font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+/* ── VIEWS ── */
+#app-inner{max-width:920px;margin:0 auto;padding:0 3rem 5rem}
+.view{display:none}.view.on{display:block}
 
-/* AUTH MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:200;display:none}
-.modal-overlay.on{display:flex}
-.modal{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:2rem;width:100%;max-width:400px;position:relative}
-.modal-title{font-family:var(--disp);font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:.25rem}
-.modal-sub{font-size:.72rem;color:var(--muted);margin-bottom:1.5rem}
-.form-group{margin-bottom:1rem}
-.form-label{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;display:block}
-.form-input{width:100%;background:#07070e;border:1px solid var(--border);border-radius:7px;color:var(--text);font-family:var(--mono);font-size:.78rem;padding:9px 12px;outline:none;transition:border .15s}
-.form-input:focus{border-color:var(--purple)}
-.form-btn{width:100%;background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.8rem;font-weight:700;padding:11px;border-radius:8px;cursor:pointer;transition:all .15s;margin-top:.5rem}
-.form-btn:hover{background:var(--purple)}
-.form-btn:disabled{opacity:.5;cursor:not-allowed}
-.form-switch{font-size:.72rem;color:var(--muted);text-align:center;margin-top:1rem}
-.form-switch a{color:var(--purple);cursor:pointer;text-decoration:none}
-.form-switch a:hover{text-decoration:underline}
-.form-error{font-size:.72rem;color:var(--red);margin-top:.5rem;display:none}
-.form-error.on{display:block}
-.form-success{font-size:.72rem;color:var(--green);margin-top:.5rem;display:none}
-.form-success.on{display:block}
-.modal-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer;line-height:1}
-.modal-close:hover{color:var(--text)}
+/* ── PROBLEM TABLE ── */
+.page-header{padding:2rem 0 1.25rem;border-bottom:1px solid var(--border);margin-bottom:0}
+.page-title{font-size:1.1rem;font-weight:600;color:var(--text);font-family:var(--serif);margin-bottom:.25rem}
+.page-sub{font-size:.78rem;color:var(--muted);font-family:var(--mono)}
+table.pt{width:100%;border-collapse:collapse;margin-top:0}
+table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;font-family:var(--mono);font-weight:500;background:var(--bg)}
+.pr{border-bottom:1px solid var(--border-light);cursor:pointer;transition:background .1s}
+.pr:hover{background:#f3f1ed}
+.pr td{padding:11px 12px;font-size:.82rem;vertical-align:middle}
+.pid{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+.ptitle{color:var(--text);font-weight:400;font-family:var(--serif)}
+.db{font-size:.63rem;padding:2px 8px;border-radius:2px;font-family:var(--mono);font-weight:500}
+.e{background:var(--green-bg);color:var(--green-text)}
+.m{background:var(--amber-bg);color:var(--amber-text)}
+.h{background:var(--red-bg);color:var(--red-text)}
+.tag{font-size:.62rem;padding:2px 8px;border-radius:2px;background:var(--blue-light);color:var(--blue-text);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px;font-family:var(--mono)}
+.acc{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+.actick{color:var(--green-text);font-size:.9rem}
 
-/* PROBLEM TABLE */
-table.pt{width:100%;border-collapse:collapse}
-table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:7px 12px;border-bottom:1px solid var(--border);text-align:left}
-.pr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
-.pr:hover{background:var(--card)}
-.pr td{padding:12px 12px;font-size:.8rem;vertical-align:middle}
-.pid{color:var(--muted);font-size:.7rem}
-.ptitle{color:var(--text);font-weight:500}
-.db{font-size:.63rem;padding:3px 9px;border-radius:20px;font-weight:500;white-space:nowrap}
-.e{background:rgba(52,211,153,.1);color:var(--green);border:1px solid rgba(52,211,153,.2)}
-.m{background:rgba(251,191,36,.1);color:var(--amber);border:1px solid rgba(251,191,36,.2)}
-.h{background:rgba(248,113,113,.1);color:var(--red);border:1px solid rgba(248,113,113,.2)}
-.tag{font-size:.62rem;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px}
-.acc{color:var(--muted);font-size:.72rem}
-.actick{color:var(--green);font-size:1rem}
+/* ── PAGINATION ── */
+.pagination{display:flex;align-items:center;gap:5px;padding:1.25rem 0;justify-content:center;flex-wrap:wrap;border-top:1px solid var(--border-light)}
+.pg-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 11px;border-radius:3px;cursor:pointer;transition:all .15s}
+.pg-btn:hover:not(:disabled){border-color:var(--blue);color:var(--blue)}
+.pg-btn.active{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+.pg-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-info{font-size:.68rem;color:var(--muted);font-family:var(--mono);margin-left:8px}
 
-/* PROBLEM DETAIL */
-.back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:7px;cursor:pointer;margin-bottom:1.1rem;transition:all .15s}
-.back-btn:hover{border-color:var(--purple);color:var(--purple)}
-.prob-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
-.prob-id-big{font-size:2rem;font-weight:800;font-family:var(--disp);color:var(--purple);line-height:1;min-width:75px}
-.prob-title-big{font-size:1.1rem;font-weight:700;font-family:var(--disp);color:#fff;margin-bottom:6px}
-.prob-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;align-items:center}
-.mchip{font-size:.65rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted)}
-.prob-top{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+/* ── PROBLEM DETAIL ── */
+.back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:3px;cursor:pointer;margin-bottom:1.25rem;transition:all .15s}
+.back-btn:hover{border-color:var(--blue);color:var(--blue)}
+.prob-header{padding:1.5rem 0;border-bottom:1px solid var(--border);margin-bottom:1.5rem}
+.prob-id-tag{font-family:var(--mono);font-size:.7rem;color:var(--blue);background:var(--blue-light);padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:.75rem}
+.prob-title-big{font-size:1.8rem;font-weight:300;color:var(--text);font-family:var(--serif);margin-bottom:.75rem;letter-spacing:-.01em}
+.prob-meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.mchip{font-size:.65rem;padding:3px 10px;border-radius:2px;border:1px solid var(--border);color:var(--muted);font-family:var(--mono)}
+.prob-top{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
 @media(max-width:700px){.prob-top{grid-template-columns:1fr}}
-.prob-desc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
-.dlbl{font-size:.65rem;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
-.dtxt{font-size:.78rem;color:#aaa8cc;line-height:1.85}
-.io-block{background:#07070e;border:1px solid var(--border);border-radius:7px;padding:.75rem;margin-top:5px;font-size:.72rem;line-height:1.75;white-space:pre;color:var(--green);overflow-x:auto;margin-bottom:.65rem;font-family:var(--mono)}
-.dsec{margin-bottom:1.15rem}
+.prob-card{background:var(--surf);border:1px solid var(--border);border-radius:0;padding:1.5rem}
+.dlbl{font-size:.65rem;color:var(--blue);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem;font-weight:600;font-family:var(--mono)}
+.dtxt{font-size:.82rem;color:var(--muted);line-height:1.85;font-family:var(--serif);font-style:italic}
+.io-block{background:#f8f7f4;border:1px solid var(--border-light);padding:.85rem;margin-top:.5rem;font-size:.75rem;line-height:1.75;white-space:pre;color:var(--text);overflow-x:auto;margin-bottom:.75rem;font-family:var(--mono)}
+.dsec{margin-bottom:1.1rem}
 .ctabs{display:flex;gap:4px;margin-bottom:.75rem;flex-wrap:wrap}
-.ctab{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.65rem;padding:3px 11px;border-radius:20px;cursor:pointer;transition:all .15s}
-.ctab.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
+.ctab{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.65rem;padding:3px 11px;border-radius:2px;cursor:pointer;transition:all .15s}
+.ctab.on{border-color:var(--blue);color:var(--blue);background:var(--blue-light)}
 .cio{display:none}.cio.on{display:block}
-.iolbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.iolbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px;font-family:var(--mono)}
 
-/* EDITOR */
-.editor-panel{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.editor-titlebar{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;border-bottom:1px solid var(--border);background:var(--card)}
-.editor-title{font-size:.72rem;color:var(--muted)}
-.editor-lang{font-size:.68rem;color:var(--purple);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);padding:2px 10px;border-radius:20px}
-textarea.code-area{width:100%;height:380px;background:#07070e;border:none;outline:none;color:#c8c6e8;font-family:var(--mono);font-size:.75rem;padding:1rem;resize:vertical;line-height:1.8;tab-size:4}
-.vbox{border-radius:9px;padding:12px 15px;font-size:.78rem;display:none;margin:0 0 .75rem}
+/* ── EDITOR ── */
+.editor-panel{border:1px solid var(--border);overflow:hidden;margin-top:0}
+.editor-titlebar{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1rem;border-bottom:1px solid var(--border);background:#f8f7f4}
+.editor-title{font-size:.72rem;color:var(--muted);font-family:var(--mono)}
+.editor-lang{font-size:.65rem;color:var(--blue);background:var(--blue-light);padding:2px 10px;border-radius:2px;font-family:var(--mono)}
+textarea.code-area{width:100%;height:360px;background:#fff;border:none;outline:none;color:#1a1a1a;font-family:var(--mono);font-size:.75rem;padding:1rem;resize:vertical;line-height:1.8;tab-size:4}
+.action-bar{display:flex;gap:.75rem;align-items:center;padding:.85rem 1rem;border-top:1px solid var(--border);background:#f8f7f4}
+.run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.72rem;padding:8px 18px;border-radius:3px;cursor:pointer;transition:all .15s}
+.run-btn:hover:not(:disabled){border-color:var(--blue-mid);color:var(--blue-mid)}
+.run-btn:disabled{opacity:.4;cursor:not-allowed}
+.sub-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:var(--blue);border:1px solid var(--blue);color:#fff;font-family:var(--mono);font-size:.78rem;font-weight:500;padding:9px;border-radius:3px;cursor:pointer;letter-spacing:.04em;transition:all .15s}
+.sub-btn:hover:not(:disabled){background:var(--blue-mid)}
+.sub-btn:disabled{opacity:.5;cursor:not-allowed}
+.action-hint{font-size:.65rem;color:var(--muted);font-family:var(--mono)}
+
+/* ── VERDICT ── */
+.vbox{padding:12px 15px;font-size:.8rem;display:none;margin:0 0 .75rem;border-left:3px solid}
 .vbox.show{display:block}
-.vac{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.3);color:var(--green)}
-.vwa{background:rgba(248,113,113,.07);border:1px solid rgba(248,113,113,.3);color:var(--red)}
-.vce{background:rgba(96,165,250,.07);border:1px solid rgba(96,165,250,.3);color:var(--blue)}
-.vrun{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.3);color:var(--purple)}
-.vtitle{font-size:.95rem;font-weight:700;margin-bottom:6px}
+.vac{background:#f0faf5;border-color:var(--green-text);color:var(--green-text)}
+.vwa{background:#fdf0f0;border-color:var(--red-text);color:var(--red-text)}
+.vce{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+.vrun{background:#fafaf8;border-color:var(--muted);color:var(--muted)}
+.vtitle{font-size:.92rem;font-weight:600;margin-bottom:5px;font-family:var(--mono)}
 .vdetail{font-size:.7rem;opacity:.85;line-height:1.65;white-space:pre-wrap;font-family:var(--mono);margin-top:6px}
 .vprog{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}
-.vc{width:22px;height:22px;border-radius:4px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:all .3s}
-.vc-pend{background:var(--card)}
-.vc-run{background:rgba(167,139,250,.15);border-color:var(--purple);animation:p2 .7s infinite}
-.vc-ac{background:rgba(52,211,153,.2);border-color:var(--green);color:var(--green)}
-.vc-wa{background:rgba(248,113,113,.2);border-color:var(--red);color:var(--red)}
-.vc-ce{background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue)}
-@keyframes p2{0%,100%{opacity:1}50%{opacity:.3}}
-.action-bar{display:flex;gap:.75rem;align-items:center;padding:.85rem 1rem;border-top:1px solid var(--border);background:var(--card)}
-.run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.73rem;padding:9px 18px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
-.run-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
-.run-btn:disabled{opacity:.4;cursor:not-allowed}
-.sub-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--pdim);border:1px solid var(--purple);color:#fff;font-family:var(--mono);font-size:.8rem;font-weight:700;padding:10px;border-radius:8px;cursor:pointer;letter-spacing:.04em;transition:all .15s}
-.sub-btn:hover:not(:disabled){background:var(--purple);transform:translateY(-1px)}
-.sub-btn:disabled{opacity:.5;cursor:not-allowed}
-.action-hint{font-size:.65rem;color:var(--muted)}
+.vc{width:22px;height:22px;border-radius:2px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.6rem;transition:all .3s;font-family:var(--mono)}
+.vc-pend{background:#f8f7f4}
+.vc-run{background:var(--blue-light);border-color:var(--blue);animation:p2 .7s infinite}
+.vc-ac{background:var(--green-bg);border-color:var(--green-text);color:var(--green-text)}
+.vc-wa{background:var(--red-bg);border-color:var(--red-text);color:var(--red-text)}
+.vc-ce{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+@keyframes p2{0%,100%{opacity:1}50%{opacity:.35}}
 
-/* SUBMISSIONS */
-.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem}
-.stat-card{background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:1rem 1.25rem}
-.stat-val{font-size:1.8rem;font-weight:800;font-family:var(--disp);color:var(--purple)}
-.stat-lbl{font-size:.68rem;color:var(--muted);margin-top:3px;letter-spacing:.06em}
-.sub-list{display:flex;flex-direction:column;gap:8px}
-.sub-row{display:flex;align-items:center;gap:10px;background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:10px 14px;font-size:.75rem}
-.sub-row.sac{border-left:3px solid var(--green) !important}
-.sub-row.swa{border-left:3px solid var(--red) !important}
-.sub-row.sce{border-left:3px solid var(--blue) !important}
-.s-status{font-weight:700;min-width:32px;font-size:.7rem}
-.sac .s-status{color:var(--green)}.swa .s-status{color:var(--red)}.sce .s-status{color:var(--blue)}
-.s-pid{color:var(--muted);min-width:46px;font-size:.68rem}
-.s-title{flex:1;color:var(--text)}
-.s-meta{color:var(--muted);font-size:.68rem;white-space:nowrap}
-.login-wall{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:2rem;text-align:center;margin-top:1rem}
-.login-wall p{font-size:.85rem;color:var(--muted);margin-bottom:1rem}
+/* ── SUBMISSIONS ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0;margin-bottom:2rem;border:1px solid var(--border)}
+.stat-card{padding:1.25rem 1.5rem;border-right:1px solid var(--border)}
+.stat-card:last-child{border-right:none}
+.stat-val{font-size:1.8rem;font-weight:300;color:var(--blue);font-family:var(--mono);margin-bottom:.2rem}
+.stat-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono)}
+.sub-list{display:flex;flex-direction:column;gap:0}
+.sub-row{display:flex;align-items:center;gap:12px;background:var(--surf);border-bottom:1px solid var(--border-light);padding:10px 0;font-size:.78rem}
+.sub-row.sac{border-left:3px solid var(--green-text);padding-left:10px}
+.sub-row.swa{border-left:3px solid var(--red-text);padding-left:10px}
+.sub-row.sce{border-left:3px solid var(--blue);padding-left:10px}
+.s-status{font-weight:600;min-width:32px;font-size:.7rem;font-family:var(--mono)}
+.sac .s-status{color:var(--green-text)}.swa .s-status{color:var(--red-text)}.sce .s-status{color:var(--blue)}
+.s-pid{color:var(--muted);min-width:50px;font-size:.68rem;font-family:var(--mono)}
+.s-title{flex:1;color:var(--text);font-family:var(--serif);font-style:italic}
+.s-meta{color:var(--muted);font-size:.68rem;font-family:var(--mono)}
+.login-wall{background:var(--surf);border:1px solid var(--border);padding:3rem;text-align:center;margin-top:2rem}
+.login-wall p{font-size:.88rem;color:var(--muted);margin-bottom:1.25rem;font-style:italic}
 
+/* ── AUTH MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:200}
+.modal-overlay.on{display:flex}
+.modal{background:var(--surf);border:1px solid var(--border);padding:2.5rem;width:100%;max-width:400px;position:relative}
+.modal-title{font-size:1.3rem;font-weight:300;color:var(--text);font-family:var(--serif);margin-bottom:.2rem}
+.modal-sub{font-size:.78rem;color:var(--muted);margin-bottom:1.75rem;font-style:italic}
+.form-group{margin-bottom:1rem}
+.form-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;display:block;font-family:var(--mono)}
+.form-input{width:100%;background:var(--bg);border:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:.78rem;padding:9px 12px;outline:none;transition:border .15s;border-radius:0}
+.form-input:focus{border-color:var(--blue)}
+.form-btn{width:100%;background:var(--blue);border:none;color:#fff;font-family:var(--mono);font-size:.78rem;font-weight:500;padding:11px;border-radius:0;cursor:pointer;margin-top:.5rem;letter-spacing:.04em}
+.form-btn:hover{background:var(--blue-mid)}
+.form-btn:disabled{opacity:.5;cursor:not-allowed}
+.form-switch{font-size:.72rem;color:var(--muted);text-align:center;margin-top:1rem;font-style:italic}
+.form-switch a{color:var(--blue);cursor:pointer;text-decoration:none}
+.form-error{font-size:.72rem;color:var(--red-text);margin-top:.5rem;display:none;font-family:var(--mono)}
+.form-error.on{display:block}
+.form-success{font-size:.72rem;color:var(--green-text);margin-top:.5rem;display:none;font-family:var(--mono)}
+.form-success.on{display:block}
+.modal-close{position:absolute;top:1rem;right:1rem;background:transparent;border:none;color:var(--muted);font-size:1.1rem;cursor:pointer}
+.modal-close:hover{color:var(--text)}
 
-/* ── COVER ─────────────────────────────── */
-.cover-page{background:#f8f7f4 !important;color:#1a1a1a !important;font-family:'Source Serif 4',serif;min-height:100vh;width:100%;position:relative;left:0;right:0;margin:0;padding:0}
-.cv-nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #d0cdc7;background:#f8f7f4;position:sticky;top:0;z-index:50}
-.cv-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;color:#1a1a1a;letter-spacing:.02em}
-.cv-logo em{color:#185FA5;font-style:normal}
-.cv-navlinks{display:flex;gap:1.5rem;align-items:center}
-.cv-navlinks a{font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer}
-.cv-navlinks a:hover{color:#185FA5}
-.cv-signin{background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:6px 14px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em}
-.cv-signin:hover{background:#185FA5}
-.cv-inner{max-width:860px;margin:0 auto;padding:0 2rem 4rem}
-.cv-hero{padding:5rem 0 3.5rem;border-bottom:1px solid #d0cdc7}
-.cv-label{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#5a5752;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem}
-.cv-title{font-size:3.2rem;font-weight:300;line-height:1.15;letter-spacing:-.02em;color:#0d0d0d;margin-bottom:.5rem}
-.cv-title strong{font-weight:600}
-.cv-sub{font-size:1.05rem;font-weight:300;color:#4a4845;line-height:1.7;max-width:540px;margin-bottom:2.5rem;font-style:italic}
-.cv-btn{display:inline-flex;align-items:center;gap:8px;background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:11px 22px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em}
-.cv-btn:hover{background:#185FA5}
-.cv-btn-out{display:inline-flex;align-items:center;gap:8px;background:transparent;color:#0C447C;font-family:'JetBrains Mono',monospace;font-size:.75rem;padding:10px 20px;border-radius:3px;cursor:pointer;border:1px solid #0C447C;letter-spacing:.04em;margin-left:.75rem}
-.cv-btn-out:hover{background:#E6F1FB}
-.cv-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #d0cdc7}
-.cv-stat{padding:1.75rem 0;border-right:1px solid #d0cdc7}
-.cv-stat:last-child{border-right:none}
-.cv-stat-num{font-size:2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.25rem}
-.cv-stat-lbl{font-size:.68rem;color:#5a5752;letter-spacing:.08em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
-.cv-features{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d0cdc7;margin-top:3rem}
-.cv-feat{padding:2rem 1.5rem 2rem 0;border-right:1px solid #d0cdc7}
-.cv-feat:first-child{padding-left:0}
-.cv-feat:last-child{border-right:none;padding-right:0}
-.cv-feat-icon{font-size:.95rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500}
-.cv-feat-title{font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem;font-family:'Source Serif 4',serif}
-.cv-feat-desc{font-size:.8rem;color:#5a5752;line-height:1.7;font-weight:300}
-.cv-sec-hdr{display:flex;justify-content:space-between;align-items:baseline;padding:2rem 0 1rem;border-bottom:1px solid #d0cdc7;margin-top:3rem}
-.cv-sec-title{font-size:.95rem;font-weight:600;color:#0d0d0d}
-.cv-sec-link{font-size:.72rem;color:#185FA5;font-family:'JetBrains Mono',monospace;cursor:pointer}
-.cv-prow{display:grid;grid-template-columns:80px 1fr 80px 80px;align-items:center;padding:.85rem 0;border-bottom:1px solid #ece9e4;font-size:.8rem;cursor:pointer}
-.cv-prow:hover{background:#f3f1ed;margin:0 -.5rem;padding:.85rem .5rem}
-.cv-pid{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752}
-.cv-ptitle{color:#0d0d0d}
-.cv-pdiff{font-size:.65rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:2px}
-.cv-easy{background:#EAF3DE;color:#27500A}
-.cv-med{background:#FAEEDA;color:#633806}
-.cv-hard{background:#FCEBEB;color:#791F1F}
-.cv-pacc{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752;text-align:right}
-.cv-footer{padding:2rem 0;display:flex;justify-content:space-between;align-items:center;margin-top:3rem;border-top:1px solid #d0cdc7}
-.cv-footer-text{font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace}
-.cv-footer-links{display:flex;gap:1.25rem}
-.cv-footer-links a{font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none;cursor:pointer}
-.cv-footer-links a:hover{color:#185FA5}
-
-footer{text-align:center;padding:1.5rem;font-size:.65rem;color:var(--muted);border-top:1px solid var(--border)}
-footer a{color:var(--purple);text-decoration:none}
+footer{text-align:center;padding:1.5rem 3rem;font-size:.65rem;color:var(--hint);border-top:1px solid var(--border);font-family:var(--mono)}
+footer a{color:var(--muted);text-decoration:none}
+footer a:hover{color:var(--blue)}
 </style>
 </head>
 <body>
 <div id="app">
-
-  <!-- COVER -->
-  <div id="view-cover" style="display:block;position:fixed;inset:0;z-index:500;background:#f8f7f4;overflow-y:auto;font-family:'Source Serif 4',serif;color:#1a1a1a">
-    <nav style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;border-bottom:1px solid #d0cdc7;background:#f8f7f4;position:sticky;top:0;z-index:10">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;color:#1a1a1a"><span style="color:#185FA5">C</span>Judge</div>
-      <div style="display:flex;gap:1.5rem;align-items:center">
-        <a onclick="closeCover()" style="font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer">Problems</a>
-        <a onclick="gv('submissions');closeCover()" style="font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer">Submissions</a>
-        <button onclick="showModal('login')" id="cv-auth-btn" style="background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:6px 16px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em">Sign In</button>
-      </div>
-    </nav>
-    <div style="max-width:900px;margin:0 auto;padding:0 3rem 5rem">
-      <section style="padding:5rem 0 3.5rem;border-bottom:1px solid #d0cdc7">
-        <div style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#5a5752;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem">Tamkang University · ECE Programming Practice</div>
-        <h1 style="font-size:3.5rem;font-weight:300;line-height:1.12;letter-spacing:-.02em;color:#0d0d0d;margin-bottom:.5rem">Learn algorithms.<br><strong style="font-weight:600">Write better code.</strong></h1>
-        <p style="font-size:1.05rem;font-weight:300;color:#4a4845;line-height:1.75;max-width:540px;margin-bottom:2.5rem;font-style:italic">An open, student-built online judge with 100 original problems — from array basics to competitive programming.</p>
-        <button onclick="closeCover()" style="background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:12px 26px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em">Start Solving →</button>
-        <button onclick="showModal('login')" id="cv-signin-btn2" style="background:transparent;color:#0C447C;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:11px 22px;border-radius:3px;cursor:pointer;border:1px solid #0C447C;letter-spacing:.04em;margin-left:.75rem">Sign In</button>
-      </section>
-      <section style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #d0cdc7">
-        <div style="padding:1.75rem 0;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">100</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Problems</div></div>
-        <div style="padding:1.75rem 0 1.75rem 2rem;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">3</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Difficulty Levels</div></div>
-        <div style="padding:1.75rem 0 1.75rem 2rem;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">C++17</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Language</div></div>
-        <div style="padding:1.75rem 0 1.75rem 2rem"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem" id="cv-total-subs">—</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Submissions</div></div>
-      </section>
-      <section style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d0cdc7;margin-top:3rem">
-        <div style="padding:2rem 1.5rem 2rem 0;border-right:1px solid #d0cdc7">
-          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ judge ]</div>
-          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Real-time judging</div>
-          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Submissions are compiled and executed in a sandboxed C++17 environment with instant feedback.</div>
-        </div>
-        <div style="padding:2rem 1.5rem;border-right:1px solid #d0cdc7">
-          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ stats ]</div>
-          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Live statistics</div>
-          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Acceptance rates and submission counts are tracked globally across all users in real time.</div>
-        </div>
-        <div style="padding:2rem 0 2rem 1.5rem">
-          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ user ]</div>
-          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Personal history</div>
-          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Create an account to track your submissions, see solved problems, and monitor your progress.</div>
-        </div>
-      </section>
-      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:2rem 0 1rem;border-bottom:1px solid #d0cdc7;margin-top:3rem">
-        <div style="font-size:.95rem;font-weight:600;color:#0d0d0d">Problem set — Featured</div>
-        <a onclick="closeCover()" style="font-size:.72rem;color:#185FA5;font-family:'JetBrains Mono',monospace;cursor:pointer">View all 100 problems →</a>
-      </div>
-      <div id="cv-prob-preview"></div>
-      <footer style="padding:2rem 0;display:flex;justify-content:space-between;align-items:center;margin-top:3rem;border-top:1px solid #d0cdc7">
-        <div style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace">CJudge · Tamkang University ECE · Non-profit · Student project</div>
-        <div style="display:flex;gap:1.25rem">
-          <a href="https://github.com/Command1000/cjudge" target="_blank" style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none">GitHub</a>
-          <a href="https://glot.io" target="_blank" style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none">Powered by glot.io</a>
-        </div>
-      </footer>
-    </div>
-  </div>
-  <div class="topbar" id="main-topbar">
+  <div class="topbar">
     <a class="logo" href="#" onclick="gv('problems');return false;"><em>C</em>Judge</a>
     <div class="nav">
-      <button class="on" onclick="gv('problems')">Problems</button>
-      <button onclick="gv('submissions')">Submissions</button>
+      <button class="nav-btn on" onclick="gv('problems')">Problems</button>
+      <button class="nav-btn" onclick="gv('submissions')">Submissions</button>
     </div>
     <div class="hdr-right">
-      <div class="dot"></div>
-      <span style="margin-right:8px">judge online</span>
       <div id="auth-area">
-        <button class="login-btn" onclick="showModal('login')">Sign In</button>
+        <button class="sign-in-btn" onclick="showModal('login')">Sign In</button>
       </div>
     </div>
   </div>
@@ -288,72 +192,69 @@ footer a{color:var(--purple);text-decoration:none}
       <div id="modal-login">
         <div class="modal-title">Welcome back</div>
         <div class="modal-sub">Sign in to CJudge</div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" id="login-email" type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" id="login-password" type="password" placeholder="••••••••">
-        </div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="login-email" type="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="login-password" type="password" placeholder="••••••••"></div>
         <div class="form-error" id="login-error"></div>
         <button class="form-btn" id="login-btn" onclick="doLogin()">Sign In</button>
-        <div class="form-switch">Don't have an account? <a onclick="showModal('register')">Register</a></div>
+        <div class="form-switch">No account? <a onclick="showModal('register')">Register here</a></div>
       </div>
       <div id="modal-register" style="display:none">
         <div class="modal-title">Create account</div>
         <div class="modal-sub">Join CJudge</div>
-        <div class="form-group">
-          <label class="form-label">Email</label>
-          <input class="form-input" id="reg-email" type="email" placeholder="you@example.com">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Password</label>
-          <input class="form-input" id="reg-password" type="password" placeholder="At least 6 characters">
-        </div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="reg-email" type="email" placeholder="you@example.com"></div>
+        <div class="form-group"><label class="form-label">Password</label><input class="form-input" id="reg-password" type="password" placeholder="At least 6 characters"></div>
         <div class="form-error" id="reg-error"></div>
         <div class="form-success" id="reg-success"></div>
         <button class="form-btn" id="reg-btn" onclick="doRegister()">Create Account</button>
-        <div class="form-switch">Already have an account? <a onclick="showModal('login')">Sign In</a></div>
+        <div class="form-switch">Already registered? <a onclick="showModal('login')">Sign in</a></div>
       </div>
     </div>
   </div>
 
-  <!-- PROBLEMS -->
-  <div id="view-problems" class="view on">
-    <p class="sec-title">Problem Set · <span id="prob-count">100</span> problems</p>
-    <table class="pt">
-      <thead>
-        <tr>
-          <th style="width:28px"></th>
-          <th style="width:78px">ID</th>
-          <th>Title</th>
-          <th>Tags</th>
-          <th style="width:92px">Difficulty</th>
-          <th style="width:80px">AC Rate</th>
-          <th style="width:72px">Total</th>
-        </tr>
-      </thead>
-      <tbody id="ptbody"></tbody>
-    </table>
-  </div>
+  <div id="app-inner">
+    <!-- PROBLEMS -->
+    <div id="view-problems" class="view on">
+      <div class="page-header">
+        <div class="page-title">Problem Set</div>
+        <div class="page-sub">100 original problems · C++17 · Live judge</div>
+      </div>
+      <table class="pt">
+        <thead>
+          <tr>
+            <th style="width:28px"></th>
+            <th style="width:76px">ID</th>
+            <th>Title</th>
+            <th>Tags</th>
+            <th style="width:88px">Difficulty</th>
+            <th style="width:76px">AC Rate</th>
+            <th style="width:68px">Total</th>
+          </tr>
+        </thead>
+        <tbody id="ptbody"></tbody>
+      </table>
+      <div id="pagination" class="pagination"></div>
+    </div>
 
-  <!-- DETAIL -->
-  <div id="view-detail" class="view">
-    <button class="back-btn" onclick="gv('problems')">← back</button>
-    <div id="detail-content"></div>
-  </div>
+    <!-- DETAIL -->
+    <div id="view-detail" class="view">
+      <button class="back-btn" onclick="gv('problems')">← back to problems</button>
+      <div id="detail-content"></div>
+    </div>
 
-  <!-- SUBMISSIONS -->
-  <div id="view-submissions" class="view">
-    <p class="sec-title">My Submissions</p>
-    <div id="submissions-content"></div>
+    <!-- SUBMISSIONS -->
+    <div id="view-submissions" class="view">
+      <div class="page-header">
+        <div class="page-title">My Submissions</div>
+        <div class="page-sub">Your personal submission history</div>
+      </div>
+      <div id="submissions-content"></div>
+    </div>
   </div>
 
   <footer>
-    CJudge — ECE Programming Practice ·
-    Powered by <a href="https://glot.io" target="_blank">glot.io</a> ·
-    <a href="https://github.com/Command1000/ece_programming_midterm_2" target="_blank">Source Repo</a>
+    CJudge · Tamkang University ECE · Non-profit · Student project ·
+    <a href="https://glot.io" target="_blank">Powered by glot.io</a> ·
+    <a href="https://github.com/Command1000/cjudge" target="_blank">GitHub</a>
   </footer>
 </div>
 
@@ -361,14 +262,12 @@ footer a{color:var(--purple);text-decoration:none}
 const WORKER_URL = 'https://cjudge-api.sam123-tseng.workers.dev';
 const SUPA_URL = 'https://xkyuhykcwbozuodpvypw.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhreXVoeWtjd2JvenVvZHB2eXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MTczODksImV4cCI6MjA5NjI5MzM4OX0.XDnP6EkgVjvF_vXpo8kguVatTrXbhr66opPKidxkpOw';
-
 const { createClient } = supabase;
 const sb = createClient(SUPA_URL, SUPA_KEY);
 
-let currentUser = null;
-let localSubs = [];
-let solvedSet = new Set();
-let globalStats = {};
+let currentUser=null,localSubs=[],solvedSet=new Set(),globalStats={};
+let currentPage=1;
+const PAGE_SIZE=20;
 
 const PROBLEMS = {
   // ── EASY (CJ001–CJ020) ──────────────────────────────────────
@@ -979,7 +878,7 @@ const PROBLEMS = {
 };
 
 const DC={Easy:'e',Medium:'m',Hard:'h'};
-const BLANK_CODE=`#include <bits/stdc++.h>
+const BLANK=`#include <bits/stdc++.h>
 using namespace std;
 
 int main(){
@@ -989,50 +888,38 @@ int main(){
 }`;
 
 // ── AUTH ──────────────────────────────────
-sb.auth.onAuthStateChange((event, session) => {
-  currentUser = session?.user || null;
+sb.auth.onAuthStateChange((event,session)=>{
+  currentUser=session?.user||null;
   updateAuthUI();
   if(currentUser) loadMySubmissions();
 });
 
 function updateAuthUI(){
-  const cvBtn=document.getElementById('cv-auth-btn');
-  const cvBtn2=document.getElementById('cv-signin-btn2');
-  if(currentUser && cvBtn){
-    cvBtn.textContent='Go to Problems';
-    cvBtn.onclick=()=>gv('problems');
-    if(cvBtn2){cvBtn2.style.display='none';}
-  }
-  const area = document.getElementById('auth-area');
+  const area=document.getElementById('auth-area');
   if(currentUser){
-    const initials = currentUser.email.substring(0,2).toUpperCase();
+    const initials=currentUser.email.substring(0,2).toUpperCase();
     area.innerHTML=`
       <div class="user-chip" onclick="gv('submissions')">
         <div class="user-avatar">${initials}</div>
         <span class="user-email">${currentUser.email}</span>
       </div>
       <button class="logout-btn" onclick="doLogout()" style="margin-left:8px">Sign out</button>`;
+    document.querySelectorAll('.nav-btn').forEach((b,i)=>{if(i===1) b.style.display='';});
   } else {
-    area.innerHTML=`<button class="login-btn" onclick="showModal('login')">Sign In</button>`;
+    area.innerHTML=`<button class="sign-in-btn" onclick="showModal('login')">Sign In</button>`;
   }
 }
 
 function showModal(type){
   document.getElementById('modal-overlay').classList.add('on');
-  document.getElementById('modal-login').style.display = type==='login'?'block':'none';
-  document.getElementById('modal-register').style.display = type==='register'?'block':'none';
+  document.getElementById('modal-login').style.display=type==='login'?'block':'none';
+  document.getElementById('modal-register').style.display=type==='register'?'block':'none';
   document.getElementById('login-error').classList.remove('on');
   document.getElementById('reg-error').classList.remove('on');
   document.getElementById('reg-success').classList.remove('on');
 }
-
-function closeModal(){
-  document.getElementById('modal-overlay').classList.remove('on');
-}
-
-function closeModalOutside(e){
-  if(e.target===document.getElementById('modal-overlay')) closeModal();
-}
+function closeModal(){document.getElementById('modal-overlay').classList.remove('on');}
+function closeModalOutside(e){if(e.target===document.getElementById('modal-overlay')) closeModal();}
 
 async function doLogin(){
   const email=document.getElementById('login-email').value.trim();
@@ -1042,12 +929,8 @@ async function doLogin(){
   btn.disabled=true; btn.textContent='Signing in...';
   const {error}=await sb.auth.signInWithPassword({email,password});
   btn.disabled=false; btn.textContent='Sign In';
-  if(error){
-    errEl.textContent=error.message;
-    errEl.classList.add('on');
-  } else {
-    closeModal();
-  }
+  if(error){errEl.textContent=error.message;errEl.classList.add('on');}
+  else closeModal();
 }
 
 async function doRegister(){
@@ -1059,21 +942,13 @@ async function doRegister(){
   btn.disabled=true; btn.textContent='Creating account...';
   const {error}=await sb.auth.signUp({email,password});
   btn.disabled=false; btn.textContent='Create Account';
-  if(error){
-    errEl.textContent=error.message;
-    errEl.classList.add('on');
-  } else {
-    sucEl.textContent='✓ Account created! Please check your email to verify.';
-    sucEl.classList.add('on');
-    errEl.classList.remove('on');
-  }
+  if(error){errEl.textContent=error.message;errEl.classList.add('on');}
+  else{sucEl.textContent='✓ Account created! Check your email to verify.';sucEl.classList.add('on');errEl.classList.remove('on');}
 }
 
 async function doLogout(){
   await sb.auth.signOut();
-  localSubs=[];
-  solvedSet=new Set();
-  renderTable();
+  localSubs=[];solvedSet=new Set();renderTable();renderSubs();
 }
 
 // ── STATS ─────────────────────────────────
@@ -1104,17 +979,12 @@ async function loadMySubmissions(){
     const data=await res.json();
     localSubs=data.map(s=>({pid:s.problem_id,status:s.status,title:s.problem_title,time:new Date(s.created_at).toLocaleTimeString()}));
     solvedSet=new Set(data.filter(s=>s.status==='AC').map(s=>s.problem_id));
-    renderSubs();
-    renderTable();
+    renderSubs();renderTable();
   }catch(e){}
 }
 
 // ── TABLE ─────────────────────────────────
-let currentPage=1;
-const PAGE_SIZE=20;
-
 function renderTable(){
-  document.getElementById('prob-count').textContent=Object.keys(PROBLEMS).length;
   const allProbs=Object.values(PROBLEMS);
   const totalPages=Math.ceil(allProbs.length/PAGE_SIZE);
   const start=(currentPage-1)*PAGE_SIZE;
@@ -1131,22 +1001,15 @@ function renderTable(){
       <td class="acc">${getTotal(p.id)}</td>
     </tr>`).join('');
 
-  let pgEl=document.getElementById('pagination');
-  if(!pgEl){
-    pgEl=document.createElement('div');
-    pgEl.id='pagination';
-    document.querySelector('table.pt').after(pgEl);
-  }
-  let pgHtml=`<div style="display:flex;align-items:center;gap:6px;padding:1rem 0;justify-content:center;flex-wrap:wrap">`;
-  pgHtml+=`<button onclick="changePage(${currentPage-1})" ${currentPage===1?'disabled':''} style="background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:6px;cursor:pointer">← Prev</button>`;
+  const pg=document.getElementById('pagination');
+  if(!pg) return;
+  let html=`<button class="pg-btn" onclick="changePage(${currentPage-1})" ${currentPage===1?'disabled':''}>← Prev</button>`;
   for(let i=1;i<=totalPages;i++){
-    const active=i===currentPage;
-    pgHtml+=`<button onclick="changePage(${i})" style="background:${active?'rgba(167,139,250,.15)':'transparent'};border:1px solid ${active?'var(--purple)':'var(--border)'};color:${active?'var(--purple)':'var(--muted)'};font-family:var(--mono);font-size:.7rem;padding:5px 10px;border-radius:6px;cursor:pointer;min-width:34px">${i}</button>`;
+    html+=`<button class="pg-btn${i===currentPage?' active':''}" onclick="changePage(${i})">${i}</button>`;
   }
-  pgHtml+=`<button onclick="changePage(${currentPage+1})" ${currentPage===totalPages?'disabled':''} style="background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:6px;cursor:pointer">Next →</button>`;
-  pgHtml+=`<span style="font-size:.68rem;color:var(--muted);margin-left:8px">Page ${currentPage} / ${totalPages}</span>`;
-  pgHtml+=`</div>`;
-  pgEl.innerHTML=pgHtml;
+  html+=`<button class="pg-btn" onclick="changePage(${currentPage+1})" ${currentPage===totalPages?'disabled':''}>Next →</button>`;
+  html+=`<span class="pg-info">Page ${currentPage} of ${totalPages} · ${allProbs.length} problems</span>`;
+  pg.innerHTML=html;
 }
 
 function changePage(page){
@@ -1154,6 +1017,7 @@ function changePage(page){
   if(page<1||page>total) return;
   currentPage=page;
   renderTable();
+  window.scrollTo({top:0,behavior:'smooth'});
 }
 
 // ── PROBLEM DETAIL ────────────────────────
@@ -1171,25 +1035,23 @@ function openProb(id){
 
   document.getElementById('detail-content').innerHTML=`
     <div class="prob-header">
-      <div class="prob-id-big">${p.id}</div>
-      <div>
-        <div class="prob-title-big">${p.title}</div>
-        <div class="prob-meta">
-          <span class="db ${DC[p.diff]}">${p.diff}</span>
-          <span class="mchip">AC Rate: ${getAcRate(p.id)}</span>
-          <span class="mchip">Submissions: ${getTotal(p.id)}</span>
-          ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
-        </div>
+      <div class="prob-id-tag">${p.id}</div>
+      <div class="prob-title-big">${p.title}</div>
+      <div class="prob-meta">
+        <span class="db ${DC[p.diff]}">${p.diff}</span>
+        <span class="mchip">AC Rate: ${getAcRate(p.id)}</span>
+        <span class="mchip">Submissions: ${getTotal(p.id)}</span>
+        ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
       </div>
     </div>
     <div class="prob-top">
-      <div class="prob-desc">
+      <div class="prob-card">
         <div class="dsec">
           <div class="dlbl">Problem</div>
           <div class="dtxt">${p.desc.replace(/\n/g,'<br>')}</div>
         </div>
       </div>
-      <div class="prob-desc">
+      <div class="prob-card">
         <div class="dsec">
           <div class="dlbl">Sample Cases</div>
           <div class="ctabs">${ctabs}</div>
@@ -1203,7 +1065,7 @@ function openProb(id){
         <span class="editor-title">solution.cpp</span>
         <span class="editor-lang">C++17</span>
       </div>
-      <textarea class="code-area" id="code-${id}" spellcheck="false">${BLANK_CODE}</textarea>
+      <textarea class="code-area" id="code-${id}" spellcheck="false">${BLANK}</textarea>
       <div class="action-bar">
         <button class="run-btn" id="runbtn-${id}" onclick="runOne('${id}')">▷ Run Case 1</button>
         <button class="sub-btn" id="subbtn-${id}" onclick="submitAll('${id}')">▶ Submit All Cases</button>
@@ -1222,22 +1084,15 @@ function swCase(pid,idx){
 
 // ── JUDGE ─────────────────────────────────
 async function glotRun(code,stdin){
-  const res=await fetch(WORKER_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({code,stdin})
-  });
+  const res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code,stdin})});
   if(!res.ok) throw new Error('Worker error '+res.status);
   return await res.json();
 }
 
 async function saveSubmission(pid,title,status){
   if(!currentUser) return;
-  await fetch(WORKER_URL,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({save_only:true,problem_id:pid,problem_title:title,status,user_id:currentUser.id})
-  });
+  await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({save_only:true,problem_id:pid,problem_title:title,status,user_id:currentUser.id})});
 }
 
 function norm(s){return(s||'').replace(/\r/g,'').trimEnd()}
@@ -1256,30 +1111,30 @@ async function runOne(pid){
   const code=document.getElementById('code-'+pid).value;
   const c=PROBLEMS[pid].cases[0];
   setButtons(pid,true);
-  showV(pid,'vrun','⏳ Running Case 1...','');
+  showV(pid,'vrun','Running Case 1...','');
   try{
     const r=await glotRun(code,c.input);
     if(r.stderr&&r.stderr.trim()&&!r.stdout){
-      showV(pid,'vce','✗ Compile / Runtime Error',`<div class="vdetail">${esc(r.stderr)}</div>`);
+      showV(pid,'vce','Compile / Runtime Error',`<div class="vdetail">${esc(r.stderr)}</div>`);
     }else{
       const ok=norm(r.stdout)===norm(c.output);
-      showV(pid,ok?'vac':'vwa',ok?'✓ Case 1 Passed':'✗ Case 1 Wrong Answer',
+      showV(pid,ok?'vac':'vwa',ok?'Case 1 Passed':'Wrong Answer on Case 1',
         ok?'':`<div class="vdetail">Got:\n${esc(r.stdout)}\nExpected:\n${esc(c.output)}</div>`);
     }
-  }catch(e){showV(pid,'vce','✗ Error',`<div class="vdetail">${esc(e.message)}</div>`);}
+  }catch(e){showV(pid,'vce','Error',`<div class="vdetail">${esc(e.message)}</div>`);}
   setButtons(pid,false);
 }
 
 async function submitAll(pid){
   if(!currentUser){
-    showV(pid,'vce','⚠ Please sign in to submit','<div class="vdetail">Click "Sign In" in the top right corner.</div>');
+    showV(pid,'vce','Please sign in to submit','<div class="vdetail">Click Sign In in the top right corner.</div>');
     return;
   }
   const code=document.getElementById('code-'+pid).value;
   const p=PROBLEMS[pid];
   setButtons(pid,true);
   const progHtml=()=>p.cases.map((_,i)=>`<div class="vc vc-pend" id="vc-${pid}-${i}">${i+1}</div>`).join('');
-  showV(pid,'vrun','⏳ Judging...',`<div class="vprog">${progHtml()}</div>`);
+  showV(pid,'vrun','Judging...',`<div class="vprog">${progHtml()}</div>`);
   let allAc=true,firstBad=null;
   for(let i=0;i<p.cases.length;i++){
     const vcEl=document.getElementById(`vc-${pid}-${i}`);
@@ -1288,25 +1143,16 @@ async function submitAll(pid){
       const r=await glotRun(code,p.cases[i].input);
       const hasErr=r.stderr&&r.stderr.trim()&&!r.stdout;
       if(hasErr){
-        allAc=false;
-        if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='C';}
-        if(!firstBad) firstBad={type:'ce',msg:r.stderr};
-        break;
+        allAc=false;if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='C';}
+        if(!firstBad) firstBad={type:'ce',msg:r.stderr};break;
       }else{
         const ok=norm(r.stdout)===norm(p.cases[i].output);
         if(ok){if(vcEl){vcEl.className='vc vc-ac';vcEl.textContent='✓';}}
-        else{
-          allAc=false;
-          if(vcEl){vcEl.className='vc vc-wa';vcEl.textContent='✗';}
-          if(!firstBad) firstBad={type:'wa',got:r.stdout,exp:p.cases[i].output,n:i+1};
-        }
+        else{allAc=false;if(vcEl){vcEl.className='vc vc-wa';vcEl.textContent='✗';}
+          if(!firstBad) firstBad={type:'wa',got:r.stdout,exp:p.cases[i].output,n:i+1};}
       }
-    }catch(e){
-      allAc=false;
-      if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='E';}
-      if(!firstBad) firstBad={type:'err',msg:e.message};
-      break;
-    }
+    }catch(e){allAc=false;if(vcEl){vcEl.className='vc vc-ce';vcEl.textContent='E';}
+      if(!firstBad) firstBad={type:'err',msg:e.message};break;}
     if(i<p.cases.length-1) await new Promise(r=>setTimeout(r,450));
   }
   await new Promise(r=>setTimeout(r,200));
@@ -1314,20 +1160,12 @@ async function submitAll(pid){
   await saveSubmission(pid,p.title,finalStatus);
   await loadStats();
   await loadMySubmissions();
-
   const vb=document.getElementById('vbox-'+pid);
   const prog=vb?.querySelector('.vprog')?.outerHTML||'';
   let cls,title,detail='';
-  if(allAc){
-    cls='vac';title=`✓ Accepted — All ${p.cases.length} cases passed!`;
-    solvedSet.add(pid);renderTable();
-  }else if(firstBad?.type==='ce'||firstBad?.type==='err'){
-    cls='vce';title='✗ Compilation Error';
-    detail=`<div class="vdetail">${esc(firstBad.msg)}</div>`;
-  }else{
-    cls='vwa';title=`✗ Wrong Answer on Case ${firstBad.n}`;
-    detail=`<div class="vdetail">Got:\n${esc(firstBad.got)}\nExpected:\n${esc(firstBad.exp)}</div>`;
-  }
+  if(allAc){cls='vac';title=`Accepted — All ${p.cases.length} cases passed`;solvedSet.add(pid);renderTable();}
+  else if(firstBad?.type==='ce'||firstBad?.type==='err'){cls='vce';title='Compilation Error';detail=`<div class="vdetail">${esc(firstBad.msg)}</div>`;}
+  else{cls='vwa';title=`Wrong Answer on Case ${firstBad.n}`;detail=`<div class="vdetail">Got:\n${esc(firstBad.got)}\nExpected:\n${esc(firstBad.exp)}</div>`;}
   showV(pid,cls,title,prog+detail);
   setButtons(pid,false);
 }
@@ -1335,74 +1173,37 @@ async function submitAll(pid){
 // ── SUBMISSIONS PAGE ──────────────────────
 function renderSubs(){
   const content=document.getElementById('submissions-content');
+  if(!content) return;
   if(!currentUser){
-    content.innerHTML=`
-      <div class="login-wall">
-        <p>Sign in to view your submission history.</p>
-        <button class="login-btn" onclick="showModal('login')">Sign In</button>
-      </div>`;
+    content.innerHTML=`<div class="login-wall"><p>Sign in to view your submission history.</p><button class="sign-in-btn" onclick="showModal('login')">Sign In</button></div>`;
     return;
   }
   const cls={AC:'sac',WA:'swa',CE:'sce'};
-  const acCount=localSubs.filter(s=>s.status==='AC').length;
-  const waCount=localSubs.filter(s=>s.status==='WA').length;
-  const ceCount=localSubs.filter(s=>s.status==='CE').length;
   content.innerHTML=`
     <div class="stats-grid">
-      <div class="stat-card"><div class="stat-val">${acCount}</div><div class="stat-lbl">ACCEPTED</div></div>
-      <div class="stat-card"><div class="stat-val" style="color:var(--red)">${waCount}</div><div class="stat-lbl">WRONG ANSWER</div></div>
-      <div class="stat-card"><div class="stat-val" style="color:var(--blue)">${ceCount}</div><div class="stat-lbl">COMPILE ERROR</div></div>
-      <div class="stat-card"><div class="stat-val" style="color:var(--amber)">${localSubs.length}</div><div class="stat-lbl">TOTAL</div></div>
+      <div class="stat-card"><div class="stat-val">${localSubs.filter(s=>s.status==='AC').length}</div><div class="stat-lbl">Accepted</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--red-text)">${localSubs.filter(s=>s.status==='WA').length}</div><div class="stat-lbl">Wrong Answer</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--blue)">${localSubs.filter(s=>s.status==='CE').length}</div><div class="stat-lbl">Compile Error</div></div>
+      <div class="stat-card"><div class="stat-val" style="color:var(--muted)">${localSubs.length}</div><div class="stat-lbl">Total</div></div>
     </div>
     <div class="sub-list">
       ${localSubs.length
-        ? localSubs.map(s=>`
+        ?localSubs.map(s=>`
           <div class="sub-row ${cls[s.status]||''}">
             <span class="s-status">${s.status}</span>
             <span class="s-pid">${s.pid}</span>
             <span class="s-title">${s.title}</span>
             <span class="s-meta">${s.time}</span>
           </div>`).join('')
-        : '<p style="color:var(--muted);font-size:.78rem">No submissions yet.</p>'
-      }
+        :'<p style="color:var(--muted);font-size:.82rem;padding:1rem 0;font-style:italic">No submissions yet.</p>'}
     </div>`;
 }
 
 // ── NAV ───────────────────────────────────
-function closeCover(){
-  const cover=document.getElementById('view-cover');
-  if(cover) cover.style.display='none';
-  document.getElementById('main-topbar').style.display='flex';
-  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
-  document.getElementById('view-problems')?.classList.add('on');
-  document.querySelectorAll('.nav button').forEach((b,i)=>{
-    b.classList.toggle('on',i===0);
-  });
-}
-
-function renderCoverPreview(){
-  const featured=['CJ001','CJ010','CJ020','CJ025','CJ030','CJ050','CJ052','CJ060','CJ085','CJ100'];
-  const dc={Easy:'background:#EAF3DE;color:#27500A',Medium:'background:#FAEEDA;color:#633806',Hard:'background:#FCEBEB;color:#791F1F'};
-  const html=featured.map(id=>{
-    const p=PROBLEMS[id];
-    if(!p) return '';
-    return `<div style="display:grid;grid-template-columns:80px 1fr 80px 70px;align-items:center;padding:.85rem 0;border-bottom:1px solid #ece9e4;font-size:.8rem;cursor:pointer" onclick="closeCover();openProb('${id}')">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752">${p.id}</span>
-      <span style="color:#0d0d0d">${p.title}</span>
-      <span style="font-size:.65rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:2px;${dc[p.diff]}">${p.diff}</span>
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752;text-align:right">${getAcRate(id)}</span>
-    </div>`;
-  }).join('');
-  const el=document.getElementById('cv-prob-preview');
-  if(el) el.innerHTML=html;
-}
-
-
-  document.getElementById('view-cover').style.display='none';
-  document.getElementById('main-topbar').style.display='flex';
+function gv(name){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
   document.getElementById('view-'+name)?.classList.add('on');
-  document.querySelectorAll('.nav button').forEach((b,i)=>{
+  document.querySelectorAll('.nav-btn').forEach((b,i)=>{
     b.classList.toggle('on',['problems','submissions'][i]===name||(name==='detail'&&i===0));
   });
   if(name==='submissions') renderSubs();
@@ -1412,21 +1213,7 @@ function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 
 // ── INIT ──────────────────────────────────
 renderTable();
-loadStats().then(()=>{
-  let total=0;
-  Object.values(globalStats).forEach(s=>{total+=s.total});
-  const el=document.getElementById('cv-total-subs');
-  if(el) el.textContent=total||'—';
-  renderCoverPreview();
-});
-document.getElementById('main-topbar').style.display='none';
-sb.auth.getSession().then(({data:{session}})=>{
-  if(session){
-    document.getElementById('view-cover').style.display='none';
-    document.getElementById('main-topbar').style.display='flex';
-    gv('problems');
-  }
-});
+loadStats();
 </script>
 </body>
 </html>
