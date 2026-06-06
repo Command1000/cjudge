@@ -155,7 +155,7 @@ textarea.code-area{width:100%;height:380px;background:#07070e;border:none;outlin
 
 
 /* ── COVER ─────────────────────────────── */
-.cover-page{background:#f8f7f4;color:#1a1a1a;font-family:'Source Serif 4',serif;min-height:100vh}
+.cover-page{background:#f8f7f4 !important;color:#1a1a1a !important;font-family:'Source Serif 4',serif;min-height:100vh;width:100%;position:relative;left:0;right:0;margin:0;padding:0}
 .cv-nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #d0cdc7;background:#f8f7f4;position:sticky;top:0;z-index:50}
 .cv-logo{font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;color:#1a1a1a;letter-spacing:.02em}
 .cv-logo em{color:#185FA5;font-style:normal}
@@ -212,68 +212,60 @@ footer a{color:var(--purple);text-decoration:none}
 <div id="app">
 
   <!-- COVER -->
-  <div id="view-cover" class="cover-page">
-    <nav class="cv-nav">
-      <div class="cv-logo"><em>C</em>Judge</div>
-      <div class="cv-navlinks">
-        <a onclick="gv('problems')">Problems</a>
-        <a onclick="gv('submissions')">Submissions</a>
-        <button class="cv-signin" onclick="showModal('login')" id="cv-auth-btn">Sign In</button>
+  <div id="view-cover" style="display:block;position:fixed;inset:0;z-index:500;background:#f8f7f4;overflow-y:auto;font-family:'Source Serif 4',serif;color:#1a1a1a">
+    <nav style="display:flex;justify-content:space-between;align-items:center;padding:1.1rem 3rem;border-bottom:1px solid #d0cdc7;background:#f8f7f4;position:sticky;top:0;z-index:10">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:.88rem;font-weight:500;color:#1a1a1a"><span style="color:#185FA5">C</span>Judge</div>
+      <div style="display:flex;gap:1.5rem;align-items:center">
+        <a onclick="closeCover()" style="font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer">Problems</a>
+        <a onclick="gv('submissions');closeCover()" style="font-size:.75rem;color:#5a5752;text-decoration:none;font-family:'JetBrains Mono',monospace;cursor:pointer">Submissions</a>
+        <button onclick="showModal('login')" id="cv-auth-btn" style="background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.72rem;padding:6px 16px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em">Sign In</button>
       </div>
     </nav>
-    <div class="cv-inner">
-      <section class="cv-hero">
-        <div class="cv-label">Tamkang University · ECE Programming Practice</div>
-        <h1 class="cv-title">Learn algorithms.<br><strong>Write better code.</strong></h1>
-        <p class="cv-sub">An open, student-built online judge with 100 original problems — from array basics to competitive programming.</p>
-        <button class="cv-btn" onclick="gv('problems')">Start Solving →</button>
-        <button class="cv-btn-out" onclick="showModal('login')" id="cv-signin-btn2">Sign In</button>
+    <div style="max-width:900px;margin:0 auto;padding:0 3rem 5rem">
+      <section style="padding:5rem 0 3.5rem;border-bottom:1px solid #d0cdc7">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:#5a5752;letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem">Tamkang University · ECE Programming Practice</div>
+        <h1 style="font-size:3.5rem;font-weight:300;line-height:1.12;letter-spacing:-.02em;color:#0d0d0d;margin-bottom:.5rem">Learn algorithms.<br><strong style="font-weight:600">Write better code.</strong></h1>
+        <p style="font-size:1.05rem;font-weight:300;color:#4a4845;line-height:1.75;max-width:540px;margin-bottom:2.5rem;font-style:italic">An open, student-built online judge with 100 original problems — from array basics to competitive programming.</p>
+        <button onclick="closeCover()" style="background:#0C447C;color:#fff;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:12px 26px;border-radius:3px;cursor:pointer;border:none;letter-spacing:.04em">Start Solving →</button>
+        <button onclick="showModal('login')" id="cv-signin-btn2" style="background:transparent;color:#0C447C;font-family:'JetBrains Mono',monospace;font-size:.78rem;padding:11px 22px;border-radius:3px;cursor:pointer;border:1px solid #0C447C;letter-spacing:.04em;margin-left:.75rem">Sign In</button>
       </section>
-      <section class="cv-stats">
-        <div class="cv-stat"><div class="cv-stat-num">100</div><div class="cv-stat-lbl">Problems</div></div>
-        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num">3</div><div class="cv-stat-lbl">Difficulty Levels</div></div>
-        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num">C++17</div><div class="cv-stat-lbl">Language</div></div>
-        <div class="cv-stat" style="padding-left:2rem"><div class="cv-stat-num" id="cv-total-subs">—</div><div class="cv-stat-lbl">Submissions</div></div>
+      <section style="display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #d0cdc7">
+        <div style="padding:1.75rem 0;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">100</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Problems</div></div>
+        <div style="padding:1.75rem 0 1.75rem 2rem;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">3</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Difficulty Levels</div></div>
+        <div style="padding:1.75rem 0 1.75rem 2rem;border-right:1px solid #d0cdc7"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem">C++17</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Language</div></div>
+        <div style="padding:1.75rem 0 1.75rem 2rem"><div style="font-size:2.2rem;font-weight:300;color:#0C447C;font-family:'JetBrains Mono',monospace;margin-bottom:.3rem" id="cv-total-subs">—</div><div style="font-size:.65rem;color:#5a5752;letter-spacing:.1em;text-transform:uppercase;font-family:'JetBrains Mono',monospace">Submissions</div></div>
       </section>
-      <section class="cv-features">
-        <div class="cv-feat">
-          <div class="cv-feat-icon">[ judge ]</div>
-          <div class="cv-feat-title">Real-time judging</div>
-          <div class="cv-feat-desc">Submissions are compiled and executed in a sandboxed C++17 environment with instant feedback.</div>
+      <section style="display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d0cdc7;margin-top:3rem">
+        <div style="padding:2rem 1.5rem 2rem 0;border-right:1px solid #d0cdc7">
+          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ judge ]</div>
+          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Real-time judging</div>
+          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Submissions are compiled and executed in a sandboxed C++17 environment with instant feedback.</div>
         </div>
-        <div class="cv-feat" style="padding-left:1.5rem">
-          <div class="cv-feat-icon">[ stats ]</div>
-          <div class="cv-feat-title">Live statistics</div>
-          <div class="cv-feat-desc">Acceptance rates and submission counts are tracked globally across all users in real time.</div>
+        <div style="padding:2rem 1.5rem;border-right:1px solid #d0cdc7">
+          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ stats ]</div>
+          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Live statistics</div>
+          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Acceptance rates and submission counts are tracked globally across all users in real time.</div>
         </div>
-        <div class="cv-feat" style="padding-left:1.5rem">
-          <div class="cv-feat-icon">[ user ]</div>
-          <div class="cv-feat-title">Personal history</div>
-          <div class="cv-feat-desc">Create an account to track your submissions, see solved problems, and monitor your progress.</div>
+        <div style="padding:2rem 0 2rem 1.5rem">
+          <div style="font-size:.88rem;color:#0C447C;margin-bottom:.85rem;font-family:'JetBrains Mono',monospace;font-weight:500">[ user ]</div>
+          <div style="font-size:.92rem;font-weight:600;color:#0d0d0d;margin-bottom:.4rem">Personal history</div>
+          <div style="font-size:.78rem;color:#5a5752;line-height:1.75;font-weight:300">Create an account to track your submissions, see solved problems, and monitor your progress.</div>
         </div>
       </section>
-      <div class="cv-sec-hdr">
-        <div class="cv-sec-title">Problem set</div>
-        <a class="cv-sec-link" onclick="gv('problems')">View all 100 problems →</a>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:2rem 0 1rem;border-bottom:1px solid #d0cdc7;margin-top:3rem">
+        <div style="font-size:.95rem;font-weight:600;color:#0d0d0d">Problem set — Featured</div>
+        <a onclick="closeCover()" style="font-size:.72rem;color:#185FA5;font-family:'JetBrains Mono',monospace;cursor:pointer">View all 100 problems →</a>
       </div>
-      <div>
-        <div class="cv-prow"><span class="cv-pid">CJ001</span><span class="cv-ptitle">Sum of Array</span><span class="cv-pdiff cv-easy">Easy</span><span class="cv-pacc" id="cv-acc-CJ001">—</span></div>
-        <div class="cv-prow"><span class="cv-pid">CJ010</span><span class="cv-ptitle">Prime Check</span><span class="cv-pdiff cv-easy">Easy</span><span class="cv-pacc" id="cv-acc-CJ010">—</span></div>
-        <div class="cv-prow"><span class="cv-pid">CJ025</span><span class="cv-ptitle">Longest Increasing Subsequence</span><span class="cv-pdiff cv-med">Medium</span><span class="cv-pacc" id="cv-acc-CJ025">—</span></div>
-        <div class="cv-prow"><span class="cv-pid">CJ052</span><span class="cv-ptitle">Dijkstra Shortest Path</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ052">—</span></div>
-        <div class="cv-prow"><span class="cv-pid">CJ085</span><span class="cv-ptitle">Strongly Connected Components</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ085">—</span></div>
-        <div class="cv-prow"><span class="cv-pid">CJ100</span><span class="cv-ptitle">APCS Final Boss</span><span class="cv-pdiff cv-hard">Hard</span><span class="cv-pacc" id="cv-acc-CJ100">—</span></div>
-      </div>
-      <footer class="cv-footer">
-        <div class="cv-footer-text">CJudge · Tamkang University ECE · Non-profit · Student project</div>
-        <div class="cv-footer-links">
-          <a href="https://github.com/Command1000/cjudge" target="_blank">GitHub</a>
-          <a href="https://glot.io" target="_blank">Powered by glot.io</a>
+      <div id="cv-prob-preview"></div>
+      <footer style="padding:2rem 0;display:flex;justify-content:space-between;align-items:center;margin-top:3rem;border-top:1px solid #d0cdc7">
+        <div style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace">CJudge · Tamkang University ECE · Non-profit · Student project</div>
+        <div style="display:flex;gap:1.25rem">
+          <a href="https://github.com/Command1000/cjudge" target="_blank" style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none">GitHub</a>
+          <a href="https://glot.io" target="_blank" style="font-size:.68rem;color:#8a8780;font-family:'JetBrains Mono',monospace;text-decoration:none">Powered by glot.io</a>
         </div>
       </footer>
     </div>
   </div>
-
   <div class="topbar" id="main-topbar">
     <a class="logo" href="#" onclick="gv('problems');return false;"><em>C</em>Judge</a>
     <div class="nav">
@@ -1118,9 +1110,17 @@ async function loadMySubmissions(){
 }
 
 // ── TABLE ─────────────────────────────────
+let currentPage=1;
+const PAGE_SIZE=20;
+
 function renderTable(){
   document.getElementById('prob-count').textContent=Object.keys(PROBLEMS).length;
-  document.getElementById('ptbody').innerHTML=Object.values(PROBLEMS).map(p=>`
+  const allProbs=Object.values(PROBLEMS);
+  const totalPages=Math.ceil(allProbs.length/PAGE_SIZE);
+  const start=(currentPage-1)*PAGE_SIZE;
+  const pageProbs=allProbs.slice(start,start+PAGE_SIZE);
+
+  document.getElementById('ptbody').innerHTML=pageProbs.map(p=>`
     <tr class="pr" onclick="openProb('${p.id}')">
       <td>${solvedSet.has(p.id)?'<span class="actick">✓</span>':''}</td>
       <td class="pid">${p.id}</td>
@@ -1130,6 +1130,30 @@ function renderTable(){
       <td class="acc">${getAcRate(p.id)}</td>
       <td class="acc">${getTotal(p.id)}</td>
     </tr>`).join('');
+
+  let pgEl=document.getElementById('pagination');
+  if(!pgEl){
+    pgEl=document.createElement('div');
+    pgEl.id='pagination';
+    document.querySelector('table.pt').after(pgEl);
+  }
+  let pgHtml=`<div style="display:flex;align-items:center;gap:6px;padding:1rem 0;justify-content:center;flex-wrap:wrap">`;
+  pgHtml+=`<button onclick="changePage(${currentPage-1})" ${currentPage===1?'disabled':''} style="background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:6px;cursor:pointer">← Prev</button>`;
+  for(let i=1;i<=totalPages;i++){
+    const active=i===currentPage;
+    pgHtml+=`<button onclick="changePage(${i})" style="background:${active?'rgba(167,139,250,.15)':'transparent'};border:1px solid ${active?'var(--purple)':'var(--border)'};color:${active?'var(--purple)':'var(--muted)'};font-family:var(--mono);font-size:.7rem;padding:5px 10px;border-radius:6px;cursor:pointer;min-width:34px">${i}</button>`;
+  }
+  pgHtml+=`<button onclick="changePage(${currentPage+1})" ${currentPage===totalPages?'disabled':''} style="background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:6px;cursor:pointer">Next →</button>`;
+  pgHtml+=`<span style="font-size:.68rem;color:var(--muted);margin-left:8px">Page ${currentPage} / ${totalPages}</span>`;
+  pgHtml+=`</div>`;
+  pgEl.innerHTML=pgHtml;
+}
+
+function changePage(page){
+  const total=Math.ceil(Object.keys(PROBLEMS).length/PAGE_SIZE);
+  if(page<1||page>total) return;
+  currentPage=page;
+  renderTable();
 }
 
 // ── PROBLEM DETAIL ────────────────────────
@@ -1345,7 +1369,35 @@ function renderSubs(){
 }
 
 // ── NAV ───────────────────────────────────
-function gv(name){
+function closeCover(){
+  const cover=document.getElementById('view-cover');
+  if(cover) cover.style.display='none';
+  document.getElementById('main-topbar').style.display='flex';
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('view-problems')?.classList.add('on');
+  document.querySelectorAll('.nav button').forEach((b,i)=>{
+    b.classList.toggle('on',i===0);
+  });
+}
+
+function renderCoverPreview(){
+  const featured=['CJ001','CJ010','CJ020','CJ025','CJ030','CJ050','CJ052','CJ060','CJ085','CJ100'];
+  const dc={Easy:'background:#EAF3DE;color:#27500A',Medium:'background:#FAEEDA;color:#633806',Hard:'background:#FCEBEB;color:#791F1F'};
+  const html=featured.map(id=>{
+    const p=PROBLEMS[id];
+    if(!p) return '';
+    return `<div style="display:grid;grid-template-columns:80px 1fr 80px 70px;align-items:center;padding:.85rem 0;border-bottom:1px solid #ece9e4;font-size:.8rem;cursor:pointer" onclick="closeCover();openProb('${id}')">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752">${p.id}</span>
+      <span style="color:#0d0d0d">${p.title}</span>
+      <span style="font-size:.65rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:2px;${dc[p.diff]}">${p.diff}</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:#5a5752;text-align:right">${getAcRate(id)}</span>
+    </div>`;
+  }).join('');
+  const el=document.getElementById('cv-prob-preview');
+  if(el) el.innerHTML=html;
+}
+
+
   document.getElementById('view-cover').style.display='none';
   document.getElementById('main-topbar').style.display='flex';
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
@@ -1361,15 +1413,11 @@ function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace
 // ── INIT ──────────────────────────────────
 renderTable();
 loadStats().then(()=>{
-  // update cover stats
   let total=0;
   Object.values(globalStats).forEach(s=>{total+=s.total});
   const el=document.getElementById('cv-total-subs');
   if(el) el.textContent=total||'—';
-  ['CJ001','CJ010','CJ025','CJ052','CJ085','CJ100'].forEach(pid=>{
-    const el=document.getElementById('cv-acc-'+pid);
-    if(el) el.textContent=getAcRate(pid);
-  });
+  renderCoverPreview();
 });
 document.getElementById('main-topbar').style.display='none';
 sb.auth.getSession().then(({data:{session}})=>{
