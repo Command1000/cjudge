@@ -18,8 +18,6 @@
 }
 html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--mono)}
 #app{max-width:1100px;margin:0 auto}
-
-/* TOPBAR */
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1.5rem;border-bottom:1px solid var(--border);background:var(--surf);position:sticky;top:0;z-index:100}
 .logo{font-family:var(--disp);font-size:1.3rem;font-weight:800;letter-spacing:-.02em;color:#fff;text-decoration:none}
 .logo em{color:var(--purple);font-style:normal}
@@ -30,12 +28,8 @@ html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:va
 .hdr-right{display:flex;align-items:center;gap:8px;font-size:.68rem;color:var(--muted)}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2.5s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* VIEWS */
 .view{display:none;padding:1.5rem 1.5rem 4rem}.view.on{display:block}
 .sec-title{font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
-
-/* PROBLEM TABLE */
 table.pt{width:100%;border-collapse:collapse}
 table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;padding:7px 12px;border-bottom:1px solid var(--border);text-align:left}
 .pr{border-bottom:1px solid var(--border);cursor:pointer;transition:background .12s}
@@ -50,21 +44,15 @@ table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-
 .tag{font-size:.62rem;padding:2px 8px;border-radius:10px;background:rgba(167,139,250,.08);color:var(--purple);border:1px solid rgba(167,139,250,.18);margin-right:3px;white-space:nowrap;display:inline-block;margin-bottom:2px}
 .acc{color:var(--muted);font-size:.72rem}
 .actick{color:var(--green);font-size:1rem}
-
-/* PROBLEM DETAIL — full width stacked layout */
 .back-btn{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.7rem;padding:5px 12px;border-radius:7px;cursor:pointer;margin-bottom:1.1rem;transition:all .15s}
 .back-btn:hover{border-color:var(--purple);color:var(--purple)}
-
 .prob-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.5rem}
 .prob-id-big{font-size:2rem;font-weight:800;font-family:var(--disp);color:var(--purple);line-height:1;min-width:75px}
 .prob-title-big{font-size:1.1rem;font-weight:700;font-family:var(--disp);color:#fff;margin-bottom:6px}
 .prob-meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:5px;align-items:center}
 .mchip{font-size:.65rem;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted)}
-
-/* DESC + CASES side by side */
 .prob-top{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
 @media(max-width:700px){.prob-top{grid-template-columns:1fr}}
-
 .prob-desc{background:var(--surf);border:1px solid var(--border);border-radius:10px;padding:1.25rem}
 .dlbl{font-size:.65rem;color:var(--purple);letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px;font-weight:700}
 .dtxt{font-size:.78rem;color:#aaa8cc;line-height:1.85}
@@ -75,19 +63,11 @@ table.pt th{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-
 .ctab.on{border-color:var(--purple);color:var(--purple);background:rgba(167,139,250,.08)}
 .cio{display:none}.cio.on{display:block}
 .iolbl{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
-
-/* EDITOR — bottom large panel */
 .editor-panel{background:var(--surf);border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .editor-titlebar{display:flex;align-items:center;justify-content:space-between;padding:.65rem 1rem;border-bottom:1px solid var(--border);background:var(--card)}
 .editor-title{font-size:.72rem;color:var(--muted)}
 .editor-lang{font-size:.68rem;color:var(--purple);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);padding:2px 10px;border-radius:20px}
-textarea.code-area{
-  width:100%;height:380px;background:#07070e;border:none;outline:none;
-  color:#c8c6e8;font-family:var(--mono);font-size:.75rem;
-  padding:1rem;resize:vertical;line-height:1.8;tab-size:4;
-}
-
-/* VERDICT */
+textarea.code-area{width:100%;height:380px;background:#07070e;border:none;outline:none;color:#c8c6e8;font-family:var(--mono);font-size:.75rem;padding:1rem;resize:vertical;line-height:1.8;tab-size:4}
 .vbox{border-radius:9px;padding:12px 15px;font-size:.78rem;display:none;margin:0 0 .75rem}
 .vbox.show{display:block}
 .vac{background:rgba(52,211,153,.07);border:1px solid rgba(52,211,153,.3);color:var(--green)}
@@ -104,8 +84,6 @@ textarea.code-area{
 .vc-wa{background:rgba(248,113,113,.2);border-color:var(--red);color:var(--red)}
 .vc-ce{background:rgba(96,165,250,.2);border-color:var(--blue);color:var(--blue)}
 @keyframes p2{0%,100%{opacity:1}50%{opacity:.3}}
-
-/* BOTTOM ACTION BAR */
 .action-bar{display:flex;gap:.75rem;align-items:center;padding:.85rem 1rem;border-top:1px solid var(--border);background:var(--card)}
 .run-btn{background:transparent;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:.73rem;padding:9px 18px;border-radius:8px;cursor:pointer;transition:all .15s;white-space:nowrap}
 .run-btn:hover:not(:disabled){border-color:var(--cyan);color:var(--cyan)}
@@ -114,8 +92,6 @@ textarea.code-area{
 .sub-btn:hover:not(:disabled){background:var(--purple);transform:translateY(-1px)}
 .sub-btn:disabled{opacity:.5;cursor:not-allowed}
 .action-hint{font-size:.65rem;color:var(--muted)}
-
-/* SUBMISSIONS */
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:1.5rem}
 .stat-card{background:var(--surf);border:1px solid var(--border);border-radius:9px;padding:1rem 1.25rem}
 .stat-val{font-size:1.8rem;font-weight:800;font-family:var(--disp);color:var(--purple)}
@@ -130,7 +106,6 @@ textarea.code-area{
 .s-pid{color:var(--muted);min-width:46px;font-size:.68rem}
 .s-title{flex:1;color:var(--text)}
 .s-meta{color:var(--muted);font-size:.68rem;white-space:nowrap}
-
 footer{text-align:center;padding:1.5rem;font-size:.65rem;color:var(--muted);border-top:1px solid var(--border)}
 footer a{color:var(--purple);text-decoration:none}
 </style>
@@ -149,9 +124,8 @@ footer a{color:var(--purple);text-decoration:none}
     </div>
   </div>
 
-  <!-- PROBLEMS -->
   <div id="view-problems" class="view on">
-    <p class="sec-title">Problem Set · 4 problems</p>
+    <p class="sec-title">Problem Set · <span id="prob-count">4</span> problems</p>
     <table class="pt">
       <thead>
         <tr>
@@ -160,20 +134,19 @@ footer a{color:var(--purple);text-decoration:none}
           <th>Title</th>
           <th>Tags</th>
           <th style="width:92px">Difficulty</th>
-          <th style="width:72px">Acc.</th>
+          <th style="width:80px">AC Rate</th>
+          <th style="width:72px">Total</th>
         </tr>
       </thead>
       <tbody id="ptbody"></tbody>
     </table>
   </div>
 
-  <!-- DETAIL -->
   <div id="view-detail" class="view">
     <button class="back-btn" onclick="gv('problems')">← back</button>
     <div id="detail-content"></div>
   </div>
 
-  <!-- SUBMISSIONS -->
   <div id="view-submissions" class="view">
     <p class="sec-title">Submissions</p>
     <div class="stats-grid">
@@ -183,7 +156,7 @@ footer a{color:var(--purple);text-decoration:none}
       <div class="stat-card"><div class="stat-val" style="color:var(--amber)" id="s-tot">0</div><div class="stat-lbl">TOTAL</div></div>
     </div>
     <div class="sub-list" id="sub-list">
-      <p style="color:var(--muted);font-size:.78rem">尚無提交紀錄。</p>
+      <p style="color:var(--muted);font-size:.78rem">No submissions yet.</p>
     </div>
   </div>
 
@@ -198,68 +171,67 @@ footer a{color:var(--purple);text-decoration:none}
 const WORKER_URL = 'https://cjudge-api.sam123-tseng.workers.dev';
 
 const PROBLEMS = {
-  CJ001:{id:'CJ001',title:'骰子操作',diff:'Easy',acc:'78%',tags:['陣列','模擬'],
-    desc:'有 N 個骰子初始面值 {top=1, front=2, right=3, left=4, back=5, bot=6}。\nM 個指令 (a, b)：\n  • a b（b > 0） → 交換骰子 a 與 b\n  • a -1          → 骰子 a 向前旋轉\n  • a -2          → 骰子 a 向右旋轉\n\n輸出 N 個骰子最終 top 面的數字（空格分隔）。',
+  CJ001:{id:'CJ001',title:'Dice Operations',diff:'Easy',tags:['Array','Simulation'],
+    desc:'Given N dice in a row, all initially with top=1, front=2, right=3, left=4, back=5, bottom=6.\n\nFor each of M operations (a, b):\n  • If b > 0: swap dice a and b\n  • If b = -1: rotate dice a forward\n  • If b = -2: rotate dice a to the right\n\nOutput the top face of each dice after all operations.',
     cases:[
       {input:'1 2\n1 -2\n1 -1',output:'3'},
       {input:'3 3\n2 -1\n3 -2\n3 1',output:'5 3 1'},
-    ],
-    code:`#include <bits/stdc++.h>
-using namespace std;
-
-int main(){
-    // 在此撰寫你的解答
-
-    return 0;
-}`},
-  CJ002:{id:'CJ002',title:'流量費用計算',diff:'Medium',acc:'52%',tags:['2D陣列','貪心'],
-    desc:'N×M 流量矩陣 Q，Q[i][j] 為來源 i 流向通道 j 的流量。\nK 組路由方案 p[]，決定來源 i 接哪個通道。\n費用：同通道不計費；不同通道：前 1000 × 3，超過 × 2 (+3000)。\n輸出所有方案中最小費用。',
+    ]},
+  CJ002:{id:'CJ002',title:'Network Flow Cost',diff:'Medium',tags:['2D Array','Greedy'],
+    desc:'There are N servers and M cities. Q[i][j] is the traffic from server i to city j.\n\nGiven K routing plans, each plan assigns each server to a city.\n\nCost rules:\n  • Same city (u == v): 1 per unit\n  • Different city: 3 per unit (first 1000), then 2 per unit\n\nOutput the minimum cost among all plans.',
     cases:[
       {input:'2 3 3\n30 23 23\n5 25 3\n0 0\n0 1\n0 2',output:'217'},
       {input:'3 4 5\n500 400 800 200\n500 400 100 600\n450 420 800 790\n0 0 0\n0 1 2\n0 2 2\n2 1 2\n1 1 1',output:'13470'},
-    ],
-    code:`#include <bits/stdc++.h>
-using namespace std;
-
-int main(){
-    // 在此撰寫你的解答
-
-    return 0;
-}`},
-  CJ003:{id:'CJ003',title:'配對消除',diff:'Medium',acc:'44%',tags:['模擬','迴圈'],
-    desc:'給定 N×M 整數網格。每輪對每個格子 (i,j)：\n  向下找第一個非 -1 的格子，值相同 → 消除並加分\n  向右找第一個非 -1 的格子，值相同 → 消除並加分\n重複直到無配對，輸出總分。',
+    ]},
+  CJ003:{id:'CJ003',title:'Pair Elimination',diff:'Medium',tags:['Simulation','Loop'],
+    desc:'Given an N×M grid of integers. Each round, for each cell (i,j):\n  • Look down: find the first non-(-1) cell in the same column. If equal, eliminate both and add score.\n  • Look right: find the first non-(-1) cell in the same row. If equal, eliminate both and add score.\n\nRepeat until no more pairs. Output total score.',
     cases:[
       {input:'1 8\n0 2 3 3 0 2 5 5',output:'8'},
       {input:'3 6\n0 2 3 8 0 2\n1 1 4 4 5 7\n5 6 3 8 6 7',output:'29'},
-    ],
-    code:`#include <bits/stdc++.h>
-using namespace std;
-
-int main(){
-    // 在此撰寫你的解答
-
-    return 0;
-}`},
-  CJ004:{id:'CJ004',title:'曼哈頓距離覆蓋',diff:'Hard',acc:'32%',tags:['網格','幾何'],
-    desc:'H×W 地圖，初始全 0。N 個操作 (r, c, t, x)：\n對所有 |i-r|+|j-c| ≤ t 的格子加 x。\n\n輸出最終網格（每列空格分隔，換行）。',
+    ]},
+  CJ004:{id:'CJ004',title:'Manhattan Coverage',diff:'Hard',tags:['Grid','Geometry'],
+    desc:'An H×W canvas, initially all zeros.\n\nFor each of N operations (r, c, t, x):\n  Add x to all cells where |i-r| + |j-c| ≤ t.\n\nIf multiple colors overlap, values accumulate.\nOutput the final canvas state.',
     cases:[
       {input:'1 20 3\n0 13 5 7\n0 6 4 4\n0 13 12 6',output:'0 6 10 10 10 10 10 10 17 17 17 13 13 13 13 13 13 13 13 6'},
       {input:'6 7 3\n3 2 2 1\n1 6 1 2\n1 3 2 5',output:'0 0 5 5 5 0 2\n0 5 6 5 5 7 2\n0 1 6 6 5 0 2\n1 1 1 6 1 0 0\n0 1 1 1 0 0 0\n0 0 1 0 0 0 0'},
-    ],
-    code:`#include <bits/stdc++.h>
-using namespace std;
-
-int main(){
-    // 在此撰寫你的解答
-
-    return 0;
-}`}
+    ]}
 };
 
 const DC={Easy:'e',Medium:'m',Hard:'h'};
-let submissions=[],solvedSet=new Set();
+let localSubs=[];
+let solvedSet=new Set();
+let globalStats={};
+
+const BLANK_CODE=`#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    // Write your solution here
+
+    return 0;
+}`;
+
+async function loadStats(){
+  try{
+    const res=await fetch(WORKER_URL+'/stats');
+    globalStats=await res.json();
+    renderTable();
+  }catch(e){}
+}
+
+function getAcRate(pid){
+  const s=globalStats[pid];
+  if(!s||s.total===0) return '—';
+  return Math.round(s.ac/s.total*100)+'%';
+}
+function getTotal(pid){
+  const s=globalStats[pid];
+  if(!s) return '0';
+  return s.total.toString();
+}
 
 function renderTable(){
+  document.getElementById('prob-count').textContent=Object.keys(PROBLEMS).length;
   document.getElementById('ptbody').innerHTML=Object.values(PROBLEMS).map(p=>`
     <tr class="pr" onclick="openProb('${p.id}')">
       <td>${solvedSet.has(p.id)?'<span class="actick">✓</span>':''}</td>
@@ -267,7 +239,8 @@ function renderTable(){
       <td class="ptitle">${p.title}</td>
       <td>${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</td>
       <td><span class="db ${DC[p.diff]}">${p.diff}</span></td>
-      <td class="acc">${p.acc}</td>
+      <td class="acc" id="acc-${p.id}">${getAcRate(p.id)}</td>
+      <td class="acc" id="tot-${p.id}">${getTotal(p.id)}</td>
     </tr>`).join('');
 }
 
@@ -290,12 +263,12 @@ function openProb(id){
         <div class="prob-title-big">${p.title}</div>
         <div class="prob-meta">
           <span class="db ${DC[p.diff]}">${p.diff}</span>
-          <span class="mchip">Acc. ${p.acc}</span>
+          <span class="mchip">AC Rate: ${getAcRate(p.id)}</span>
+          <span class="mchip">Submissions: ${getTotal(p.id)}</span>
           ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
         </div>
       </div>
     </div>
-
     <div class="prob-top">
       <div class="prob-desc">
         <div class="dsec">
@@ -305,21 +278,19 @@ function openProb(id){
       </div>
       <div class="prob-desc">
         <div class="dsec">
-          <div class="dlbl">Test Cases</div>
+          <div class="dlbl">Sample Cases</div>
           <div class="ctabs">${ctabs}</div>
           ${cios}
         </div>
       </div>
     </div>
-
     <div id="vbox-${id}" class="vbox"></div>
-
     <div class="editor-panel">
       <div class="editor-titlebar">
         <span class="editor-title">solution.cpp</span>
         <span class="editor-lang">C++17</span>
       </div>
-      <textarea class="code-area" id="code-${id}" spellcheck="false">${p.code}</textarea>
+      <textarea class="code-area" id="code-${id}" spellcheck="false">${BLANK_CODE}</textarea>
       <div class="action-bar">
         <button class="run-btn" id="runbtn-${id}" onclick="runOne('${id}')">▷ Run Case 1</button>
         <button class="sub-btn" id="subbtn-${id}" onclick="submitAll('${id}')">▶ Submit All Cases</button>
@@ -336,11 +307,13 @@ function swCase(pid,idx){
   });
 }
 
-async function glotRun(code,stdin){
+async function glotRun(code,stdin,pid,status,title){
+  const body={code,stdin};
+  if(pid&&status){body.problem_id=pid;body.problem_title=title;body.status=status;}
   const res=await fetch(WORKER_URL,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({code,stdin})
+    body:JSON.stringify(body)
   });
   if(!res.ok) throw new Error('Worker error '+res.status);
   return await res.json();
@@ -412,12 +385,20 @@ async function submitAll(pid){
     if(i<p.cases.length-1) await new Promise(r=>setTimeout(r,450));
   }
   await new Promise(r=>setTimeout(r,200));
+
+  const finalStatus=allAc?'AC':(firstBad?.type==='ce'||firstBad?.type==='err')?'CE':'WA';
+
+  // save to supabase via worker
+  try{
+    await glotRun('',p.cases[0].input,pid,finalStatus,p.title);
+  }catch(e){}
+
   const vb=document.getElementById('vbox-'+pid);
   const prog=vb?.querySelector('.vprog')?.outerHTML||'';
   let cls,title,detail='';
   if(allAc){
     cls='vac';title=`✓ Accepted — All ${p.cases.length} cases passed!`;
-    solvedSet.add(pid);renderTable();
+    solvedSet.add(pid);
   }else if(firstBad?.type==='ce'||firstBad?.type==='err'){
     cls='vce';title='✗ Compilation Error';
     detail=`<div class="vdetail">${esc(firstBad.msg)}</div>`;
@@ -426,30 +407,31 @@ async function submitAll(pid){
     detail=`<div class="vdetail">Got:\n${esc(firstBad.got)}\nExpected:\n${esc(firstBad.exp)}</div>`;
   }
   showV(pid,cls,title,prog+detail);
-  addSub(pid,allAc?'AC':(firstBad?.type==='ce'||firstBad?.type==='err')?'CE':'WA',p.title);
+  addLocalSub(pid,finalStatus,p.title);
+  await loadStats();
   setButtons(pid,false);
 }
 
-function addSub(pid,status,title){
-  submissions.unshift({pid,status,title,time:new Date().toLocaleTimeString()});
+function addLocalSub(pid,status,title){
+  localSubs.unshift({pid,status,title,time:new Date().toLocaleTimeString()});
   renderSubs();
 }
 function renderSubs(){
   const cls={AC:'sac',WA:'swa',CE:'sce'};
-  document.getElementById('s-ac').textContent=submissions.filter(s=>s.status==='AC').length;
-  document.getElementById('s-wa').textContent=submissions.filter(s=>s.status==='WA').length;
-  document.getElementById('s-ce').textContent=submissions.filter(s=>s.status==='CE').length;
-  document.getElementById('s-tot').textContent=submissions.length;
+  document.getElementById('s-ac').textContent=localSubs.filter(s=>s.status==='AC').length;
+  document.getElementById('s-wa').textContent=localSubs.filter(s=>s.status==='WA').length;
+  document.getElementById('s-ce').textContent=localSubs.filter(s=>s.status==='CE').length;
+  document.getElementById('s-tot').textContent=localSubs.length;
   const list=document.getElementById('sub-list');
-  list.innerHTML=submissions.length
-    ?submissions.map(s=>`
+  list.innerHTML=localSubs.length
+    ?localSubs.map(s=>`
       <div class="sub-row ${cls[s.status]||''}">
         <span class="s-status">${s.status}</span>
         <span class="s-pid">${s.pid}</span>
         <span class="s-title">${s.title}</span>
         <span class="s-meta">${s.time}</span>
       </div>`).join('')
-    :'<p style="color:var(--muted);font-size:.78rem">尚無提交紀錄。</p>';
+    :'<p style="color:var(--muted);font-size:.78rem">No submissions yet.</p>';
 }
 function gv(name){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
@@ -459,7 +441,10 @@ function gv(name){
   });
 }
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-renderTable();renderSubs();
+
+renderTable();
+renderSubs();
+loadStats();
 </script>
 </body>
 </html>
